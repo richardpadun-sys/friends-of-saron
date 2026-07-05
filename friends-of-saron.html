@@ -399,10 +399,10 @@
   .legend-dot--recorded{background:var(--color-primary);}
   .legend-dot--partial{background:var(--color-primary);opacity:.45;}
   .legend-dot--empty{background:var(--color-surface-offset);border:1px solid var(--color-border);}
-  .plot-row-wrap{overflow-x:auto;padding-bottom:var(--space-4);}
-  .plot-row{display:flex;gap:var(--space-1);align-items:center;margin-bottom:var(--space-1);}
+  .plot-row-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:var(--space-4);}
+  .plot-row{display:flex;gap:var(--space-1);align-items:center;margin-bottom:var(--space-1);width:max-content;}
   .plot-row-label{font-size:var(--text-xs);font-weight:700;color:var(--color-text-muted);width:24px;text-align:center;flex-shrink:0;font-family:monospace;}
-  .plot-cell{width:28px;height:28px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:monospace;color:transparent;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive);}
+  .plot-cell{width:28px;height:28px;flex-shrink:0;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:monospace;color:transparent;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive);}
   .plot-cell:hover{transform:scale(1.2);box-shadow:var(--shadow-md);z-index:5;position:relative;}
   .plot-cell--empty{background:var(--color-surface-offset);border:1px solid var(--color-border);}
   .plot-cell--recorded{background:var(--color-primary);color:rgba(255,255,255,0);}
@@ -482,12 +482,16 @@
     /* Card grid: single column */
     .burials-grid-view.active{grid-template-columns:1fr;}
 
-    /* Plot map: bigger cells + tap targets, scroll hint */
+    /* Plot map: bigger tappable cells, always-visible numbers (no hover on touch), scroll hint */
     .plot-grid-header{flex-direction:column;align-items:flex-start;}
-    .plot-row-wrap{position:relative;}
-    .plot-cell{width:32px;height:32px;font-size:10px;}
-    .plot-cell--recorded,.plot-cell--partial{color:#fff;}
-    .plot-row-wrap::after{content:"← Scroll to see all plots →";display:block;font-size:var(--text-xs);color:var(--color-text-faint);text-align:center;margin-top:var(--space-3);}
+    .plot-row-wrap{position:relative;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-2);background:var(--color-surface);}
+    .plot-row{gap:5px;margin-bottom:5px;}
+    .plot-cell{width:30px;height:30px;font-size:11px;}
+    .plot-cell--recorded{color:#fff;}
+    .plot-cell--partial{color:var(--color-text);}
+    .plot-cell--empty{color:var(--color-text-faint);}
+    .plot-cell:active{transform:scale(1.15);box-shadow:var(--shadow-md);}
+    .plot-row-wrap::after{content:"← Swipe to see all 40 plots per row →";display:block;font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;margin-top:var(--space-3);font-weight:500;}
 
     /* Modal: fuller screen, single-column meta on very small phones */
     .modal-overlay{padding:var(--space-3);align-items:flex-end;}
