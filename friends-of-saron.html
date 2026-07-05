@@ -201,6 +201,10 @@
   .img-placeholder__file{font-size:var(--text-xs);font-family:monospace;color:rgba(255,255,255,0.55);margin-top:var(--space-1);}
   .img-placeholder--dark{background:linear-gradient(140deg,#1b2f16,#284422);}
   .img-placeholder--mid{background:linear-gradient(140deg,#22381b,#335027);}
+  /* Real photos filling image slots */
+  .img-photo{display:block;width:100%;height:100%;object-fit:cover;}
+  .hero__bg .img-photo{position:absolute;inset:0;}
+  .nav__logo-img{width:40px;height:40px;border-radius:var(--radius-full);object-fit:cover;flex:none;}
   .hero__overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,20,8,0.85) 0%,rgba(10,20,8,0.3) 50%,rgba(10,20,8,0.1) 100%);}
   .hero__content{position:relative;z-index:2;padding:var(--space-16) var(--space-6) var(--space-20);max-width:var(--content-wide);margin-inline:auto;width:100%;}
   .hero__eyebrow{font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#7ec86a;margin-bottom:var(--space-4);}
@@ -510,12 +514,7 @@
 <header class="nav" id="siteNav">
   <div class="nav__inner">
     <a href="#" class="nav__logo" onclick="showPage('home');return false;" aria-label="Friends of Saron Cemetery home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="4" y="8" width="24" height="18" rx="4" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M10 20c2-2.5 4-3.75 6-3.75s4 1.25 6 3.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="16" cy="14" r="3" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M16 5v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
+      <img src="images/logo.png" alt="Friends of Saron, Troed-y-Rhiw badge" class="nav__logo-img" width="40" height="40">
       <div class="nav__brand">
         Friends of Saron<br>
         <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">Troedyrhiw Cemetery, South Wales</span>
@@ -554,12 +553,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__bg">
         <div class="hero__img-placeholder">
-          <div class="img-placeholder">
-            <div class="img-placeholder__badge">📷 Image Slot ①</div>
-            <div class="img-placeholder__num">1</div>
-            <div class="img-placeholder__label">Wide landscape of Saron Cemetery &amp; Troedyrhiw</div>
-            <div class="img-placeholder__file">image-01-hero.jpg</div>
-          </div>
+          <img src="images/image-01-hero.jpg" alt="Saron Chapel and cemetery, Troedyrhiw" class="img-photo" fetchpriority="high">
         </div>
       </div>
       <div class="hero__overlay"></div>
@@ -620,12 +614,7 @@
           </div>
           <div class="about-img-wrap">
             <div class="about-img">
-              <div class="img-placeholder img-placeholder--dark">
-                <div class="img-placeholder__badge">📷 Image Slot ②</div>
-                <div class="img-placeholder__num">2</div>
-                <div class="img-placeholder__label">Real photograph of Saron Cemetery</div>
-                <div class="img-placeholder__file">image-02-about.jpg</div>
-              </div>
+              <img src="images/image-02-about.jpg" alt="Saron Cemetery, Troedyrhiw" class="img-photo" loading="lazy">
             </div>
             <figure class="about-quote">
               <blockquote>
@@ -740,12 +729,7 @@
         <div class="tab-panels">
           <div class="tab-panel active" id="tab-restoration">
             <div class="tab-img">
-              <div class="img-placeholder img-placeholder--mid">
-                <div class="img-placeholder__badge">📷 Image Slot ③</div>
-                <div class="img-placeholder__num">3</div>
-                <div class="img-placeholder__label">Grid of volunteer workday photos</div>
-                <div class="img-placeholder__file">image-03-restoration.jpg (or 9-photo collage)</div>
-              </div>
+              <img src="images/image-03-restoration.jpg" alt="Volunteers resetting a headstone at Saron" class="img-photo" loading="lazy">
             </div>
             <div class="tab-content">
               <h3>Hands-on conservation</h3>
@@ -762,12 +746,7 @@
           </div>
           <div class="tab-panel" id="tab-research">
             <div class="tab-img">
-              <div class="img-placeholder img-placeholder--mid">
-                <div class="img-placeholder__badge">📷 Image Slot ④</div>
-                <div class="img-placeholder__num">4</div>
-                <div class="img-placeholder__label">Inscription recording or archival research</div>
-                <div class="img-placeholder__file">image-04-research.jpg</div>
-              </div>
+              <img src="images/image-04-research.jpg" alt="Surveying and recording burials at Saron" class="img-photo" loading="lazy">
             </div>
             <div class="tab-content">
               <h3>Inscription &amp; archive research</h3>
@@ -783,12 +762,7 @@
           </div>
           <div class="tab-panel" id="tab-community">
             <div class="tab-img">
-              <div class="img-placeholder img-placeholder--dark">
-                <div class="img-placeholder__badge">📷 Image Slot ⑤</div>
-                <div class="img-placeholder__num">5</div>
-                <div class="img-placeholder__label">Group event or open day at the cemetery</div>
-                <div class="img-placeholder__file">image-05-community.jpg</div>
-              </div>
+              <img src="images/image-05-community.jpg" alt="Friends of Saron volunteer group" class="img-photo" loading="lazy">
             </div>
             <div class="tab-content">
               <h3>Community &amp; education</h3>
@@ -804,12 +778,7 @@
           </div>
           <div class="tab-panel" id="tab-wildlife">
             <div class="tab-img">
-              <div class="img-placeholder img-placeholder--dark">
-                <div class="img-placeholder__badge">📷 Image Slot ⑥</div>
-                <div class="img-placeholder__num">6</div>
-                <div class="img-placeholder__label">Wildflowers or wildlife at the cemetery</div>
-                <div class="img-placeholder__file">image-06-wildlife.jpg</div>
-              </div>
+              <img src="images/image-06-wildlife.jpg" alt="The fernery at Saron Cemetery" class="img-photo" loading="lazy">
             </div>
             <div class="tab-content">
               <h3>Wildlife &amp; wildflower garden</h3>
@@ -849,40 +818,19 @@
         <h2 id="gallery-heading" class="section-title">Saron through the seasons</h2>
         <div class="gallery-grid">
           <div class="gallery-item">
-            <div class="img-placeholder" style="background:linear-gradient(135deg,#1a2e14,#2d5a20);aspect-ratio:16/10">
-              <div class="img-placeholder__badge">📷 Image Slot ⑦</div>
-              <div class="img-placeholder__num">7</div>
-              <div class="img-placeholder__label">Best wide shot — main gallery hero</div>
-              <div class="img-placeholder__file">image-07-gallery-main.jpg</div>
-            </div>
+            <img src="images/image-07-gallery-main.jpg" alt="Levelling ground at Saron Cemetery" class="img-photo" style="aspect-ratio:16/10" loading="lazy">
           </div>
           <div class="gallery-item">
-            <div class="img-placeholder" style="background:linear-gradient(135deg,#243820,#3d5a30);aspect-ratio:4/3">
-              <div class="img-placeholder__badge">📷 ⑧</div>
-              <div class="img-placeholder__num">8</div>
-              <div class="img-placeholder__file">image-08-gallery.jpg</div>
-            </div>
+            <img src="images/image-08-gallery.jpg" alt="Adopt-a-grave restoration work" class="img-photo" style="aspect-ratio:4/3" loading="lazy">
           </div>
           <div class="gallery-item">
-            <div class="img-placeholder" style="background:linear-gradient(135deg,#1e3518,#355028);aspect-ratio:4/3">
-              <div class="img-placeholder__badge">📷 ⑨</div>
-              <div class="img-placeholder__num">9</div>
-              <div class="img-placeholder__file">image-09-gallery.jpg</div>
-            </div>
+            <img src="images/image-09-gallery.jpg" alt="Repairing a headstone at Saron" class="img-photo" style="aspect-ratio:4/3" loading="lazy">
           </div>
           <div class="gallery-item">
-            <div class="img-placeholder" style="background:linear-gradient(135deg,#2a4020,#3a5828);aspect-ratio:4/3">
-              <div class="img-placeholder__badge">📷 ⑩</div>
-              <div class="img-placeholder__num">10</div>
-              <div class="img-placeholder__file">image-10-gallery.jpg</div>
-            </div>
+            <img src="images/image-10-gallery.jpg" alt="Restored iron kerbs at Saron" class="img-photo" style="aspect-ratio:4/3" loading="lazy">
           </div>
           <div class="gallery-item">
-            <div class="img-placeholder" style="background:linear-gradient(135deg,#1c3015,#304824);aspect-ratio:4/3">
-              <div class="img-placeholder__badge">📷 ⑪</div>
-              <div class="img-placeholder__num">11</div>
-              <div class="img-placeholder__file">image-11-gallery.jpg</div>
-            </div>
+            <img src="images/image-11-gallery.jpg" alt="Sheila and David surveying at Saron" class="img-photo" style="aspect-ratio:4/3" loading="lazy">
           </div>
         </div>
       </div>
