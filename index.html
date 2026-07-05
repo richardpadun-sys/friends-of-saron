@@ -1,1 +1,1251 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=friends-of-saron.html"></head></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friends of Saron – Troedyrhiw Community Cemetery Project</title>
+<meta name="description" content="Friends of Saron is a community group dedicated to restoring and preserving Saron Graveyard in Troedyrhiw, South Wales, transforming it into a Memorial and Wildlife Garden.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Art direction: Historic Welsh community cemetery project
+   Palette: Grass green primary, warm cream surfaces
+   Typography: Lora serif display + Work Sans body
+   Density: Spacious, editorial
+   ============================================================ */
+
+:root, [data-theme="light"] {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+  --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem;    --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem;   --space-20: 5rem;   --space-24: 6rem;
+
+  /* Grass green palette */
+  --color-primary:          #2d6a20;
+  --color-primary-hover:    #1f4f16;
+  --color-primary-active:   #163710;
+  --color-primary-light:    #e8f0e5;
+  --color-primary-mid:      #4a8a38;
+
+  /* Warm cream surfaces */
+  --color-bg:               #f8f6f0;
+  --color-surface:          #faf9f4;
+  --color-surface-2:        #fcfbf7;
+  --color-surface-offset:   #f2ede3;
+  --color-surface-dark:     #1a2218;
+
+  --color-text:             #1c2018;
+  --color-text-muted:       #5a6354;
+  --color-text-faint:       #9aaa92;
+  --color-text-inverse:     #f5f3ed;
+
+  --color-divider:          #ddd8cc;
+  --color-border:           #cdc8bb;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;  --radius-xl: 1rem; --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.03 130 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.03 130 / 0.09);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.03 130 / 0.13);
+
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-display: 'Lora', Georgia, serif;
+  --font-body:    'Work Sans', 'Helvetica Neue', sans-serif;
+
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+
+  /* Image placeholder colours */
+  --img-bg: #c8d9c2;
+  --img-text: #2d6a20;
+}
+
+[data-theme="dark"] {
+  --color-bg:               #131710;
+  --color-surface:          #181d15;
+  --color-surface-2:        #1d2319;
+  --color-surface-offset:   #1a1f17;
+  --color-surface-dark:     #0d110b;
+  --color-text:             #d4d9cf;
+  --color-text-muted:       #7a8a74;
+  --color-text-faint:       #4a5a44;
+  --color-text-inverse:     #1a1f17;
+  --color-primary:          #6ab854;
+  --color-primary-hover:    #4e9a3c;
+  --color-primary-active:   #387a29;
+  --color-primary-light:    #1e2e1a;
+  --color-primary-mid:      #5aa844;
+  --color-divider:          #252d20;
+  --color-border:           #2e3829;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+  --img-bg: #1e2e1a;
+  --img-text: #6ab854;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg:#131710;--color-surface:#181d15;--color-surface-2:#1d2319;
+    --color-surface-offset:#1a1f17;--color-text:#d4d9cf;--color-text-muted:#7a8a74;
+    --color-text-faint:#4a5a44;--color-primary:#6ab854;--color-primary-hover:#4e9a3c;
+    --color-primary-light:#1e2e1a;--color-divider:#252d20;--color-border:#2e3829;
+    --img-bg:#1e2e1a;--img-text:#6ab854;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+}
+img, video { display: block; max-width: 100%; height: auto; }
+h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+p, li { text-wrap: pretty; max-width: 70ch; }
+button { cursor: pointer; font: inherit; border: none; background: none; }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { color: var(--color-primary-hover); }
+::selection { background: oklch(from var(--color-primary) l c h / 0.2); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+ul[role="list"] { list-style: none; padding: 0; }
+
+/* ── IMAGE PLACEHOLDER SYSTEM ─────────────────────────────── */
+.img-placeholder {
+  background: var(--img-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--img-text);
+  font-family: var(--font-body);
+  text-align: center;
+  padding: var(--space-4);
+  position: relative;
+  width: 100%;
+}
+.img-placeholder .img-num {
+  width: 48px; height: 48px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-xl);
+  font-family: var(--font-display);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.img-placeholder .img-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+.img-placeholder .img-filename {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: monospace;
+  background: oklch(from var(--color-primary) l c h / 0.1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+.img-placeholder .img-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  max-width: 30ch;
+}
+
+/* ── SKIP LINK ────────────────────────────────────────────── */
+.skip-link {
+  position: absolute; top: -100%; left: var(--space-4);
+  background: var(--color-primary); color: #fff;
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: 600; z-index: 9999;
+  transition: top var(--transition);
+}
+.skip-link:focus { top: var(--space-4); color: #fff; }
+
+/* ── NAV ──────────────────────────────────────────────────── */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: oklch(from var(--color-bg) l c h / 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  transition: box-shadow var(--transition);
+}
+.site-nav.scrolled { box-shadow: var(--shadow-md); }
+.nav-inner {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: var(--space-3);
+  text-decoration: none; color: var(--color-text);
+  flex-shrink: 0;
+}
+.nav-logo svg { flex-shrink: 0; }
+.nav-logo-text { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; line-height: 1.1; }
+.nav-logo-sub { font-size: var(--text-xs); color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: var(--space-1); list-style: none; }
+.nav-links a {
+  font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  transition: color var(--transition), background var(--transition);
+  text-decoration: none; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--color-primary); background: var(--color-primary-light); }
+.nav-links a.active { color: var(--color-primary); font-weight: 600; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.btn-theme {
+  width: 40px; height: 40px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.btn-theme:hover { background: var(--color-primary-light); color: var(--color-primary); }
+.btn-nav-cta {
+  background: var(--color-primary); color: #fff;
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+.btn-nav-cta:hover { background: var(--color-primary-hover); color: #fff; }
+.btn-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 40px; height: 40px; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); color: var(--color-text);
+}
+.btn-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.btn-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.btn-hamburger.open span:nth-child(2) { opacity: 0; }
+.btn-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none; flex-direction: column; gap: var(--space-1);
+  padding: var(--space-4) var(--space-6) var(--space-6);
+  border-top: 1px solid var(--color-divider);
+  background: var(--color-surface);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: var(--text-base); font-weight: 500; color: var(--color-text);
+  padding: var(--space-3) var(--space-2); border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+.mobile-menu a:hover { background: var(--color-primary-light); color: var(--color-primary); }
+@media (max-width: 768px) {
+  .nav-links, .btn-nav-cta { display: none; }
+  .btn-hamburger { display: flex; }
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-media {
+  position: absolute; inset: 0;
+  background: var(--color-surface-dark);
+}
+.hero-media .img-placeholder {
+  height: 100%;
+  border-radius: 0;
+}
+.hero-media .img-placeholder .img-num { width: 80px; height: 80px; font-size: 2.5rem; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, oklch(0.1 0.04 130 / 0.85) 0%, oklch(0.1 0.04 130 / 0.3) 60%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding: var(--space-24) var(--space-6) var(--space-16);
+  width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #a8d89a;
+  background: oklch(from var(--color-primary) l c h / 0.2);
+  padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+.hero h1 {
+  font-size: var(--text-3xl); color: #fff;
+  font-weight: 700; max-width: 14ch;
+  margin-bottom: var(--space-5);
+  text-shadow: 0 2px 20px oklch(0 0 0 / 0.4);
+}
+.hero-desc {
+  font-size: var(--text-lg); color: oklch(1 0 0 / 0.82);
+  max-width: 50ch; margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+.hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.btn-primary {
+  background: var(--color-primary); color: #fff;
+  padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+}
+.btn-primary:hover { background: var(--color-primary-hover); color: #fff; transform: translateY(-1px); }
+.btn-ghost {
+  background: oklch(1 0 0 / 0.12); color: #fff;
+  padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600;
+  border: 1px solid oklch(1 0 0 / 0.25);
+  transition: background var(--transition);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+}
+.btn-ghost:hover { background: oklch(1 0 0 / 0.2); color: #fff; }
+.hero-scroll {
+  position: absolute; bottom: var(--space-6); left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: var(--space-2);
+  color: oklch(1 0 0 / 0.6); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+@keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+/* ── STATS BAND ───────────────────────────────────────────── */
+.stats-band {
+  background: var(--color-primary);
+  padding: var(--space-10) var(--space-6);
+}
+.stats-inner {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl); font-weight: 700; color: #fff;
+  display: block; line-height: 1;
+}
+.stat-label {
+  font-size: var(--text-sm); color: oklch(1 0 0 / 0.75);
+  margin-top: var(--space-2); display: block;
+}
+@media (max-width: 600px) {
+  .stats-inner { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* ── SECTION SHARED ───────────────────────────────────────── */
+.section { padding: clamp(var(--space-12), 8vw, var(--space-24)) var(--space-6); }
+.section-alt { background: var(--color-surface); }
+.container { max-width: var(--content-default); margin-inline: auto; }
+.container-wide { max-width: var(--content-wide); margin-inline: auto; }
+.section-label {
+  display: inline-block; font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-primary); margin-bottom: var(--space-3);
+}
+.section-heading {
+  font-size: var(--text-xl); font-weight: 700;
+  color: var(--color-text); margin-bottom: var(--space-4);
+}
+.section-body {
+  font-size: var(--text-base); color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* ── ABOUT ────────────────────────────────────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12);
+  align-items: center;
+}
+.about-image { border-radius: var(--radius-xl); overflow: hidden; }
+.about-image .img-placeholder { aspect-ratio: 4/5; border-radius: 0; }
+.about-text { display: flex; flex-direction: column; gap: var(--space-5); }
+.pullquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-5);
+  font-family: var(--font-display); font-style: italic;
+  font-size: var(--text-lg); color: var(--color-text);
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image { order: -1; }
+}
+
+/* ── HISTORY TIMELINE ─────────────────────────────────────── */
+.timeline { position: relative; padding-left: var(--space-8); }
+.timeline::before {
+  content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
+  width: 2px; background: var(--color-primary-light);
+}
+.timeline-item {
+  position: relative; margin-bottom: var(--space-10);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.timeline-item.visible { opacity: 1; transform: none; }
+.timeline-dot {
+  position: absolute; left: calc(-1 * var(--space-8) + 4px);
+  top: 6px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--color-primary); border: 3px solid var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+.timeline-year {
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+.timeline-title { font-size: var(--text-lg); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-2); }
+.timeline-desc { font-size: var(--text-base); color: var(--color-text-muted); }
+
+/* ── ACTIVITIES TABS ──────────────────────────────────────── */
+.tabs-nav {
+  display: flex; gap: var(--space-1); flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: var(--space-8);
+}
+.tab-btn {
+  font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.tab-btn:hover { color: var(--color-primary); background: var(--color-primary-light); }
+.tab-btn.active { color: var(--color-primary); border-bottom-color: var(--color-primary); font-weight: 600; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.tab-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: start; }
+.tab-img { border-radius: var(--radius-lg); overflow: hidden; }
+.tab-img .img-placeholder { aspect-ratio: 4/3; border-radius: 0; }
+.tab-text h3 { font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-4); }
+.tab-text p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.75; margin-bottom: var(--space-4); }
+.progress-list { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+.progress-item {}
+.progress-label { display: flex; justify-content: space-between; font-size: var(--text-sm); font-weight: 500; margin-bottom: var(--space-2); }
+.progress-bar-bg { height: 6px; background: var(--color-primary-light); border-radius: var(--radius-full); overflow: hidden; }
+.progress-bar { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); width: 0; transition: width 1s cubic-bezier(0.16,1,0.3,1); }
+@media (max-width: 768px) { .tab-content-grid { grid-template-columns: 1fr; } }
+
+/* ── GALLERY ──────────────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-3);
+}
+.gallery-item { border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; }
+.gallery-item .img-placeholder { width: 100%; height: 100%; border-radius: 0; min-height: 200px; }
+.gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+.gallery-item:first-child .img-placeholder { min-height: 440px; }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: oklch(0.15 0.04 130 / 0);
+  transition: background var(--transition);
+}
+.gallery-item:hover::after { background: oklch(0.15 0.04 130 / 0.25); }
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item:first-child { grid-column: span 1; grid-row: span 1; }
+  .gallery-item:first-child .img-placeholder { min-height: 240px; }
+}
+
+/* ── FAQ ──────────────────────────────────────────────────── */
+.faq-list { display: flex; flex-direction: column; gap: var(--space-2); }
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--color-surface);
+}
+.faq-question {
+  width: 100%; text-align: left;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: var(--space-4); padding: var(--space-5) var(--space-6);
+  font-size: var(--text-base); font-weight: 600; color: var(--color-text);
+  transition: background var(--transition), color var(--transition);
+}
+.faq-question:hover { background: var(--color-primary-light); color: var(--color-primary); }
+.faq-icon {
+  flex-shrink: 0; width: 24px; height: 24px; color: var(--color-primary);
+  transition: transform var(--transition);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.4s;
+  font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.75;
+}
+.faq-answer-inner { padding: 0 var(--space-6) var(--space-5); }
+.faq-item.open .faq-answer { max-height: 400px; }
+
+/* ── NEWSLETTER ───────────────────────────────────────────── */
+.newsletter-band {
+  background: var(--color-primary);
+  padding: var(--space-16) var(--space-6);
+  text-align: center;
+}
+.newsletter-band h2 { font-size: var(--text-xl); color: #fff; margin-bottom: var(--space-3); }
+.newsletter-band p { color: oklch(1 0 0 / 0.8); margin-bottom: var(--space-8); max-width: 50ch; margin-inline: auto; }
+.newsletter-form { display: flex; gap: var(--space-3); max-width: 480px; margin-inline: auto; flex-wrap: wrap; justify-content: center; }
+.newsletter-input {
+  flex: 1; min-width: 220px;
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-full);
+  border: 2px solid oklch(1 0 0 / 0.3); background: oklch(1 0 0 / 0.1);
+  color: #fff; font-size: var(--text-sm); font-family: var(--font-body);
+  transition: border-color var(--transition), background var(--transition);
+}
+.newsletter-input::placeholder { color: oklch(1 0 0 / 0.6); }
+.newsletter-input:focus { outline: none; border-color: #fff; background: oklch(1 0 0 / 0.15); }
+.btn-newsletter {
+  background: #fff; color: var(--color-primary);
+  padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 700;
+  transition: background var(--transition), transform var(--transition);
+}
+.btn-newsletter:hover { background: oklch(1 0 0 / 0.9); transform: translateY(-1px); }
+.newsletter-success { display: none; color: #fff; font-size: var(--text-lg); font-family: var(--font-display); }
+
+/* ── CONTACT ──────────────────────────────────────────────── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+.contact-form-wrap { display: flex; flex-direction: column; gap: var(--space-4); }
+.form-group { display: flex; flex-direction: column; gap: var(--space-1); }
+.form-group label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+.form-input, .form-textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--text-base); color: var(--color-text);
+  font-family: var(--font-body);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-input:focus, .form-textarea:focus {
+  outline: none; border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px oklch(from var(--color-primary) l c h / 0.12);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  background: var(--color-primary); color: #fff;
+  padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 700;
+  align-self: flex-start;
+  transition: background var(--transition), transform var(--transition);
+}
+.form-submit:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+.contact-map {
+  border-radius: var(--radius-xl); overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.contact-map iframe { width: 100%; height: 100%; min-height: 400px; display: block; }
+.contact-info { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); }
+.contact-info-item { display: flex; gap: var(--space-3); align-items: flex-start; }
+.contact-info-item svg { flex-shrink: 0; color: var(--color-primary); margin-top: 2px; }
+.contact-info-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: var(--space-1); }
+.contact-info-value { font-size: var(--text-sm); color: var(--color-text); }
+.form-success { display: none; text-align: center; padding: var(--space-8); }
+.form-success h3 { font-size: var(--text-xl); color: var(--color-primary); margin-bottom: var(--space-2); }
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.site-footer {
+  background: var(--color-surface-dark);
+  color: oklch(1 0 0 / 0.6);
+  padding: var(--space-12) var(--space-6) var(--space-8);
+}
+.footer-inner {
+  max-width: var(--content-wide); margin-inline: auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--space-10);
+}
+.footer-brand { display: flex; flex-direction: column; gap: var(--space-4); }
+.footer-logo { display: flex; align-items: center; gap: var(--space-3); }
+.footer-logo-text { font-family: var(--font-display); color: #fff; font-size: var(--text-base); font-weight: 700; }
+.footer-tagline { font-size: var(--text-sm); line-height: 1.65; max-width: 34ch; }
+.footer-col h4 { font-size: var(--text-sm); font-weight: 700; color: #fff; margin-bottom: var(--space-4); text-transform: uppercase; letter-spacing: 0.08em; }
+.footer-col ul { display: flex; flex-direction: column; gap: var(--space-2); list-style: none; }
+.footer-col a { font-size: var(--text-sm); color: oklch(1 0 0 / 0.6); text-decoration: none; transition: color var(--transition); }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  max-width: var(--content-wide); margin-inline: auto;
+  padding-top: var(--space-6); margin-top: var(--space-8);
+  border-top: 1px solid oklch(1 0 0 / 0.1);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: var(--text-xs); flex-wrap: wrap; gap: var(--space-3);
+}
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<header>
+  <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Friends of Saron home">
+        <!-- SVG LOGO: two overlapping arches (chapel window) with a leaf -->
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="#2d6a20"/>
+          <path d="M11 22 C11 16 15 12 18 12 C21 12 25 16 25 22" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M14 22 C14 17.5 15.8 14.5 18 14.5 C20.2 14.5 22 17.5 22 22" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <line x1="18" y1="22" x2="18" y2="26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="13" y1="26" x2="23" y2="26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="24" cy="12" r="3" fill="#a8d89a"/>
+          <path d="M22 12 C22 10 24 9 24 9 C24 9 26 10 26 12 C26 13 24 14 22 12Z" fill="#6ab854"/>
+        </svg>
+        <div>
+          <div class="nav-logo-text">Friends of Saron</div>
+          <div class="nav-logo-sub">Troedyrhiw, South Wales</div>
+        </div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-theme" data-theme-toggle aria-label="Switch theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <a href="#contact" class="btn-nav-cta">Get Involved</a>
+        <button class="btn-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#history">History</a>
+      <a href="#activities">Activities</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero section">
+  <div class="hero-media" aria-hidden="true">
+    <div class="img-placeholder" style="height:100%;">
+      <div class="img-num">1</div>
+      <div class="img-label">Hero — Main Background</div>
+      <div class="img-filename">image-01-hero.jpg</div>
+      <div class="img-desc">Wide landscape of Saron Cemetery — golden hour or atmospheric sky ideal</div>
+    </div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="6"/></svg>
+      Troedyrhiw, South Wales
+    </div>
+    <h1>Restoring Saron for the Community</h1>
+    <p class="hero-desc">A community group dedicated to preserving the historic Saron Graveyard and transforming it into a living Memorial and Wildlife Garden for generations to come.</p>
+    <div class="hero-actions">
+      <a href="#about" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Our Story
+      </a>
+      <a href="#contact" class="btn-ghost">Get Involved</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band" aria-label="Key statistics">
+  <div class="stats-inner">
+    <div>
+      <span class="stat-num" data-count="15" data-suffix="+">0+</span>
+      <span class="stat-label">Years of community work</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="200" data-suffix="+ headstones">0</span>
+      <span class="stat-label">Headstones recorded</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="188">0</span>
+      <span class="stat-label">Years of history preserved</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <div class="img-placeholder" style="aspect-ratio:4/5;">
+          <div class="img-num">2</div>
+          <div class="img-label">About Section</div>
+          <div class="img-filename">image-02-about.jpg</div>
+          <div class="img-desc">Volunteers working together at the cemetery — portrait orientation preferred</div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-heading" id="about-heading">Rescuing 30 Years of Neglect</h2>
+        <p class="section-body">Friends of Saron was formed in 2009 with the primary aim of rescuing the graveyard of the former Saron Chapel, Troedyrhiw, from almost three decades of neglect. The graveyard had become, in the words of local residents, a blot on the village.</p>
+        <blockquote class="pullquote">"Names and dates carved into headstones have become a fixed part of the landscape — part of the identity of this place."</blockquote>
+        <p class="section-body">Troedyrhiw, meaning 'foot of the hill' in Welsh, sits in the valley of the River Taff, some 3 miles south of Merthyr Tydfil. Its growth from the early nineteenth century was linked to the locally abundant iron and coal reserves — and its people rest here.</p>
+        <p class="section-body">In 2012, a Welsh Government funded programme under the <em>Tidy Towns</em> scheme carried out clearance work, followed by herbicide treatment supervised by <em>Keep Wales Tidy</em>. Our group continues the work of restoration, research, and community engagement.</p>
+        <a href="#activities" class="btn-primary" style="align-self:flex-start; margin-top: var(--space-2);">See Our Activities</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY TIMELINE -->
+<section class="section section-alt" id="history" aria-labelledby="history-heading">
+  <div class="container">
+    <span class="section-label">Timeline</span>
+    <h2 class="section-heading" id="history-heading">History of Saron Chapel & Graveyard</h2>
+    <p class="section-body" style="margin-bottom: var(--space-10);">From its founding in the early nineteenth century to its ongoing restoration today, Saron has been a constant presence in the life of Troedyrhiw.</p>
+    <div class="timeline" role="list">
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">c. 1822</div>
+        <div class="timeline-title">Saron Chapel Founded</div>
+        <p class="timeline-desc">Saron Chapel established in Troedyrhiw to serve the rapidly growing community of ironworkers and coal miners settling in the Taff Valley.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">1893 – 1898</div>
+        <div class="timeline-title">Notable Inscriptions</div>
+        <p class="timeline-desc">Among the most poignant memorials is the grave of William David and Maggie Mary, children of Rev. J.W. Price of Saron Villa — a reminder of the human stories contained within these grounds.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">1951</div>
+        <div class="timeline-title">Chapel Site Recorded</div>
+        <p class="timeline-desc">An official site plan of Saron Chapel and Graveyard produced, providing a valuable record of the layout of the grounds at mid-century.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">c. 1980s</div>
+        <div class="timeline-title">Period of Neglect Begins</div>
+        <p class="timeline-desc">Following the closure of Saron Chapel, the graveyard fell into a period of neglect spanning nearly three decades, becoming overgrown and inaccessible.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">2009</div>
+        <div class="timeline-title">Friends of Saron Formed</div>
+        <p class="timeline-desc">Community volunteers come together to form Friends of Saron, with the aim of restoring the graveyard and creating a Memorial and Wildlife Garden for the village.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">2011</div>
+        <div class="timeline-title">Saron Inspired Art Exhibition</div>
+        <p class="timeline-desc">A public art exhibition inspired by Saron brought community attention to the history and heritage of the site, raising awareness and support for the restoration project.</p>
+      </div>
+      <div class="timeline-item" role="listitem">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-year">2012 – Present</div>
+        <div class="timeline-title">Welsh Government Clearance &amp; Ongoing Restoration</div>
+        <p class="timeline-desc">Funded clearance under the Tidy Towns scheme, followed by herbicide treatment from Keep Wales Tidy. Research, recording, and community activities continue to the present day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section" id="activities" aria-labelledby="activities-heading">
+  <div class="container">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-heading" id="activities-heading">Our Activities</h2>
+    <div class="tabs-nav" role="tablist" aria-label="Activity categories">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-restoration" id="btn-restoration">Restoration</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-research" id="btn-research">Research</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-community" id="btn-community">Community</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-wildlife" id="btn-wildlife">Wildlife Garden</button>
+    </div>
+
+    <div id="tab-restoration" class="tab-panel active" role="tabpanel" aria-labelledby="btn-restoration">
+      <div class="tab-content-grid">
+        <div class="tab-img">
+          <div class="img-placeholder" style="aspect-ratio:4/3;">
+            <div class="img-num">3</div>
+            <div class="img-label">Restoration Work</div>
+            <div class="img-filename">image-03-restoration.jpg</div>
+            <div class="img-desc">Headstone cleaning or repair work in progress</div>
+          </div>
+        </div>
+        <div class="tab-text">
+          <h3>Graveyard Restoration</h3>
+          <p>Our primary mission since 2009 has been the physical restoration of Saron Graveyard — clearing decades of overgrowth, stabilising headstones, and making the site accessible and safe for visitors.</p>
+          <p>Working in partnership with Welsh Government and Keep Wales Tidy, we have overseen funded clearance programmes, herbicide treatment, and ongoing maintenance by dedicated volunteers.</p>
+          <p>The ultimate goal is to transform the graveyard into a low-maintenance Memorial and Wildlife Garden — a lasting community asset for Troedyrhiw.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-research" class="tab-panel" role="tabpanel" aria-labelledby="btn-research">
+      <div class="tab-content-grid">
+        <div class="tab-img">
+          <div class="img-placeholder" style="aspect-ratio:4/3;">
+            <div class="img-num">4</div>
+            <div class="img-label">Research &amp; Recording</div>
+            <div class="img-filename">image-04-research.jpg</div>
+            <div class="img-desc">Inscription recording, archival materials, or research activity</div>
+          </div>
+        </div>
+        <div class="tab-text">
+          <h3>Historical Research</h3>
+          <p>We research the history of Saron Chapel and the village of Troedyrhiw, creating as complete a burial record as possible in the absence of the original chapel records.</p>
+          <p>Each headstone inscription is carefully recorded, photographed, and documented. This work preserves stories that might otherwise be lost — from Victorian-era ministers to the families of ironworkers and miners.</p>
+          <p>Our research materials and educational packs have been shared with local schools, libraries, and heritage organisations across South Wales.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-community" class="tab-panel" role="tabpanel" aria-labelledby="btn-community">
+      <div class="tab-content-grid">
+        <div class="tab-img">
+          <div class="img-placeholder" style="aspect-ratio:4/3;">
+            <div class="img-num">5</div>
+            <div class="img-label">Community Events</div>
+            <div class="img-filename">image-05-community.jpg</div>
+            <div class="img-desc">Open day, group gathering, or community event at the site</div>
+          </div>
+        </div>
+        <div class="tab-text">
+          <h3>Community Engagement</h3>
+          <p>Friends of Saron is rooted in the local community. We produce and distribute regular newsletters (Saron News), organise public events, and have produced an Education Pack for use by local schools and youth groups.</p>
+          <p>We promoted and contributed to the Saron Inspired Art Exhibition in 2011, which brought the heritage of the site to a wider audience. We continue to promote and participate in events that connect people with their local history.</p>
+          <p>New volunteers are always welcome — no experience necessary, just a willingness to get involved.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-wildlife" class="tab-panel" role="tabpanel" aria-labelledby="btn-wildlife">
+      <div class="tab-content-grid">
+        <div class="tab-img">
+          <div class="img-placeholder" style="aspect-ratio:4/3;">
+            <div class="img-num">6</div>
+            <div class="img-label">Wildlife Garden Vision</div>
+            <div class="img-filename">image-06-wildlife.jpg</div>
+            <div class="img-desc">Wildflowers, butterflies, or natural planting at the site</div>
+          </div>
+        </div>
+        <div class="tab-text">
+          <h3>Memorial &amp; Wildlife Garden</h3>
+          <p>Our long-term vision is to create a low-maintenance Memorial and Wildlife Garden on the Saron site — a place of quiet reflection that also supports local biodiversity.</p>
+          <p>Draft proposals have been developed for sympathetic planting, accessible pathways, and interpretation boards that tell the story of the site and its people.</p>
+          <div class="progress-list">
+            <div class="progress-item">
+              <div class="progress-label"><span>Site Clearance</span><span>100%</span></div>
+              <div class="progress-bar-bg"><div class="progress-bar" data-width="100"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label"><span>Headstone Recording</span><span>75%</span></div>
+              <div class="progress-bar-bg"><div class="progress-bar" data-width="75"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label"><span>Garden Design</span><span>45%</span></div>
+              <div class="progress-bar-bg"><div class="progress-bar" data-width="45"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label"><span>Planting &amp; Landscaping</span><span>20%</span></div>
+              <div class="progress-bar-bg"><div class="progress-bar" data-width="20"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section section-alt" id="gallery" aria-labelledby="gallery-heading">
+  <div class="container-wide">
+    <span class="section-label">Photography</span>
+    <h2 class="section-heading" id="gallery-heading" style="margin-bottom: var(--space-8);">Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <div class="img-placeholder" style="min-height:440px;">
+          <div class="img-num">7</div>
+          <div class="img-label">Gallery — Feature Image</div>
+          <div class="img-filename">image-07-gallery-main.jpg</div>
+          <div class="img-desc">Best wide shot — gets the largest gallery slot (spans 2 columns &amp; 2 rows)</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="img-placeholder" style="min-height:200px;">
+          <div class="img-num">8</div>
+          <div class="img-label">Gallery Image 2</div>
+          <div class="img-filename">image-08-gallery-2.jpg</div>
+          <div class="img-desc">Detail shot — headstone, path, or planting</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="img-placeholder" style="min-height:200px;">
+          <div class="img-num">9</div>
+          <div class="img-label">Gallery Image 3</div>
+          <div class="img-filename">image-09-gallery-3.jpg</div>
+          <div class="img-desc">Volunteer or community activity</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="img-placeholder" style="min-height:200px;">
+          <div class="img-num">10</div>
+          <div class="img-label">Gallery Image 4</div>
+          <div class="img-filename">image-10-gallery-4.jpg</div>
+          <div class="img-desc">Seasonal view of the site</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="img-placeholder" style="min-height:200px;">
+          <div class="img-num">11</div>
+          <div class="img-label">Gallery Image 5</div>
+          <div class="img-filename">image-11-gallery-5.jpg</div>
+          <div class="img-desc">Wildlife, wildflowers or landscape</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <span class="section-label">Questions</span>
+    <h2 class="section-heading" id="faq-heading" style="margin-bottom: var(--space-8);">Frequently Asked Questions</h2>
+    <div class="faq-list" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          Where is Saron Graveyard?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">Saron Graveyard is located in Troedyrhiw, immediately adjacent to 40 Chapel Street. Troedyrhiw is a village in the valley of the River Taff, situated approximately 3 miles (5km) south of Merthyr Tydfil, South Wales.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          When was Friends of Saron formed?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">Friends of Saron was formed as a community group in 2009, with the primary aim of rescuing the graveyard of the former Saron Chapel from almost 30 years of neglect.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          How can I get involved?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">New volunteers are always welcome. You can use the contact form on this site to get in touch, or sign up to our newsletter (Saron News) to hear about upcoming events and volunteer days. No special skills or experience are required — just enthusiasm for local heritage.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          Can I research my family's burial records?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes — one of our key projects is the creation of as complete a burial record as possible. If you are researching family history connected to Troedyrhiw or the Saron congregation, please get in touch via the contact form and we will do our best to help.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          What is the Memorial and Wildlife Garden project?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">Our long-term vision is to transform the Saron site into a low-maintenance Memorial and Wildlife Garden — a place of quiet reflection that celebrates both the people buried there and the natural environment. Draft proposals have been produced and we continue to work towards this goal with the support of the local community and partner organisations.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          Are you involved in schools and education?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes — we have produced an Education Pack for use by local schools and youth groups, drawing on the history of Saron Chapel and the village of Troedyrhiw. If you are a teacher or youth leader interested in using our materials, please get in touch.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-band" aria-labelledby="newsletter-heading">
+  <h2 id="newsletter-heading">Stay Connected with Saron News</h2>
+  <p>Sign up to receive our occasional newsletter with project updates, events, and historical discoveries from the graveyard.</p>
+  <form class="newsletter-form" id="newsletter-form" novalidate aria-label="Newsletter signup">
+    <label for="newsletter-email" class="sr-only">Email address</label>
+    <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Your email address" required autocomplete="email">
+    <button type="submit" class="btn-newsletter">Subscribe</button>
+  </form>
+  <div class="newsletter-success" id="newsletter-success" aria-live="polite">Thank you — you're on the list!</div>
+</div>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact" aria-labelledby="contact-heading">
+  <div class="container-wide">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-heading" id="contact-heading" style="margin-bottom: var(--space-8);">Contact Friends of Saron</h2>
+    <div class="contact-grid">
+      <div>
+        <form class="contact-form-wrap" id="contact-form" novalidate aria-label="Contact form">
+          <div class="form-group">
+            <label for="contact-name">Your name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="David Jones" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email address</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" class="form-input" placeholder="Volunteer enquiry / Research request…">
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" class="form-textarea" placeholder="Tell us how you'd like to get involved…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success" aria-live="polite">
+          <h3>Message sent!</h3>
+          <p>Thank you for getting in touch. We'll be back to you soon.</p>
+        </div>
+        <div class="contact-info" aria-label="Contact details">
+          <div class="contact-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-value">Saron Graveyard, Chapel Street, Troedyrhiw, Merthyr Tydfil, CF48</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <div class="contact-info-label">Online</div>
+              <div class="contact-info-value"><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">friendsofsaron.wordpress.com</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.5!2d-3.338!3d51.726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486efa0a3e8e0001%3A0x1!2sTroedyrhiw%2C+Merthyr+Tydfil!5e0!3m2!1sen!2suk!4v1"
+          title="Map showing Troedyrhiw, Merthyr Tydfil"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          style="border:0; width:100%; height:100%; min-height:400px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="#2d6a20"/>
+          <path d="M11 22 C11 16 15 12 18 12 C21 12 25 16 25 22" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="18" y1="22" x2="18" y2="26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="13" y1="26" x2="23" y2="26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="24" cy="12" r="3" fill="#a8d89a"/>
+        </svg>
+        <span class="footer-logo-text">Friends of Saron</span>
+      </div>
+      <p class="footer-tagline">A community group dedicated to restoring and preserving Saron Graveyard, Troedyrhiw, as a Memorial and Wildlife Garden for South Wales.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Project</h4>
+      <ul role="list">
+        <li><a href="#activities">Restoration</a></li>
+        <li><a href="#activities">Research</a></li>
+        <li><a href="#activities">Wildlife Garden</a></li>
+        <li><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">Original Blog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Friends of Saron, Troedyrhiw. Community group, South Wales.</span>
+    <span>Registered community group · Not-for-profit</span>
+  </div>
+</footer>
+
+<script>
+// ── THEME TOGGLE ────────────────────────────────────────────
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  if (t) t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
+    t.innerHTML = d === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+
+// ── NAV SCROLL SHADOW ───────────────────────────────────────
+const nav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ── ACTIVE NAV LINK ─────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], div[id="faq"]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// ── HAMBURGER ───────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// ── SCROLL REVEAL ───────────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .timeline-item').forEach(el => revealObs.observe(el));
+
+// ── COUNT-UP STATS ──────────────────────────────────────────
+const statObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    const tick = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    statObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => statObs.observe(el));
+
+// ── TABS ────────────────────────────────────────────────────
+const tabBtns = document.querySelectorAll('.tab-btn');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById(btn.getAttribute('aria-controls')).classList.add('active');
+    // trigger progress bars if wildlife tab
+    if (btn.getAttribute('aria-controls') === 'tab-wildlife') {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }, 100);
+    }
+  });
+});
+
+// ── FAQ ACCORDION ───────────────────────────────────────────
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+  });
+});
+
+// ── NEWSLETTER FORM ─────────────────────────────────────────
+document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('newsletter-email').value;
+  if (!email || !email.includes('@')) return;
+  this.style.display = 'none';
+  document.getElementById('newsletter-success').style.display = 'block';
+});
+
+// ── CONTACT FORM ────────────────────────────────────────────
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const msg = document.getElementById('contact-message').value.trim();
+  if (!name || !email || !msg) return;
+  this.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+</script>
+</body>
+</html>
