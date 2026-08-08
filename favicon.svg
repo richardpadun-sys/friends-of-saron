@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Friends of Saron">
+  <rect width="64" height="64" rx="12" fill="#2d6a20"/>
+  <!-- Headstone: rounded-top slab -->
+  <path d="M22 54 V28 a10 10 0 0 1 20 0 V54 Z" fill="#f8f7f2"/>
+  <!-- Ground line -->
+  <rect x="14" y="53" width="36" height="4" rx="2" fill="#f8f7f2"/>
+  <!-- Cross engraved on the stone -->
+  <g fill="#2d6a20">
+    <rect x="30" y="24" width="4" height="18" rx="1.5"/>
+    <rect x="25" y="30" width="14" height="4" rx="1.5"/>
+  </g>
+</svg>
