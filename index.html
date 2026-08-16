@@ -746,6 +746,16 @@
   font-size:.9375rem;line-height:1.6;
 }
 
+/* links out to other archives */
+.tmsg__link{
+  color:var(--color-primary);
+  text-decoration:underline;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+  word-break:break-word;
+}
+.tmsg__link:hover{ text-decoration-thickness:2px; }
+
 /* source chips */
 .tmsg__sources{
   display:flex;flex-wrap:wrap;gap:.375rem;
@@ -3353,6 +3363,13 @@ function plotClick(plotId,id){
       let html = b.replace(/\n/g,'<br>');
       html = html.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       html = html.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:!?)]|$)/g,'$1<em>$2</em>');
+      // Markdown links, for the places Thomas points people to next.
+      // The text was escaped above, so the href cannot break out of the attribute,
+      // and only http/https is matched at all.
+      html = html.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        function(_m, label, href){
+          return '<a class="tmsg__link" href="'+href+'" target="_blank" rel="noopener nofollow">'+label+'</a>';
+        });
       return '<p>'+html+'</p>';
     }).join('');
   }
