@@ -608,6 +608,357 @@
   @media(max-width:400px){
     .modal__meta-grid{grid-template-columns:1fr;}
   }
+/* ======================= THOMAS ======================= */
+
+/* outline button for light backgrounds (site .btn--outline is white-on-dark) */
+.btn--quiet{
+  background:transparent;
+  color:var(--color-text-muted);
+  border:1.5px solid var(--color-border);
+  cursor:pointer;
+  font-family:var(--font-body);
+}
+.btn--quiet:hover{
+  background:var(--color-surface-offset);
+  border-color:var(--color-text-faint);
+  color:var(--color-text);
+}
+
+
+.thomas-hero{
+  padding:var(--space-16,4rem) 0 var(--space-12,3rem);
+  background:linear-gradient(180deg,var(--color-surface-offset) 0%,var(--color-bg) 100%);
+  border-bottom:1px solid var(--color-border);
+}
+.thomas-hero__grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
+}
+.thomas-hero__text h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.25rem,5vw,3.5rem);
+  line-height:1.08;
+  margin:0 0 1rem;
+  letter-spacing:-.02em;
+}
+.thomas-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-body);
+  font-size:.75rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--color-primary);
+  background:var(--color-primary-light);
+  border:1px solid var(--color-primary-highlight);
+  padding:.4rem .75rem;border-radius:999px;
+  margin-bottom:1.25rem;
+}
+.thomas-hero__lede{
+  font-size:1.125rem;line-height:1.7;
+  color:var(--color-text-muted);
+  margin:0 0 1.5rem;max-width:52ch;
+}
+.thomas-hero__note{
+  font-size:.9375rem;line-height:1.65;
+  background:var(--color-surface-2);
+  border-left:3px solid var(--color-primary);
+  border-radius:0 var(--radius-lg) var(--radius-lg) 0;
+  padding:1rem 1.25rem;
+  color:var(--color-text-muted);
+  margin-bottom:1.75rem;max-width:56ch;
+}
+.thomas-hero__note strong{color:var(--color-text);}
+.thomas-hero__cta{margin-top:.25rem;}
+
+.thomas-hero__portrait{margin:0;}
+.thomas-hero__portrait img{
+  width:100%;height:auto;display:block;
+  border-radius:var(--radius-lg);
+  box-shadow:0 18px 48px rgba(0,0,0,.18);
+}
+.thomas-hero__portrait figcaption{
+  font-size:.75rem;line-height:1.5;
+  color:var(--color-text-faint);
+  margin-top:.65rem;text-align:center;font-style:italic;
+}
+
+/* ---- chat ---- */
+.thomas-chat-section{padding:var(--space-12,3rem) 0 var(--space-16,4rem);}
+.container--narrow{max-width:780px;}
+
+.thomas-chat{
+  background:var(--color-surface);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+.thomas-chat__log{
+  padding:1.5rem;
+  display:flex;flex-direction:column;gap:1.5rem;
+  max-height:min(60vh,620px);
+  overflow-y:auto;
+  scroll-behavior:smooth;
+}
+
+.tmsg{display:flex;gap:.875rem;align-items:flex-start;}
+.tmsg--visitor{flex-direction:row-reverse;}
+.tmsg__avatar{
+  width:38px;height:38px;flex:0 0 38px;
+  border-radius:50%;object-fit:cover;
+  border:2px solid var(--color-surface-offset-2);
+}
+.tmsg__body{min-width:0;max-width:82%;}
+.tmsg--visitor .tmsg__body{max-width:78%;}
+.tmsg__who{
+  font-size:.6875rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;
+  color:var(--color-text-faint);
+  margin-bottom:.375rem;
+}
+.tmsg--visitor .tmsg__who{text-align:right;}
+.tmsg__text{
+  font-size:.9375rem;line-height:1.68;
+  background:var(--color-surface-offset);
+  padding:.875rem 1.125rem;
+  border-radius:var(--radius-lg);
+  border-top-left-radius:.25rem;
+  color:var(--color-text);
+}
+.tmsg__text p{margin:0 0 .75rem;}
+.tmsg__text p:last-child{margin-bottom:0;}
+.tmsg__text em{font-style:italic;}
+.tmsg--visitor .tmsg__text{
+  background:var(--color-primary);
+  color:#fff;
+  border-top-left-radius:var(--radius-lg);
+  border-top-right-radius:.25rem;
+}
+
+/* inscription quoting */
+.tmsg__text blockquote{
+  margin:.75rem 0;padding:.75rem 1rem;
+  background:var(--color-surface-2);
+  border-left:3px solid var(--color-primary-highlight);
+  border-radius:0 .35rem .35rem 0;
+  font-family:var(--font-display);
+  font-size:.9375rem;line-height:1.6;
+}
+
+/* source chips */
+.tmsg__sources{
+  display:flex;flex-wrap:wrap;gap:.375rem;
+  margin-top:.625rem;
+}
+.tmsg__source{
+  font-size:.6875rem;font-weight:600;
+  padding:.25rem .5rem;border-radius:.3rem;
+  background:var(--color-surface-offset-2);
+  color:var(--color-text-muted);
+  border:1px solid var(--color-divider);
+}
+.tmsg__source--exact{
+  background:var(--color-primary-light);
+  border-color:var(--color-primary-highlight);
+  color:var(--color-primary);
+}
+
+/* typing indicator */
+.tmsg--typing .tmsg__text{display:flex;gap:.3rem;align-items:center;padding:1rem 1.125rem;}
+.tdot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--color-text-faint);
+  animation:tbounce 1.3s infinite ease-in-out;
+}
+.tdot:nth-child(2){animation-delay:.16s;}
+.tdot:nth-child(3){animation-delay:.32s;}
+@keyframes tbounce{
+  0%,60%,100%{transform:translateY(0);opacity:.4;}
+  30%{transform:translateY(-5px);opacity:1;}
+}
+@media (prefers-reduced-motion:reduce){
+  .tdot{animation:none;opacity:.6;}
+  .thomas-chat__log{scroll-behavior:auto;}
+}
+
+/* suggestions */
+.thomas-suggestions{
+  padding:0 1.5rem 1.25rem;
+  border-top:1px solid var(--color-divider);
+  padding-top:1.25rem;
+}
+.thomas-suggestions__label{
+  font-size:.75rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--color-text-faint);
+  margin-bottom:.75rem;
+}
+.thomas-suggestions__list{display:flex;flex-wrap:wrap;gap:.5rem;}
+.thomas-chip{
+  font-family:var(--font-body);
+  font-size:.8125rem;
+  padding:.45rem .85rem;
+  border-radius:999px;
+  border:1px solid var(--color-border);
+  background:var(--color-surface-2);
+  color:var(--color-text-muted);
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+.thomas-chip:hover{
+  background:var(--color-primary-light);
+  border-color:var(--color-primary-highlight);
+  color:var(--color-primary);
+}
+
+/* composer */
+.thomas-composer{
+  display:flex;gap:.75rem;align-items:flex-end;
+  padding:1rem 1.5rem 1.25rem;
+  border-top:1px solid var(--color-divider);
+  background:var(--color-surface-2);
+}
+.thomas-composer textarea{
+  flex:1;resize:none;
+  font-family:var(--font-body);
+  font-size:.9375rem;line-height:1.55;
+  padding:.75rem 1rem;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--color-border);
+  background:var(--color-surface);
+  color:var(--color-text);
+  max-height:160px;overflow-y:auto;
+}
+.thomas-composer textarea:focus{
+  outline:none;
+  border-color:var(--color-primary);
+  box-shadow:0 0 0 3px var(--color-primary-light);
+}
+.thomas-send{
+  flex:0 0 44px;width:44px;height:44px;
+  display:grid;place-items:center;
+  border:none;border-radius:50%;
+  background:var(--color-primary);color:#fff;
+  cursor:pointer;transition:background .15s ease,transform .15s ease;
+}
+.thomas-send:hover:not(:disabled){background:var(--color-primary-hover);}
+.thomas-send:disabled{opacity:.45;cursor:not-allowed;}
+.thomas-hint{
+  font-size:.75rem;line-height:1.5;
+  color:var(--color-text-faint);
+  text-align:center;
+  margin-top:.75rem;
+}
+.thomas-hint a{color:var(--color-primary);}
+
+/* contribute */
+.thomas-contribute-prompt{
+  text-align:center;margin-top:2.5rem;
+  padding-top:2rem;
+  border-top:1px solid var(--color-border);
+}
+.thomas-contribute-prompt p{
+  font-family:var(--font-display);
+  font-size:1.125rem;margin:0 0 1rem;
+}
+.thomas-contribute{
+  margin-top:2rem;padding:1.75rem;
+  background:var(--color-surface);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);
+}
+.thomas-contribute h3{
+  font-family:var(--font-display);
+  font-size:1.375rem;margin:0 0 .625rem;
+}
+.thomas-contribute > p{
+  font-size:.9375rem;line-height:1.65;
+  color:var(--color-text-muted);
+  margin:0 0 1.5rem;max-width:60ch;
+}
+.tc-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.tc-field{margin-bottom:1rem;display:flex;flex-direction:column;}
+.tc-field label{
+  font-size:.8125rem;font-weight:600;
+  margin-bottom:.375rem;
+  color:var(--color-text);
+}
+.tc-field input,.tc-field textarea{
+  font-family:var(--font-body);font-size:.9375rem;
+  padding:.65rem .875rem;
+  border:1px solid var(--color-border);
+  border-radius:.5rem;
+  background:var(--color-surface-2);
+  color:var(--color-text);
+  resize:vertical;
+}
+.tc-field input:focus,.tc-field textarea:focus{
+  outline:none;border-color:var(--color-primary);
+  box-shadow:0 0 0 3px var(--color-primary-light);
+}
+.tc-note{
+  font-size:.75rem;color:var(--color-text-faint);
+  margin-top:.3rem;
+}
+.tc-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem;}
+.tc-status{margin-top:.875rem;font-size:.875rem;line-height:1.55;}
+.tc-status.ok{color:var(--color-primary);}
+.tc-status.err{color:#b3261e;}
+
+/* floating pill on other pages */
+.thomas-pill{
+  position:fixed;
+  right:1.25rem;bottom:1.25rem;
+  z-index:900;
+  display:flex;align-items:center;gap:.625rem;
+  padding:.5rem 1rem .5rem .5rem;
+  background:var(--color-surface);
+  border:1px solid var(--color-border);
+  border-radius:999px;
+  box-shadow:0 6px 24px rgba(0,0,0,.16);
+  cursor:pointer;
+  font-family:var(--font-body);
+  font-size:.875rem;font-weight:600;
+  color:var(--color-text);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.thomas-pill:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2);}
+.thomas-pill img{
+  width:34px;height:34px;border-radius:50%;object-fit:cover;
+}
+.thomas-pill[hidden]{display:none;}
+
+/* dark mode — this site toggles [data-theme], so target that (not prefers-color-scheme) */
+[data-theme="dark"] .tmsg__text{background:var(--color-surface-offset-2);}
+[data-theme="dark"] .tmsg--visitor .tmsg__text{
+  background:var(--color-primary);
+  color:#0d1109;
+}
+[data-theme="dark"] .thomas-hero__portrait img{box-shadow:0 18px 48px rgba(0,0,0,.55);}
+[data-theme="dark"] .tc-status.err{color:#f2b8b5;}
+[data-theme="dark"] .thomas-pill{box-shadow:0 6px 24px rgba(0,0,0,.5);}
+[data-theme="dark"] .thomas-hero{
+  background:linear-gradient(180deg,var(--color-surface-offset) 0%,var(--color-bg) 100%);
+}
+
+/* responsive */
+@media (max-width:860px){
+  .thomas-hero__grid{grid-template-columns:1fr;}
+  .thomas-hero__portrait{
+    order:-1;max-width:300px;margin:0 auto;
+  }
+  .tc-row{grid-template-columns:1fr;gap:0;}
+}
+@media (max-width:560px){
+  .thomas-chat__log{padding:1.125rem;gap:1.25rem;}
+  .tmsg__body{max-width:88%;}
+  .thomas-composer{padding:.875rem 1.125rem 1rem;}
+  .thomas-suggestions{padding-left:1.125rem;padding-right:1.125rem;}
+  .thomas-pill span{display:none;}
+  .thomas-pill{padding:.4rem;right:1rem;bottom:1rem;}
+}
+
   </style>
 </head>
 <body>
@@ -624,6 +975,7 @@
     <nav class="nav__links" aria-label="Page navigation">
       <a href="#" class="nav__link active" data-page="home" onclick="showPage('home');return false;">Home</a>
       <a href="#" class="nav__link" data-page="burials" onclick="showPage('burials');return false;">Burials</a>
+      <a href="#" class="nav__link" data-page="thomas" onclick="showPage('thomas');return false;">Ask Thomas</a>
       <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact</a>
@@ -643,6 +995,7 @@
   <div class="nav__mobile" id="mobileNav" role="menu">
     <a href="#" onclick="showPage('home');closeMobile();return false;" role="menuitem">Home</a>
     <a href="#" onclick="showPage('burials');closeMobile();return false;" role="menuitem">Burials Register</a>
+    <a href="#" onclick="showPage('thomas');closeMobile();return false;" role="menuitem">Ask Thomas</a>
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Contact</a>
@@ -692,7 +1045,7 @@
           <div class="stat__label">grave plots across rows A–K</div>
         </div>
         <div class="stat">
-          <div class="stat__num" data-count="862">862</div>
+          <div class="stat__num" data-count="928">928</div>
           <div class="stat__label">recorded burials (and counting)</div>
         </div>
       </div>
@@ -1392,7 +1745,159 @@
       </div>
     </div>
   </div><!-- end page-burials -->
+
+  <!-- ============================ THOMAS ============================ -->
+  <div class="page" id="page-thomas">
+
+    <!-- Hero -->
+    <section class="thomas-hero">
+      <div class="container">
+        <div class="thomas-hero__grid">
+
+          <div class="thomas-hero__text">
+            <div class="thomas-badge">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0-3 3v2a3 3 0 0 0 0 6 3 3 0 0 0 3 3 3 3 0 0 0 3 2 3 3 0 0 0 3-2 3 3 0 0 0 3-3 3 3 0 0 0 0-6V9a3 3 0 0 0-3-3V5a3 3 0 0 0-3-3z"/>
+              </svg>
+              An AI guide to the graveyard
+            </div>
+
+            <h1>Meet Thomas.</h1>
+
+            <p class="thomas-hero__lede">
+              Thomas is a guide we built to help you explore Saron. Ask him about
+              a name on a stone, a family in the register, or the story of the
+              chapel itself — he'll answer from the project's own records and
+              tell you plainly when he doesn't know.
+            </p>
+
+            <div class="thomas-hero__note">
+              <strong>He isn't a real person.</strong> Thomas is an AI assistant
+              created by Friends of Saron. He draws on our transcriptions of
+              <span data-thomas-count>928</span> burial records and everything
+              published on this site. He's been told never to guess — but do
+              check anything important against the register itself.
+            </div>
+
+            <a href="#thomasChat" class="btn btn--primary thomas-hero__cta">Ask Thomas a question</a>
+          </div>
+
+          <figure class="thomas-hero__portrait">
+            <img src="images/thomas/thomas-hero.jpg"
+                 alt="An illustrated portrait of Thomas, an elderly Welshman seated at a table with a notebook in a stone chapel"
+                 width="933" height="1400" loading="eager">
+            <figcaption>Thomas — an illustrated character, not a photograph of a real person.</figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="thomas-chat-section" id="thomasChat">
+      <div class="container container--narrow">
+
+        <div class="thomas-chat" role="region" aria-label="Conversation with Thomas">
+
+          <div class="thomas-chat__log" id="thomasLog" aria-live="polite" aria-atomic="false">
+            <!-- Opening message -->
+            <div class="tmsg tmsg--thomas">
+              <img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
+              <div class="tmsg__body">
+                <div class="tmsg__who">Thomas</div>
+                <div class="tmsg__text">
+                  <p>Croeso — welcome. I've spent a long while among these stones, and I'm glad of the company.</p>
+                  <p>Ask me about anyone in the register, or about Saron itself. If a stone is worn and I can't read it, I'll say so rather than invent something.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested openers -->
+          <div class="thomas-suggestions" id="thomasSuggestions">
+            <div class="thomas-suggestions__label">Not sure where to start?</div>
+            <div class="thomas-suggestions__list">
+              <button type="button" class="thomas-chip" data-q="Who is buried in plot A-01?">Who is buried in plot A-01?</button>
+              <button type="button" class="thomas-chip" data-q="Tell me the story of Saron chapel.">The story of Saron chapel</button>
+              <button type="button" class="thomas-chip" data-q="Which are the oldest graves here?">The oldest graves</button>
+              <button type="button" class="thomas-chip" data-q="Are there any Welsh-language inscriptions?">Welsh inscriptions</button>
+              <button type="button" class="thomas-chip" data-q="I'm looking for the Rees family. What can you tell me?">Finding a family</button>
+            </div>
+          </div>
+
+          <!-- Composer -->
+          <form class="thomas-composer" id="thomasForm" autocomplete="off">
+            <label class="sr-only" for="thomasInput">Your question for Thomas</label>
+            <textarea id="thomasInput" rows="1" maxlength="1000"
+                      placeholder="Ask Thomas about a name, a plot, or the chapel&hellip;"
+                      aria-describedby="thomasHint"></textarea>
+            <button type="submit" id="thomasSend" class="thomas-send" aria-label="Send your question">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+          <div class="thomas-hint" id="thomasHint">
+            Thomas can make mistakes. Please verify names and dates against the
+            <a href="#" onclick="showPage('burials');return false;">burials register</a>.
+          </div>
+
+        </div>
+
+        <!-- Contribute -->
+        <aside class="thomas-contribute" id="thomasContribute" hidden>
+          <h3>Do you know something we don't?</h3>
+          <p>
+            If you have a memory, a photograph, or a family record that adds to
+            what we hold, we'd be very glad of it. What you send goes to our
+            volunteers first — nothing appears on the site until a person has
+            read and approved it.
+          </p>
+          <form id="thomasContribForm">
+            <div class="tc-row">
+              <div class="tc-field">
+                <label for="tcName">Your name</label>
+                <input type="text" id="tcName" name="name" required maxlength="120">
+              </div>
+              <div class="tc-field">
+                <label for="tcEmail">Your email</label>
+                <input type="email" id="tcEmail" name="email" required maxlength="200">
+                <span class="tc-note">So we can ask you a follow-up. Never published.</span>
+              </div>
+            </div>
+            <div class="tc-field">
+              <label for="tcContent">What would you like to tell us?</label>
+              <textarea id="tcContent" name="content" rows="5" required maxlength="4000"
+                        placeholder="A memory, a correction, a family connection&hellip;"></textarea>
+            </div>
+            <div class="tc-actions">
+              <button type="submit" class="btn btn--primary" id="tcSubmit">Send to the volunteers</button>
+              <button type="button" class="btn btn--quiet" onclick="closeContribute()">Not now</button>
+            </div>
+            <div class="tc-status" id="tcStatus" role="status"></div>
+          </form>
+        </aside>
+
+        <div class="thomas-contribute-prompt">
+          <p>Know something about the people buried here?</p>
+          <button type="button" class="btn btn--quiet" onclick="openContribute()">Share what you know</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- end page-thomas -->
+
 </main>
+
+<button type="button" class="thomas-pill" id="thomasPill"
+        onclick="showPage('thomas');return false;"
+        aria-label="Ask Thomas, our guide to the graveyard">
+  <img src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
+  <span>Ask Thomas</span>
+</button>
+
 
 <footer class="footer" role="contentinfo">
   <div class="container">
@@ -1406,6 +1911,7 @@
         <ul class="footer__links">
           <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
           <li><a href="#" onclick="showPage('burials');return false;">Burials Register</a></li>
+          <li><a href="#" onclick="showPage('thomas');return false;">Ask Thomas</a></li>
           <li><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a></li>
           <li><a href="#about" onclick="showPage('home');return false;">About</a></li>
           <li><a href="#contact" onclick="showPage('home');return false;">Contact</a></li>
@@ -1494,6 +2000,7 @@ function showPage(page){
     a.classList.toggle('active',a.dataset.page===page);
   });
   window.scrollTo({top:0,behavior:'smooth'});
+  if(typeof syncThomasPill === 'function') syncThomasPill(page);
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -2808,6 +3315,274 @@ function plotClick(plotId,id){
     filterBurials();
   }
 }
+
+/* ======================= THOMAS ======================= */
+(function(){
+  const ENDPOINT = 'https://rixllmbogporsctwdiif.supabase.co/functions/v1/thomas-chat';
+  const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpeGxsbWJvZ3BvcnNjdHdkaWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwMDU2MzksImV4cCI6MjA3MDU4MTYzOX0.eWI93zUpmAYXyGVMg7qldzpJ1-TFyNqA7SpLFKlPL8M';
+
+  const log         = document.getElementById('thomasLog');
+  const form        = document.getElementById('thomasForm');
+  const input       = document.getElementById('thomasInput');
+  const sendBtn     = document.getElementById('thomasSend');
+  const suggestions = document.getElementById('thomasSuggestions');
+  if(!log || !form) return;
+
+  let conversationId = null;
+  let history = [];
+  let busy = false;
+  let lastQuestion = '';
+
+  /* ---------- helpers ---------- */
+
+  const esc = s => String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+
+  // Light, safe formatting: paragraphs, quoted inscriptions, emphasis.
+  function format(text){
+    const blocks = esc(text).trim().split(/\n{2,}/);
+    return blocks.map(b => {
+      const lines = b.split('\n');
+      // a block where every line is quoted becomes a blockquote
+      if(lines.every(l => /^&gt;\s?/.test(l))){
+        return '<blockquote>' + lines.map(l=>l.replace(/^&gt;\s?/,'')).join('<br>') + '</blockquote>';
+      }
+      let html = b.replace(/\n/g,'<br>');
+      html = html.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      html = html.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:!?)]|$)/g,'$1<em>$2</em>');
+      return '<p>'+html+'</p>';
+    }).join('');
+  }
+
+  function scrollDown(){ log.scrollTop = log.scrollHeight; }
+
+  function addVisitor(text){
+    const el = document.createElement('div');
+    el.className = 'tmsg tmsg--visitor';
+    el.innerHTML =
+      '<div class="tmsg__body">' +
+        '<div class="tmsg__who">You</div>' +
+        '<div class="tmsg__text"><p>'+esc(text).replace(/\n/g,'<br>')+'</p></div>' +
+      '</div>';
+    log.appendChild(el);
+    scrollDown();
+  }
+
+  function addTyping(){
+    const el = document.createElement('div');
+    el.className = 'tmsg tmsg--thomas tmsg--typing';
+    el.id = 'thomasTyping';
+    el.innerHTML =
+      '<img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128">' +
+      '<div class="tmsg__body">' +
+        '<div class="tmsg__who">Thomas</div>' +
+        '<div class="tmsg__text"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div>' +
+      '</div>';
+    log.appendChild(el);
+    scrollDown();
+  }
+
+  function removeTyping(){
+    const t = document.getElementById('thomasTyping');
+    if(t) t.remove();
+  }
+
+  function addThomas(text, sources){
+    const el = document.createElement('div');
+    el.className = 'tmsg tmsg--thomas';
+
+    let srcHtml = '';
+    if(sources && sources.length){
+      const chips = sources
+        .filter(s => s.plot || s.title)
+        .slice(0,4)
+        .map(s => {
+          const label = s.plot ? ('Plot '+esc(s.plot)) : esc(s.title).slice(0,42);
+          const cls = s.exact ? 'tmsg__source tmsg__source--exact' : 'tmsg__source';
+          return '<span class="'+cls+'">'+label+'</span>';
+        }).join('');
+      if(chips) srcHtml = '<div class="tmsg__sources">'+chips+'</div>';
+    }
+
+    el.innerHTML =
+      '<img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128">' +
+      '<div class="tmsg__body">' +
+        '<div class="tmsg__who">Thomas</div>' +
+        '<div class="tmsg__text">'+format(text)+srcHtml+'</div>' +
+      '</div>';
+    log.appendChild(el);
+    scrollDown();
+  }
+
+  /* ---------- send ---------- */
+
+  async function ask(question){
+    if(busy || !question.trim()) return;
+    busy = true;
+    sendBtn.disabled = true;
+    lastQuestion = question;
+
+    if(suggestions) suggestions.hidden = true;
+
+    addVisitor(question);
+    input.value = '';
+    input.style.height = 'auto';
+    addTyping();
+
+    try{
+      const res = await fetch(ENDPOINT, {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':'Bearer '+ANON_KEY,
+          'apikey': ANON_KEY
+        },
+        body: JSON.stringify({
+          question,
+          conversation_id: conversationId,
+          history: history.slice(-6),
+          referrer: location.pathname
+        })
+      });
+
+      const data = await res.json().catch(()=>({}));
+      removeTyping();
+
+      const answer = data.answer ||
+        'Forgive me — I couldn\u2019t reach my notes just then. Would you try again in a moment?';
+
+      if(data.conversation_id) conversationId = data.conversation_id;
+
+      addThomas(answer, data.sources);
+
+      history.push({role:'user', content:question});
+      history.push({role:'thomas', content:answer});
+
+      // Nudge toward contributing when Thomas comes up short.
+      if(typeof data.confidence === 'number' && data.confidence < 0.5){
+        setTimeout(showContributeNudge, 700);
+      }
+
+    }catch(err){
+      removeTyping();
+      addThomas('Forgive me — I couldn\u2019t reach my notes just then. Do check your connection and try once more.');
+    }finally{
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  function showContributeNudge(){
+    const prompt = document.querySelector('.thomas-contribute-prompt');
+    if(prompt && !document.getElementById('thomasContribute').hasAttribute('hidden')) return;
+    if(prompt){
+      prompt.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  }
+
+  /* ---------- events ---------- */
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    ask(input.value);
+  });
+
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      ask(input.value);
+    }
+  });
+
+  // auto-grow the textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 160) + 'px';
+  });
+
+  document.querySelectorAll('.thomas-chip').forEach(chip => {
+    chip.addEventListener('click', () => ask(chip.dataset.q));
+  });
+
+  /* ---------- contributions ---------- */
+
+  window.openContribute = function(){
+    const box = document.getElementById('thomasContribute');
+    if(!box) return;
+    box.hidden = false;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    document.getElementById('tcName').focus();
+  };
+
+  window.closeContribute = function(){
+    const box = document.getElementById('thomasContribute');
+    if(box) box.hidden = true;
+  };
+
+  const contribForm = document.getElementById('thomasContribForm');
+  if(contribForm){
+    contribForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn    = document.getElementById('tcSubmit');
+      const status = document.getElementById('tcStatus');
+      btn.disabled = true;
+      status.className = 'tc-status';
+      status.textContent = 'Sending\u2026';
+
+      try{
+        const res = await fetch(ENDPOINT.replace('thomas-chat','thomas-contribute'), {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+ANON_KEY,
+            'apikey': ANON_KEY
+          },
+          body: JSON.stringify({
+            name:    document.getElementById('tcName').value,
+            email:   document.getElementById('tcEmail').value,
+            content: document.getElementById('tcContent').value,
+            context_question: lastQuestion,
+            conversation_id: conversationId
+          })
+        });
+        const data = await res.json().catch(()=>({}));
+
+        if(res.ok && data.ok){
+          status.className = 'tc-status ok';
+          status.textContent = 'Thank you — that\u2019s gone to our volunteers. We\u2019ll be in touch if we need to ask anything.';
+          contribForm.reset();
+        }else{
+          status.className = 'tc-status err';
+          status.textContent = data.error || 'Something went wrong sending that. Please try again, or email us directly.';
+        }
+      }catch(err){
+        status.className = 'tc-status err';
+        status.textContent = 'Couldn\u2019t send that just now. Please check your connection and try again.';
+      }finally{
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* ---------- burial count in hero ---------- */
+  try{
+    if(typeof BURIALS !== 'undefined' && Array.isArray(BURIALS)){
+      document.querySelectorAll('[data-thomas-count]').forEach(el => {
+        el.textContent = BURIALS.length.toLocaleString('en-GB');
+      });
+    }
+  }catch(e){}
+
+})();
+
+/* floating pill visibility — hidden on Thomas's own page */
+function syncThomasPill(page){
+  const pill = document.getElementById('thomasPill');
+  if(pill) pill.hidden = (page === 'thomas');
+}
+
 </script>
 
 </body>
