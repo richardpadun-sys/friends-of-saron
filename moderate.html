@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Review a contribution — Friends of Saron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2d6a20; --green-dark:#225218;
+    --ink:#1e2318; --muted:#5a6045; --faint:#7a8068;
+    --line:#cbc8bb; --bg:#f5f4ee; --surface:#ffffff;
+    --danger:#7a2020; --danger-line:#e0cccc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 'Work Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    min-height:100vh; padding:24px;
+  }
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:38px 36px; max-width:620px; width:100%;
+    box-shadow:0 4px 28px rgba(0,0,0,.06);
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 8px; font-weight:600;
+  }
+  h1{font-family:'Lora',Georgia,serif; font-size:27px; margin:0 0 16px; line-height:1.25; font-weight:600;}
+  p{margin:0 0 14px;}
+  .muted{color:var(--muted); font-size:14px;}
+  .meta{font-size:14px; color:var(--muted); margin:0 0 20px; line-height:1.75;}
+  .quote{
+    background:var(--bg); border-left:3px solid var(--green);
+    border-radius:0 8px 8px 0; padding:16px 18px;
+    white-space:pre-wrap; margin:0 0 24px; font-size:15px;
+  }
+  textarea{
+    width:100%; min-height:200px; font:15px/1.65 'Work Sans',sans-serif;
+    padding:14px 16px; border:1px solid var(--line); border-radius:9px;
+    background:var(--bg); color:var(--ink); resize:vertical; margin:0 0 20px;
+  }
+  textarea:focus{outline:none; border-color:var(--green); box-shadow:0 0 0 3px #e8f2e5;}
+  .btn{
+    display:inline-block; background:var(--green); color:#fff; border:none;
+    padding:13px 24px; border-radius:8px; font:600 15px 'Work Sans',sans-serif;
+    cursor:pointer; text-decoration:none;
+  }
+  .btn:hover{background:var(--green-dark);}
+  .btn:disabled{opacity:.55; cursor:default;}
+  .btn--danger{background:#fff; color:var(--danger); border:1.5px solid var(--danger-line);}
+  .btn--danger:hover{background:#fdf7f7;}
+  .badge{
+    width:48px; height:48px; border-radius:50%; color:#fff;
+    display:grid; place-items:center; font-size:24px; margin:0 0 20px;
+  }
+  .badge--ok{background:var(--green);}
+  .badge--no{background:#8a8f7a;}
+  .badge--warn{background:#b3671e;}
+  .foot{
+    margin-top:28px; padding-top:20px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--faint);
+  }
+  .foot a{color:var(--green);}
+  .spinner{
+    width:26px; height:26px; border:3px solid var(--line);
+    border-top-color:var(--green); border-radius:50%;
+    animation:spin .8s linear infinite; margin:8px 0 18px;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <p class="eyebrow">Friends of Saron</p>
+  <div class="spinner"></div>
+  <p class="muted">Loading this contribution…</p>
+</div>
+
+<script>
+(function(){
+  var API = 'https://rixllmbogporsctwdiif.supabase.co/functions/v1/thomas-moderate';
+  var card = document.getElementById('card');
+  var token = new URLSearchParams(location.search).get('t') || '';
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function foot(){
+    return '<div class="foot">Friends of Saron Graveyard · ' +
+           '<a href="https://troedyrhiwancestors.com">troedyrhiwancestors.com</a></div>';
+  }
+  function render(html){ card.innerHTML = html + foot(); }
+
+  function problem(title, msg){
+    render('<div class="badge badge--warn">!</div>' +
+           '<p class="eyebrow">Friends of Saron</p>' +
+           '<h1>' + esc(title) + '</h1><p>' + esc(msg) + '</p>');
+  }
+
+  function api(body){
+    return fetch(API, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(Object.assign({token:token}, body))
+    }).then(function(r){
+      return r.json().then(function(d){ return {status:r.status, data:d}; });
+    });
+  }
+
+  if(!token){
+    problem('Link not valid', 'This address is missing its review code. Please use the link from your email.');
+    return;
+  }
+
+  // Preview only — nothing is decided until a human clicks.
+  api({op:'preview'}).then(function(res){
+    var d = res.data;
+    if(!d.ok){
+      problem(d.done ? 'Already decided' : 'Link not valid',
+              d.error || 'This link can no longer be used.');
+      return;
+    }
+
+    var c = d.contribution;
+    var who = esc(c.submitter_name);
+    var metaHtml =
+      '<p class="meta">From <strong>' + who + '</strong><br>' +
+      '<span class="muted">' + esc(c.submitter_email) + '</span>' +
+      (c.context ? '<br>They had asked: <em>"' + esc(c.context) + '"</em>' : '') +
+      (c.plot_ref ? '<br>Relates to plot <strong>' + esc(c.plot_ref) + '</strong>' : '') +
+      '</p>';
+
+    if(d.action === 'reject'){
+      render('<p class="eyebrow">Friends of Saron</p>' +
+        '<h1>Decline this contribution?</h1>' + metaHtml +
+        '<div class="quote">' + esc(c.content) + '</div>' +
+        '<button class="btn btn--danger" id="go">Yes, decline it</button>' +
+        '<p class="muted" style="margin-top:16px;">' +
+        'It won\u2019t appear on the site and Thomas won\u2019t use it. ' +
+        'The record is kept so you can look back at it.</p>');
+      wire(function(){ return {op:'commit'}; });
+
+    } else if(d.action === 'edit'){
+      render('<p class="eyebrow">Friends of Saron</p>' +
+        '<h1>Edit before publishing</h1>' + metaHtml +
+        '<textarea id="txt">' + esc(c.content) + '</textarea>' +
+        '<button class="btn" id="go">Publish this version</button>' +
+        '<p class="muted" style="margin-top:16px;">Nothing is public until you press publish.</p>');
+      wire(function(){
+        return {op:'commit', edited: document.getElementById('txt').value};
+      });
+
+    } else {
+      render('<p class="eyebrow">Friends of Saron</p>' +
+        '<h1>Publish this contribution?</h1>' + metaHtml +
+        '<div class="quote">' + esc(c.content) + '</div>' +
+        '<button class="btn" id="go">Yes, publish it</button>' +
+        '<p class="muted" style="margin-top:16px;">' +
+        'Once published, Thomas can draw on it when answering visitors.</p>');
+      wire(function(){ return {op:'commit'}; });
+    }
+  }).catch(function(){
+    problem('Couldn\u2019t reach the record', 'Please try the link again in a moment.');
+  });
+
+  function wire(buildBody){
+    var btn = document.getElementById('go');
+    btn.addEventListener('click', function(){
+      var body = buildBody();
+      if(body.edited !== undefined && body.edited.trim().length < 10){
+        alert('Please leave at least a sentence before publishing.');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Saving…';
+
+      api(body).then(function(res){
+        var d = res.data;
+        if(!d.ok){
+          problem('That didn\u2019t work', d.error || 'Please try again.');
+          return;
+        }
+        if(d.result === 'rejected'){
+          render('<div class="badge badge--no">\u00d7</div>' +
+            '<p class="eyebrow">Friends of Saron</p>' +
+            '<h1>Declined.</h1>' +
+            '<p>This note won\u2019t appear on the site and Thomas won\u2019t use it.</p>' +
+            '<p class="muted">You can close this window.</p>');
+        } else {
+          render('<div class="badge badge--ok">\u2713</div>' +
+            '<p class="eyebrow">Friends of Saron</p>' +
+            '<h1>Published.</h1>' +
+            '<p>Thank you. It is now part of the record' +
+            (d.indexed ? ' and Thomas can draw on it' : '') + '.</p>' +
+            '<div class="quote">' + esc(d.content) + '</div>' +
+            '<p class="muted">You can close this window.</p>');
+        }
+      }).catch(function(){
+        problem('Couldn\u2019t save that', 'Please try the link again in a moment.');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
