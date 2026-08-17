@@ -231,6 +231,17 @@
   .img-placeholder__file{font-size:var(--text-xs);font-family:monospace;color:rgba(255,255,255,0.55);margin-top:var(--space-1);}
   .img-placeholder--dark{background:linear-gradient(140deg,#1b2f16,#284422);}
   .img-placeholder--mid{background:linear-gradient(140deg,#22381b,#335027);}
+  /* Headstone gallery: some graves have a ledger, a second face, or an enlargement */
+  .hsgal{margin:0;display:flex;flex-direction:column;height:100%;background:#1e3518;}
+  .hsgal__main{width:100%;flex:1 1 auto;min-height:0;object-fit:contain;display:block;background:#1e3518;}
+  .hsgal__cap{padding:.55rem .7rem;font-size:.78rem;line-height:1.35;color:#e8e4d9;background:#1a2e15;text-align:center;}
+  .hsgal__thumbs{display:flex;gap:.4rem;padding:.4rem .5rem .55rem;background:#1a2e15;justify-content:center;flex-wrap:wrap;}
+  .hsgal__thumb{width:54px;height:54px;padding:0;border:2px solid transparent;border-radius:4px;background:#0f1c0c;cursor:pointer;overflow:hidden;flex:0 0 auto;transition:border-color .15s;}
+  .hsgal__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hsgal__thumb:hover{border-color:#8fae7d;}
+  .hsgal__thumb.is-active{border-color:#c9a961;}
+  .hsgal__thumb:focus-visible{outline:2px solid #c9a961;outline-offset:2px;}
+
   /* Real photos filling image slots */
   .img-photo{display:block;width:100%;height:100%;object-fit:cover;}
   .hero__bg .img-photo{position:absolute;inset:0;}
@@ -3008,6 +3019,56 @@ const BURIALS = [
 ];
 
 let currentView="list";
+
+/* ── Extra photographs per plot ───────────────────────────────────────────
+   Some graves were photographed more than once: a second face, a ledger,
+   a cut-off portion, or an enlargement of a worn detail. The record used to
+   hold one photo per burial, so these were on disk but never shown.
+   Captions are Sheila's descriptions; primary image is listed first.       */
+const PLOT_PHOTOS={
+  "A-02":[
+    {f:"headstone-A-02.jpg",  c:"Headstone"},
+    {f:"headstone-A-02-2.jpg",c:"Full face of the headstone"}
+  ],
+  "A-04":[
+    {f:"headstone-A-04.jpg",  c:"Headstone and inscription"},
+    {f:"headstone-A-04-2.jpg",c:"Enlargement \u2014 \u201cA FU FARW CHWEF. 30 1889\u201d"}
+  ],
+  "A-18":[
+    {f:"headstone-A-18.jpg",  c:"18a \u2014 inscribed headstone"},
+    {f:"headstone-A-18-2.jpg",c:"18b \u2014 inscribed ledger"}
+  ],
+  "A-47":[
+    {f:"headstone-A-47-2.jpg",c:"Main headstone, with the cut inscribed portion standing in front of it"},
+    {f:"headstone-A-47.jpg",  c:"The cut portion, enlarged \u2014 the worn Welsh inscription to Thomas Morgan, Dyffryn"}
+  ],
+  "A-50":[
+    {f:"headstone-A-50.jpg",  c:"The iron surround"},
+    {f:"headstone-A-50-2.jpg",c:"Full length of the iron surround"},
+    {f:"headstone-A-50-3.jpg",c:"Head plate \u2014 initials W M, 1856"}
+  ]
+};
+function plotPhotos(b){
+  if(b.plot && PLOT_PHOTOS[b.plot]) return PLOT_PHOTOS[b.plot];
+  return b.photo ? [{f:b.photo,c:"Headstone"}] : [];
+}
+
+/* ── Names that the stone does not give ───────────────────────────────────
+   Six Row A records carry "(Inscription illegible/none)" in the surname
+   field. That is a note about the stone, not a name, so it should never be
+   rendered in a name column or indexed under "(".                          */
+const NO_NAME_RE=/^\s*\(?\s*inscription illegible\s*\/?\s*none\s*\)?\s*$/i;
+function isUnnamed(b){ return !b.surname || NO_NAME_RE.test(b.surname); }
+function displaySurname(b){ return isUnnamed(b) ? "Unknown" : b.surname; }
+function displayName(b){
+  if(isUnnamed(b)) return "Name not recorded";
+  return b.forenames ? (b.surname+", "+b.forenames) : b.surname;
+}
+function displayNameNatural(b){
+  if(isUnnamed(b)) return "Name not recorded";
+  return (b.forenames ? b.forenames+" " : "")+b.surname;
+}
+
 let sortCol="surname";
 let sortDir=1;
 let filteredBurials=[];
@@ -3104,7 +3165,7 @@ function renderTable(){
       <td class="row-summary" data-label="Summary">
         <span class="row-summary__main">
           ${b.bio ? '<span class="has-bio" title="Biography available"></span>' : ""}
-          <span class="row-summary__name">${b.surname}, ${b.forenames}</span>
+          <span class="row-summary__name">${displayName(b)}</span>
         </span>
         <span class="row-summary__meta">
           <span class="row-summary__years">${b.born ? (b.born+"\u2013"+(b.died||"?")) : (b.died ? ("d. "+b.died) : "")}</span>
@@ -3115,7 +3176,7 @@ function renderTable(){
       <td data-label="Surname">
         <div class="burial-name-cell">
           ${b.bio ? '<span class="has-bio" title="Biography available"></span>' : ""}
-          <span>${b.surname}</span>
+          <span>${displaySurname(b)}</span>
         </div>
       </td>
       <td data-label="Forenames">${b.forenames || "—"}</td>
@@ -3145,7 +3206,7 @@ function renderGrid(){
          onkeydown="if(event.key==='Enter')openBio(${b.id})">
       <div class="burial-card__header">
         <div>
-          <div class="burial-card__name">${b.surname}, ${b.forenames}</div>
+          <div class="burial-card__name">${displayName(b)}</div>
           <div class="burial-card__dates">${b.born ? (b.born+" – "+(b.died||"?")) : (b.died ? ("d. "+b.died) : "Dates unknown")}</div>
         </div>
         ${b.plot ? '<span class="plot-badge">'+b.plot+'</span>' : ""}
@@ -3192,7 +3253,7 @@ function goPage(n){
 
 function buildAlphaJump(){
   const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const hasSurname=new Set(BURIALS.map(b=>b.surname[0].toUpperCase()));
+  const hasSurname=new Set(BURIALS.filter(b=>!isUnnamed(b)).map(b=>b.surname[0].toUpperCase()));
   const container=document.getElementById("alphaJump");
   container.innerHTML=letters.map(l=>`
     <button class="alpha-btn ${hasSurname.has(l)?"has-entries":""}"
@@ -3231,18 +3292,44 @@ function onRowClick(event, id){
 function openBio(id){
   const b=BURIALS.find(x=>x.id===id);
   if(!b) return;
-  document.getElementById("modalName").textContent=(b.forenames?b.forenames+" ":"")+b.surname;
+  document.getElementById("modalName").textContent=displayNameNatural(b);
   document.getElementById("modalSubtitle").textContent = b.plot ? ("Plot "+b.plot) : (b.row?("Row "+b.row):"Saron Graveyard");
   const hsEl=document.getElementById("modalHeadstone");
   const hsNoteEl=document.getElementById("modalHeadstoneNote");
-  if(b.photo){
-    hsEl.innerHTML='<img src="images/headstones/'+b.photo+'" alt="Headstone at plot '+(b.plot||'')+'" style="width:100%;height:100%;object-fit:contain;display:block;background:#1e3518;" loading="lazy">';
+  const photos=plotPhotos(b);
+  if(photos.length){
+    let g='<figure class="hsgal">';
+    g+='<img id="hsgalMain" class="hsgal__main" src="images/headstones/'+photos[0].f+'" alt="'+photos[0].c+' at plot '+(b.plot||'')+'" loading="lazy">';
+    g+='<figcaption id="hsgalCap" class="hsgal__cap">'+photos[0].c+'</figcaption>';
+    if(photos.length>1){
+      g+='<div class="hsgal__thumbs" role="group" aria-label="Other photographs of this grave">';
+      photos.forEach(function(ph,i){
+        g+='<button type="button" class="hsgal__thumb'+(i===0?' is-active':'')+'" data-i="'+i+'" title="'+ph.c+'" aria-label="'+ph.c+'">'
+          +'<img src="images/headstones/'+ph.f+'" alt="" loading="lazy"></button>';
+      });
+      g+='</div>';
+    }
+    g+='</figure>';
+    hsEl.innerHTML=g;
+    if(photos.length>1){
+      const mainImg=hsEl.querySelector('#hsgalMain'), capEl=hsEl.querySelector('#hsgalCap');
+      hsEl.querySelectorAll('.hsgal__thumb').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          const ph=photos[+btn.dataset.i];
+          mainImg.src='images/headstones/'+ph.f;
+          mainImg.alt=ph.c+' at plot '+(b.plot||'');
+          capEl.textContent=ph.c;
+          hsEl.querySelectorAll('.hsgal__thumb').forEach(t=>t.classList.remove('is-active'));
+          btn.classList.add('is-active');
+        });
+      });
+    }
     if(hsNoteEl) hsNoteEl.style.display="none";
   } else {
     hsEl.innerHTML='<div class="img-placeholder"><div class="img-placeholder__badge">\uD83D\uDCF7 Headstone Image</div><div class="img-placeholder__label">Headstone photograph</div></div>';
     if(hsNoteEl) hsNoteEl.style.display="";
   }
-  const hsFileEl=document.getElementById("modalHeadstoneFile"); if(hsFileEl) hsFileEl.textContent = b.plot ? ("headstone-"+b.plot+".jpg") : "";
+  const hsFileEl=document.getElementById("modalHeadstoneFile"); if(hsFileEl) hsFileEl.textContent = photos.length ? photos[0].f : "";
   document.getElementById("modalMetaGrid").innerHTML=`
     <div class="modal__meta-item"><div class="modal__meta-label">Died</div><div class="modal__meta-value">${b.died||"Unknown"}</div></div>
     <div class="modal__meta-item"><div class="modal__meta-label">Age at Death</div><div class="modal__meta-value">${b.age||"Unknown"}</div></div>
@@ -3260,7 +3347,7 @@ function openBio(id){
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
       </svg>
       <p>No biography recorded yet for this individual. If you have information about
-      ${b.forenames} ${b.surname}, please
+      ${displayNameNatural(b)}, please
       <a href="#"
          onclick="closeBioModal();showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;"
          style="color:var(--color-primary)">contact us</a>.
@@ -3301,7 +3388,7 @@ function buildPlotMap(){
       if(entries.length>0){
         const anyBio=entries.some(e=>!!e.bio);
         cls=anyBio?"plot-cell--recorded":"plot-cell--partial";
-        title="Plot "+plotId+"\n"+entries.map(e=>e.surname+", "+e.forenames+(e.died?" (d."+e.died+")":"")).join("\n");
+        title="Plot "+plotId+"\n"+entries.map(e=>displayName(e)+(e.died?" (d."+e.died+")":"")).join("\n");
       }
       const firstId=entries.length>0?entries[0].id:null;
       html+=`
