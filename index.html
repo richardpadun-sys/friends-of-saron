@@ -485,6 +485,54 @@
   .plot-cell--partial{background:color-mix(in oklch,var(--color-primary) 45%,var(--color-surface-offset));}
   .plot-cell:hover{color:#fff!important;}
 
+
+  /* ---- Stories behind the stones ---- */
+  .stories-hero{padding:var(--space-16) 0 var(--space-10);border-bottom:1px solid var(--color-divider);}
+  .stories-hero h1{font-size:var(--text-2xl);margin:0 0 var(--space-4);}
+  .stories-hero__lede{font-size:var(--text-lg);color:var(--color-text-muted);max-width:58ch;margin:0;}
+  .stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-6);padding-block:var(--space-10);}
+  .story-card{display:flex;flex-direction:column;text-align:left;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive);color:inherit;padding:0;width:100%;font-family:inherit;}
+  .story-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .story-card:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px;}
+  .story-card__img{aspect-ratio:4/3;width:100%;object-fit:cover;background:var(--color-surface-offset);display:block;}
+  .story-card__body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);flex:1;}
+  .story-card__kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--color-primary);}
+  .story-card__title{font-family:var(--font-display);font-size:var(--text-lg);line-height:1.2;margin:0;}
+  .story-card__sub{font-size:var(--text-sm);color:var(--color-text-muted);margin:0;}
+  .stories-more{border:1px dashed var(--color-divider);border-radius:var(--radius-lg);padding:var(--space-6);font-size:var(--text-sm);color:var(--color-text-muted);max-width:58ch;}
+
+  .story__wrap{max-width:720px;margin-inline:auto;padding:var(--space-10) var(--space-6) var(--space-16);}
+  .story__back{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);background:none;border:0;padding:var(--space-2) 0;cursor:pointer;font-family:inherit;}
+  .story__back:hover{color:var(--color-primary);}
+  .story__kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--color-primary);margin:var(--space-6) 0 var(--space-3);}
+  .story__title{font-size:var(--text-xl);margin:0 0 var(--space-3);}
+  .story__sub{font-size:var(--text-lg);color:var(--color-text-muted);margin:0 0 var(--space-8);}
+  .story__lede{font-size:var(--text-lg);line-height:1.55;margin:0 0 var(--space-8);}
+  .story__wrap p{line-height:1.65;margin:0 0 var(--space-5);}
+  .story__wrap h2{font-size:var(--text-lg);margin:var(--space-10) 0 var(--space-4);}
+  .story__fig{margin:0 0 var(--space-8);}
+  .story__fig img{width:100%;height:auto;display:block;border-radius:var(--radius-lg);background:var(--color-surface-offset);}
+  .story__fig figcaption{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-3);line-height:1.5;}
+  .story__report{background:var(--color-surface);border-left:4px solid var(--color-primary);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:var(--space-5) var(--space-6);margin:0 0 var(--space-4);}
+  .story__report p{margin:0 0 var(--space-3);}
+  .story__report p:last-child{margin:0;}
+  .story__report-head{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--color-primary);margin:0 0 var(--space-3);}
+  .story__cite{font-size:var(--text-sm);color:var(--color-text-muted);margin:0 0 var(--space-8);}
+  .insc{width:calc(100% + 2 * var(--space-8));margin-inline:calc(-1 * var(--space-8));display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:var(--space-6);margin:0 0 var(--space-4);}
+  .insc__col h3{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--color-primary);margin:0 0 var(--space-3);font-family:var(--font-body);}
+  .insc__col p{font-family:var(--font-display);line-height:1.5;margin:0 0 var(--space-4);white-space:pre-line;}
+  .insc__col p:last-child{margin:0;}
+  .insc__verse{font-style:italic;color:var(--color-text-muted);}
+  .story__note{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;margin:0 0 var(--space-8);}
+  .story__plot{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center;border-top:1px solid var(--color-divider);padding-top:var(--space-6);margin-top:var(--space-10);font-size:var(--text-sm);color:var(--color-text-muted);}
+  .story__plot strong{color:var(--color-text);}
+  @media(max-width:900px){
+    .insc{width:100%;margin-inline:0;}
+  }
+  @media(max-width:640px){
+    .insc{grid-template-columns:1fr;gap:var(--space-5);}
+  }
+
   .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.55);display:none;align-items:center;justify-content:center;padding:var(--space-6);}
   .modal-overlay.open{display:flex;}
   .modal{background:var(--color-bg);border-radius:var(--radius-xl);max-width:680px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);}
@@ -1004,6 +1052,7 @@
     <nav class="nav__links" aria-label="Page navigation">
       <a href="#" class="nav__link active" data-page="home" onclick="showPage('home');return false;">Home</a>
       <a href="#" class="nav__link" data-page="burials" onclick="showPage('burials');return false;">Burials</a>
+      <a href="#" class="nav__link" data-page="stories" onclick="showPage('stories');return false;">Stories</a>
       <a href="#" class="nav__link" data-page="thomas" onclick="showPage('thomas');return false;">Ask Thomas</a>
       <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
@@ -1024,6 +1073,7 @@
   <div class="nav__mobile" id="mobileNav" role="menu">
     <a href="#" onclick="showPage('home');closeMobile();return false;" role="menuitem">Home</a>
     <a href="#" onclick="showPage('burials');closeMobile();return false;" role="menuitem">Burials Register</a>
+    <a href="#" onclick="showPage('stories');closeMobile();return false;" role="menuitem">Stories behind the stones</a>
     <a href="#" onclick="showPage('thomas');closeMobile();return false;" role="menuitem">Ask Thomas</a>
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
@@ -1920,6 +1970,36 @@
 
   </div><!-- end page-thomas -->
 
+
+  <div class="page" id="page-stories">
+
+    <section class="stories-hero">
+      <div class="container--wide">
+        <h1>Stories behind the stones</h1>
+        <p class="stories-hero__lede">
+          Some of the people buried at Saron left more than a name and a date.
+          A newspaper report, a chapel minute book, a photograph in a family
+          album — enough, sometimes, to see a whole life. These are those people.
+        </p>
+      </div>
+    </section>
+
+    <div class="container--wide">
+      <div class="stories-grid" id="storiesGrid"></div>
+      <div class="stories-more">
+        More stories are being prepared from the project's research files.
+        If you know something about a name in the register, Thomas can pass it on
+        to the volunteers who look after the records.
+      </div>
+      <div style="height:var(--space-16)"></div>
+    </div>
+
+  </div>
+
+  <div class="page" id="page-story">
+    <div class="story__wrap" id="storyBody"></div>
+  </div>
+
 </main>
 
 <button type="button" class="thomas-pill" id="thomasPill"
@@ -2024,11 +2104,153 @@
   }
 })();
 
+
+function escHtml(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escAttr(v){return escHtml(v);}
+
+/* ============================ STORIES BEHIND THE STONES ============================
+   Add a story by appending one object to STORIES. Nothing else needs changing.
+   Fields: slug, ref, title, subtitle, person, plot, card{img,alt}, lede,
+           blocks[] (kind: 'text' | 'figure' | 'report' | 'inscription' | 'note'),
+           related[] (plot codes to link back to the register)
+=================================================================================== */
+const STORIES = [
+  {
+    slug: 'willie-lloyd',
+    ref: 'Row I, plot 31',
+    title: 'Killed by a rolling stone',
+    subtitle: 'Willie Lloyd, aged 9 \u2014 20 June 1903',
+    person: 'Willie Lloyd',
+    plot: 'I-31',
+    card: { img: 'images/stories/story-willie-lloyd-headstone.jpg',
+            alt: 'The Lloyd family headstone at Saron, green with algae, its lettering still legible' },
+    lede: 'On a Saturday afternoon in June 1903, four boys went up the mountainside above Troedyrhiw to play. One of them dislodged a stone. It weighed about eight pounds.',
+    blocks: [
+      { kind: 'figure',
+        img: 'images/stories/story-willie-lloyd-mountainside.jpg',
+        alt: 'A black and white photograph of the bare, steep mountainside above Troedyrhiw',
+        caption: 'The mountainside above Troedyrhiw, where Willie Lloyd was playing. The slope is bare, loose and steep \u2014 the boys would have been sliding down it.' },
+      { kind: 'text', html: 'Willie was the son of John Lloyd of 6 Mount Pleasant. He was lower down the slope than the boy who dislodged the stone, and it struck him on the head and fractured his skull. He was carried down and taken to Merthyr General Hospital, where Dr Buddle attended him. He died at about a quarter to seven that evening.' },
+      { kind: 'report',
+        head: 'A rolling stone \u2014 boy killed at Troedyrhiw',
+        paras: [
+          'On Saturday afternoon a party of four boys climbed the mountainside at Troedyrhiw to play. One of them higher up than the others was sliding down when he unearthed a stone weighing about 8lb which rolled down onto William (Willie) Lloyd aged 9 son of John Lloyd 6 Mount Pleasant, and fractured his skull.',
+          'The injured lad was in a precarious condition. He was removed to Merthyr General Hospital, where he received every attention from Dr Buddle. The unfortunate lad died, however, about a quarter to 7 o\u2019clock from the effects of the accident.'
+        ],
+        cite: 'Contemporary newspaper report, 20 June 1903. Transcribed by the Friends of Saron project; the title of the paper has yet to be confirmed.' },
+      { kind: 'text', html: 'Willie was not the first child his parents buried. Five years earlier, in August 1898, they had lost a daughter \u2014 Maggie May, two years and two months old. Both children are named on the same stone, and it is Maggie May who is named first.' },
+      { kind: 'figure',
+        img: 'images/stories/story-willie-lloyd-headstone.jpg',
+        alt: 'The Lloyd headstone, its rounded top carrying a carved panel, the inscription in Welsh',
+        caption: 'The Lloyd headstone at Saron. The inscription is in Welsh, and closes with four lines of verse.' },
+      { kind: 'inscription',
+        welsh: ['ER COF AM\nMaggie May,\nmerch JOHN a MARY ANN LLOYD,\no\u2019r lle hwn,\na fu farw Awst 26, 1898,\nyn 2 flwydd a 2 fis oed.',
+                'Hefyd am Willie, eu hanwyl mab,\na fu farw trwy ddamwain tra yn\nchwareu ar lechwedd y mynydd\nMehefin 20, 1903 yn 9 mlwydd oed.'],
+        verseWelsh: 'O ganol chwareu\u2019r byd a\u2019i fri,\nI waith y nef cymerwyd fi,\nAc ni ddychwelaf byth yn ol\nO waith y nef at chwareu ffol.',
+        english: ['IN MEMORY OF\nMaggie May,\ndaughter of JOHN and MARY ANN LLOYD,\nof this place,\nwho died August 26, 1898,\naged 2 years and 2 months.',
+                  'Also of Willie, their dear son,\nwho died by accident while\nplaying on the mountainside\nJune 20, 1903, aged 9 years.'],
+        verseEnglish: 'From the world\u2019s play and its renown,\nTo heaven\u2019s work I was taken,\nAnd never shall I return\nFrom heaven\u2019s work to foolish play.' },
+      { kind: 'text', html: 'It is an unusual verse to put on a child\u2019s grave. It takes the thing he died doing \u2014 playing \u2014 and answers it, and the answer is not a comforting one. Whoever chose it was thinking hard about how Willie died.' },
+      { kind: 'note',
+        html: 'The inscription above has been read from the photograph and is offered as a working transcription; the project\u2019s own record of this stone will supersede it. The English is a plain rendering rather than a literal one \u2014 the Welsh verse rhymes and this does not.' }
+    ],
+    related: [{ id: 562, label: 'Willie Lloyd' }, { id: 561, label: 'Maggie May Lloyd' }]
+  }
+];
+
+const storyBySlug = s => STORIES.find(x => x.slug === s);
+
+function renderStoriesGrid(){
+  const g = document.getElementById('storiesGrid');
+  if(!g) return;
+  g.innerHTML = STORIES.map(s => `
+    <button class="story-card" onclick="openStory('${s.slug}')" aria-label="Read: ${escAttr(s.title)}">
+      <img class="story-card__img" src="${s.card.img}" alt="${escAttr(s.card.alt)}" loading="lazy">
+      <div class="story-card__body">
+        <span class="story-card__kicker">${escHtml(s.ref)}</span>
+        <h2 class="story-card__title">${escHtml(s.title)}</h2>
+        <p class="story-card__sub">${escHtml(s.subtitle)}</p>
+      </div>
+    </button>`).join('');
+}
+
+function renderStoryBlock(b){
+  switch(b.kind){
+    case 'text':
+      return `<p>${b.html}</p>`;
+    case 'figure':
+      return `<figure class="story__fig">
+          <img src="${b.img}" alt="${escAttr(b.alt)}" loading="lazy">
+          <figcaption>${escHtml(b.caption)}</figcaption>
+        </figure>`;
+    case 'report':
+      return `<div class="story__report">
+          <p class="story__report-head">${escHtml(b.head)}</p>
+          ${b.paras.map(p => `<p>${escHtml(p)}</p>`).join('')}
+        </div>
+        <p class="story__cite">${escHtml(b.cite)}</p>`;
+    case 'inscription':
+      return `<div class="insc">
+          <div class="insc__col">
+            <h3>The inscription</h3>
+            ${b.welsh.map(p => `<p>${escHtml(p)}</p>`).join('')}
+            ${b.verseWelsh ? `<p class="insc__verse">${escHtml(b.verseWelsh)}</p>` : ''}
+          </div>
+          <div class="insc__col">
+            <h3>In English</h3>
+            ${b.english.map(p => `<p>${escHtml(p)}</p>`).join('')}
+            ${b.verseEnglish ? `<p class="insc__verse">${escHtml(b.verseEnglish)}</p>` : ''}
+          </div>
+        </div>`;
+    case 'note':
+      return `<p class="story__note">${b.html}</p>`;
+    default:
+      return '';
+  }
+}
+
+function openStory(slug, skipHash){
+  const s = storyBySlug(slug);
+  if(!s) return;
+  if(!skipHash && location.hash !== '#story/'+slug){ history.replaceState(null,'','#story/'+slug); }
+  const rel = (s.related || []).map(r =>
+    `<button class="btn btn--primary" onclick="showPage('burials');setTimeout(()=>openBio(${r.id}),300);">${escHtml(r.label)} in the register</button>`
+  ).join(' ');
+  document.getElementById('storyBody').innerHTML = `
+    <button class="story__back" onclick="showPage('stories')">&larr; All stories</button>
+    <p class="story__kicker">${escHtml(s.ref)}</p>
+    <h1 class="story__title">${escHtml(s.title)}</h1>
+    <p class="story__sub">${escHtml(s.subtitle)}</p>
+    <p class="story__lede">${escHtml(s.lede)}</p>
+    ${s.blocks.map(renderStoryBlock).join('')}
+    <div class="story__plot">
+      <span><strong>${escHtml(s.person)}</strong> is buried at ${escHtml(s.ref)}.</span>
+      ${rel}
+    </div>`;
+  showPage('story');
+}
+
+
+/* deep links: #stories and #story/<slug> so a story has a shareable address */
+function routeFromHash(){
+  const hash = (location.hash || '').replace(/^#/,'');
+  if(hash === 'stories'){ showPage('stories'); return true; }
+  const m = hash.match(/^story\/([a-z0-9-]+)$/i);
+  if(m && storyBySlug(m[1])){ openStory(m[1], true); return true; }
+  return false;
+}
+window.addEventListener('hashchange', routeFromHash);
+window.addEventListener('DOMContentLoaded', routeFromHash);
+if(document.readyState !== 'loading') routeFromHash();
+
 function showPage(page){
+  if(page === 'stories' && location.hash.indexOf('#story/') === 0){ history.replaceState(null,'','#stories'); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
+  if(page === 'stories' && typeof renderStoriesGrid === 'function') renderStoriesGrid();
+  const navFor = (page === 'story') ? 'stories' : page;
   document.querySelectorAll('.nav__link[data-page]').forEach(a=>{
-    a.classList.toggle('active',a.dataset.page===page);
+    a.classList.toggle('active',a.dataset.page===navFor);
   });
   window.scrollTo({top:0,behavior:'smooth'});
   if(typeof syncThomasPill === 'function') syncThomasPill(page);
@@ -2725,8 +2947,8 @@ const BURIALS = [
   {id:558,surname:"Wj",forenames:"INITIALS ONLY",born:null,died:null,age:null,occupation:"",plot:"I-29",row:"I",bio:"Marker stone with initials only"},
   {id:559,surname:"Evans",forenames:"Christmas",born:null,died:1860,age:6,occupation:"",plot:"I-30",row:"I",bio:"Son of William & Sarah Evans"},
   {id:560,surname:"Evans",forenames:"William",born:null,died:1860,age:28,occupation:"",plot:"I-30",row:"I",bio:"Husband of Sarah Evans"},
-  {id:561,surname:"Lloyd",forenames:"Maggie May",born:null,died:1898,age:2,occupation:"",plot:"I-31",row:"I",bio:"Dau of John & Mary Ann Lloyd"},
-  {id:562,surname:"Lloyd",forenames:"Willie",born:null,died:1903,age:9,occupation:"",plot:"I-31",row:"I",bio:"Son of John & Mary Ann Lloyd"},
+  {id:561,surname:"Lloyd",forenames:"Maggie May",born:null,died:1898,age:2,occupation:"",plot:"I-31",row:"I",bio:"Dau of John & Mary Ann Lloyd",photo:"headstone-I-31.jpg"},
+  {id:562,surname:"Lloyd",forenames:"Willie",born:null,died:1903,age:9,occupation:"",plot:"I-31",row:"I",bio:"Son of John & Mary Ann Lloyd",photo:"headstone-I-31.jpg"},
   {id:563,surname:"Griffiths",forenames:"David",born:null,died:1907,age:62,occupation:"",plot:"I-32",row:"I",bio:null},
   {id:564,surname:"Griffiths",forenames:"Mary",born:null,died:1905,age:58,occupation:"",plot:"I-32",row:"I",bio:null},
   {id:565,surname:"Mead",forenames:"Rachel Ann",born:null,died:1954,age:71,occupation:"",plot:"I-32",row:"I",bio:null},
