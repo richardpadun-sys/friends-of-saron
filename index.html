@@ -1120,8 +1120,8 @@
           <div class="stat__label">years of volunteer work</div>
         </div>
         <div class="stat">
-          <div class="stat__num" data-count="397">397</div>
-          <div class="stat__label">grave plots across rows A–J</div>
+          <div class="stat__num" data-count="438">438</div>
+          <div class="stat__label">grave plots across rows A–K</div>
         </div>
         <div class="stat">
           <div class="stat__num" data-count="817">817</div>
@@ -1644,7 +1644,7 @@
             <span>Plots with entries: <strong id="statPlots">0</strong></span>
           </div>
           <div class="burial-stat-pill">
-            <span>Rows in use: <strong id="statRows">A–J</strong></span>
+            <span>Rows in use: <strong id="statRows">A–K</strong></span>
           </div>
         </div>
       </div>
@@ -1677,6 +1677,7 @@
             <option value="H">Row H</option>
             <option value="I">Row I</option>
             <option value="J">Row J</option>
+            <option value="K">Row K</option>
           </select>
         </div>
 
@@ -12612,8 +12613,8 @@ function closeModal(e){
 }
 
 function buildPlotMap(){
-  const rows="ABCDEFGHIJ".split("");
-  const PLOTS_PER_ROW={A:50,B:52,C:40,D:36,E:34,F:33,G:32,H:46,I:52,J:22};
+  const rows="ABCDEFGHIJK".split("");
+  const PLOTS_PER_ROW={A:69,B:52,C:40,D:36,E:34,F:33,G:32,H:46,I:52,J:22,K:22};
   const burialsByPlot={};
   BURIALS.forEach(b=>{if(b.plot)burialsByPlot[b.plot]=(burialsByPlot[b.plot]||[]).concat(b);});
   // Ensure every occupied plot is rendered even if it sits beyond the estimated row count.
