@@ -198,8 +198,9 @@
   .nav__inner{display:flex;align-items:center;justify-content:space-between;padding-block:var(--space-4);max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-6);}
   .nav__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-text);}
   .nav__brand{font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;line-height:1.2;}
-  .nav__links{display:flex;align-items:center;gap:var(--space-1);}
-  .nav__link{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);}
+  .nav__links{display:flex;align-items:center;gap:0;}
+  .nav__link{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);text-decoration:none;padding:var(--space-2) var(--space-2);border-radius:var(--radius-md);white-space:nowrap;}
+  @media(min-width:1024px) and (max-width:1180px){.nav__link{font-size:0.8125rem;padding-inline:0.4rem;}}
   .nav__link:hover{color:var(--color-text);background:var(--color-surface-offset);}
   .nav__link.active{color:var(--color-primary);font-weight:600;}
   .nav__actions{display:flex;align-items:center;gap:var(--space-3);}
@@ -214,7 +215,7 @@
   .nav__mobile.open{display:flex;}
   .nav__mobile a{font-size:var(--text-base);font-weight:500;color:var(--color-text-muted);text-decoration:none;padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider);}
   .nav__mobile a:hover{color:var(--color-primary);}
-  @media(max-width:767px){.nav__links{display:none;}.nav__hamburger{display:flex;}}
+  @media(max-width:1023px){.nav__links{display:none;}.nav__hamburger{display:flex;}}
 
   /* PAGES */
   .page{display:none;padding-top:72px;}
@@ -1080,6 +1081,106 @@
     .notice{padding:var(--space-4);gap:var(--space-3);}
     .notice__icon{display:none;}
   }
+
+  /* ======================= ADOPT A GRAVE ======================= */
+  .adopt-hero{background:var(--color-surface-offset);padding:var(--space-16) 0 var(--space-12);border-bottom:1px solid var(--color-divider);}
+  .adopt-hero h1{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.1;margin:var(--space-2) 0 var(--space-4);max-width:22ch;}
+  .adopt-hero__lede{font-size:var(--text-base);line-height:1.7;color:var(--color-text-muted);max-width:60ch;margin:0;}
+  .adopt-count{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-8);}
+  .adopt-count__item{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-2) var(--space-5);font-size:var(--text-sm);color:var(--color-text-muted);}
+  .adopt-count__item strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
+
+  .adopt-section{padding:var(--space-14) 0;}
+  .adopt-section--offset{background:var(--color-surface-offset);border-block:1px solid var(--color-divider);}
+  .adopt-section h2{font-family:var(--font-display);font-size:var(--text-xl);line-height:1.2;margin:var(--space-2) 0 var(--space-4);}
+  .adopt-section > .container > p,
+  .adopt-section > .container--wide > p{font-size:var(--text-base);line-height:1.75;color:var(--color-text-muted);max-width:66ch;margin:0 0 var(--space-4);}
+
+  .adopt-ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-5);margin-top:var(--space-8);}
+  .adopt-way{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);}
+  .adopt-way__tag{font-size:var(--text-xs);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-primary);}
+  .adopt-way h3{font-family:var(--font-display);font-size:var(--text-lg);margin:var(--space-2) 0 var(--space-3);line-height:1.25;}
+  .adopt-way p{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin:0;}
+
+  .adopt-areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-5);margin-top:var(--space-8);}
+  .adopt-area{background:var(--color-surface);border:1px solid var(--color-border);border-left:3px solid var(--color-primary);border-radius:var(--radius-md);padding:var(--space-5) var(--space-6);}
+  .adopt-area h3{font-family:var(--font-display);font-size:var(--text-lg);margin:0 0 var(--space-1);}
+  .adopt-area__where{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.65;margin:0 0 var(--space-4);}
+  .adopt-area__meta{display:flex;flex-wrap:wrap;gap:var(--space-4);font-size:var(--text-xs);color:var(--color-text-muted);border-top:1px solid var(--color-divider);padding-top:var(--space-3);}
+  .adopt-area__meta strong{color:var(--color-text);font-variant-numeric:tabular-nums;display:block;font-size:var(--text-base);font-family:var(--font-display);}
+
+  .adopt-controls{display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:flex-end;margin:var(--space-8) 0 var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--color-divider);}
+  .adopt-control{display:flex;flex-direction:column;gap:var(--space-2);}
+  .adopt-control label{font-size:var(--text-xs);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);}
+  .adopt-control input,.adopt-control select{font-family:var(--font-body);font-size:var(--text-sm);padding:0.6rem 0.8rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text);min-width:190px;}
+  .adopt-control input:focus-visible,.adopt-control select:focus-visible{outline:2px solid var(--color-primary);outline-offset:1px;}
+  .adopt-showing{font-size:var(--text-sm);color:var(--color-text-muted);margin-left:auto;padding-bottom:0.6rem;}
+  .adopt-showing strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
+
+  .adopt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:var(--space-5);}
+  .adopt-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow var(--transition-interactive),transform var(--transition-interactive);}
+  .adopt-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .adopt-card--taken{border-color:var(--color-primary);background:var(--color-primary-light);}
+  .adopt-card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-3);padding:var(--space-5) var(--space-5) 0;}
+  .adopt-card__plot{font-family:var(--font-display);font-size:var(--text-lg);line-height:1;margin:0;}
+  .adopt-card__flag{font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.28rem 0.6rem;border-radius:var(--radius-full);white-space:nowrap;}
+  .adopt-card__flag--free{background:var(--color-surface-offset-2);color:var(--color-text-muted);}
+  .adopt-card__flag--taken{background:var(--color-primary);color:#fff;}
+  .adopt-card__names{list-style:none;margin:var(--space-4) 0 0;padding:0 var(--space-5);flex:1;}
+  .adopt-card__names li{font-size:var(--text-sm);line-height:1.55;padding:0.3rem 0;border-bottom:1px solid var(--color-divider);}
+  .adopt-card__names li:last-child{border-bottom:0;}
+  .adopt-card__names .adopt-yrs{color:var(--color-text-muted);font-variant-numeric:tabular-nums;}
+  .adopt-card__more{font-size:var(--text-xs);color:var(--color-text-muted);font-style:italic;padding-top:0.4rem;}
+  .adopt-card__foot{padding:var(--space-4) var(--space-5) var(--space-5);margin-top:var(--space-4);border-top:1px solid var(--color-divider);}
+  .adopt-card__by{font-size:var(--text-sm);color:var(--color-text);margin:0 0 var(--space-1);}
+  .adopt-card__by strong{font-weight:600;}
+  .adopt-card__since{font-size:var(--text-xs);color:var(--color-text-muted);margin:0;}
+  .adopt-card__note{font-size:var(--text-xs);color:var(--color-text-muted);margin:var(--space-2) 0 0;line-height:1.6;}
+  .adopt-btn{width:100%;font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;padding:0.65rem 1rem;border:1.5px solid var(--color-primary);border-radius:var(--radius-sm);background:transparent;color:var(--color-primary);cursor:pointer;transition:background var(--transition-interactive),color var(--transition-interactive);}
+  .adopt-btn:hover{background:var(--color-primary);color:#fff;}
+  .adopt-nostones{font-size:var(--text-xs);color:var(--color-text-muted);padding:0 var(--space-5);margin:var(--space-3) 0 0;font-style:italic;}
+  .adopt-empty{grid-column:1/-1;text-align:center;padding:var(--space-12) var(--space-6);color:var(--color-text-muted);font-size:var(--text-sm);}
+
+  .adopt-steps{counter-reset:adoptstep;list-style:none;padding:0;margin:var(--space-8) 0 0;max-width:64ch;}
+  .adopt-steps li{counter-increment:adoptstep;position:relative;padding:0 0 var(--space-6) var(--space-12);font-size:var(--text-sm);line-height:1.75;color:var(--color-text-muted);}
+  .adopt-steps li::before{content:counter(adoptstep);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;font-family:var(--font-display);font-size:0.95rem;display:flex;align-items:center;justify-content:center;}
+  .adopt-steps li strong{color:var(--color-text);display:block;font-size:var(--text-base);margin-bottom:var(--space-1);font-weight:600;}
+
+  /* interest dialog */
+  .adopt-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:var(--space-4);background:oklch(0.2 0.03 130 / 0.55);}
+  .adopt-modal.open{display:flex;}
+  .adopt-modal__box{background:var(--color-surface);border-radius:var(--radius-xl);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);padding:var(--space-8);}
+  .adopt-modal__box h3{font-family:var(--font-display);font-size:var(--text-lg);margin:0 0 var(--space-2);}
+  .adopt-modal__sub{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin:0 0 var(--space-6);}
+  .adopt-modal .field{margin-bottom:var(--space-4);}
+  .adopt-modal .field label{display:block;font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2);}
+  .adopt-modal .field input,.adopt-modal .field textarea{width:100%;font-family:var(--font-body);font-size:var(--text-sm);padding:0.65rem 0.8rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface-2);color:var(--color-text);}
+  .adopt-modal .field textarea{resize:vertical;line-height:1.65;}
+  .adopt-help-choice{display:flex;flex-wrap:wrap;gap:var(--space-2);}
+  .adopt-help-choice label{display:inline-flex;align-items:center;gap:0.45rem;font-size:var(--text-sm);text-transform:none;letter-spacing:0;font-weight:400;color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:0.4rem 0.85rem;cursor:pointer;margin:0;}
+  .adopt-help-choice input{width:auto;padding:0;}
+  .adopt-modal__actions{display:flex;gap:var(--space-3);margin-top:var(--space-6);}
+  .adopt-modal__actions button{flex:1;font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;padding:0.75rem 1rem;border-radius:var(--radius-sm);cursor:pointer;border:1.5px solid transparent;}
+  .adopt-send{background:var(--color-primary);color:#fff;border-color:var(--color-primary);}
+  .adopt-send:hover{background:var(--color-primary-hover);}
+  .adopt-send[disabled]{opacity:0.6;cursor:default;}
+  .adopt-cancel{background:transparent;color:var(--color-text-muted);border-color:var(--color-border);}
+  .adopt-cancel:hover{color:var(--color-text);border-color:var(--color-text-faint);}
+  .adopt-modal__msg{font-size:var(--text-sm);line-height:1.7;margin:var(--space-4) 0 0;padding:var(--space-4);border-radius:var(--radius-sm);display:none;}
+  .adopt-modal__msg.show{display:block;}
+  .adopt-modal__msg--ok{background:var(--color-primary-light);color:var(--color-primary-active);}
+  .adopt-modal__msg--bad{background:#f6e8e8;color:#7a2020;}
+
+  @media (max-width:640px){
+    .adopt-controls{flex-direction:column;align-items:stretch;}
+    .adopt-control input,.adopt-control select{min-width:0;width:100%;}
+    .adopt-showing{margin-left:0;padding-bottom:0;}
+    .adopt-modal__box{padding:var(--space-6);}
+  }
+
+  [data-theme="dark"] .adopt-modal__msg--bad{background:oklch(0.28 0.06 25);color:#f0c8c8;}
+  [data-theme="dark"] .adopt-modal{background:oklch(0.12 0.02 130 / 0.7);}
+  [data-theme="dark"] .adopt-card--taken{background:var(--color-surface-offset);}
   </style>
 </head>
 <body>
@@ -1097,6 +1198,7 @@
       <a href="#" class="nav__link active" data-page="home" onclick="showPage('home');return false;">Home</a>
       <a href="#" class="nav__link" data-page="burials" onclick="showPage('burials');return false;">Burials</a>
       <a href="#" class="nav__link" data-page="stories" onclick="showPage('stories');return false;">Stories</a>
+      <a href="#" class="nav__link" data-page="adopt" onclick="showPage('adopt');return false;">Adopt a Grave</a>
       <a href="#" class="nav__link" data-page="owain" onclick="showPage('owain');return false;">Ask Owain</a>
       <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
@@ -1118,6 +1220,7 @@
     <a href="#" onclick="showPage('home');closeMobile();return false;" role="menuitem">Home</a>
     <a href="#" onclick="showPage('burials');closeMobile();return false;" role="menuitem">Burials Register</a>
     <a href="#" onclick="showPage('stories');closeMobile();return false;" role="menuitem">Stories behind the stones</a>
+    <a href="#" onclick="showPage('adopt');closeMobile();return false;" role="menuitem">Adopt a Grave</a>
     <a href="#" onclick="showPage('owain');closeMobile();return false;" role="menuitem">Ask Owain</a>
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
@@ -2077,6 +2180,208 @@
 </button>
 
 
+
+  <!-- ============================ ADOPT A GRAVE ============================ -->
+  <div class="page" id="page-adopt">
+
+    <section class="adopt-hero">
+      <div class="container--wide">
+        <p class="section-label">Adopt a Grave</p>
+        <h1>Take an interest in one grave</h1>
+        <p class="adopt-hero__lede">
+          Saron is looked after by a handful of people, and there are more graves than
+          they can reach. Adopting one means keeping an eye on it &mdash; the ground around
+          the stone, the inscription staying readable &mdash; or finding out who the people
+          named on it actually were. Either is worth doing. Both is better.
+        </p>
+        <div class="adopt-count">
+          <div class="adopt-count__item">Graves you can adopt: <strong id="adoptStatTotal">0</strong></div>
+          <div class="adopt-count__item">Already adopted: <strong id="adoptStatTaken">0</strong></div>
+          <div class="adopt-count__item">People remembered on them: <strong id="adoptStatPeople">0</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="adopt-section">
+      <div class="container--wide">
+        <h2>Two ways to help, and you can pick either</h2>
+        <p>
+          Nobody is asked to do both, and nobody is asked to commit to anything for
+          longer than they want to. If you take a grave on and find you cannot keep
+          it up, tell us and we will pass it to somebody else. No awkwardness.
+        </p>
+        <div class="adopt-ways">
+          <div class="adopt-way">
+            <span class="adopt-way__tag">On the ground</span>
+            <h3>Maintenance</h3>
+            <p>
+              Keeping the grass and growth around the stone in check so the inscription
+              stays visible and the plot does not disappear again. A few visits a year
+              is enough for most graves. Nothing needs specialist tools, and nothing
+              involving the stone itself should be attempted without speaking to us
+              first &mdash; old stone is easier to damage than it looks.
+            </p>
+          </div>
+          <div class="adopt-way">
+            <span class="adopt-way__tag">From anywhere</span>
+            <h3>Research</h3>
+            <p>
+              Following a name through newspapers, censuses, chapel records and family
+              trees until a person comes into focus. This can be done entirely from
+              home, from anywhere in the world, and it is how nearly every story on
+              this site began. Several of our graves are still just a name and a date.
+            </p>
+          </div>
+          <div class="adopt-way">
+            <span class="adopt-way__tag">Why it matters</span>
+            <h3>What it adds up to</h3>
+            <p>
+              Every grave someone looks after is one that a descendant can still find,
+              read and photograph. People write to us from Canada, Australia and the
+              United States looking for a Troedyrhiw ancestor. Whether they find
+              anything depends entirely on whether somebody here kept the record and
+              the stone in reach.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="adopt-section adopt-section--offset">
+      <div class="container--wide">
+        <h2>Where the graves are</h2>
+        <p>
+          Three areas have been surveyed closely enough for us to say with confidence
+          which grave is which. You are welcome to adopt a single grave anywhere in
+          them. But if no particular name is drawing you, we would gently suggest
+          taking two or three that sit <strong>next to each other</strong>. A run of
+          neighbouring graves is far less work than the same number scattered across
+          the ground, and it leaves a visible stretch in good order rather than a
+          patchwork.
+        </p>
+        <div class="adopt-areas" id="adoptAreas"></div>
+      </div>
+    </section>
+
+    <section class="adopt-section">
+      <div class="container--wide">
+        <h2>Every grave we can identify</h2>
+        <p>
+          All of them are listed. There is no set order to work through and no route
+          anybody has to follow &mdash; take the one that means something to you, or the
+          one nearest where you park. Where a grave has already been taken you will
+          see who looks after it.
+        </p>
+
+        <div class="adopt-controls">
+          <div class="adopt-control">
+            <label for="adoptSearch">Search a name or plot</label>
+            <input id="adoptSearch" type="search" placeholder="Williams, or A-14" autocomplete="off">
+          </div>
+          <div class="adopt-control">
+            <label for="adoptArea">Area</label>
+            <select id="adoptArea"><option value="">All areas</option></select>
+          </div>
+          <div class="adopt-control">
+            <label for="adoptStatus">Status</label>
+            <select id="adoptStatus">
+              <option value="">All graves</option>
+              <option value="free">Not yet adopted</option>
+              <option value="taken">Already adopted</option>
+            </select>
+          </div>
+          <p class="adopt-showing">Showing <strong id="adoptShowing">0</strong> graves</p>
+        </div>
+
+        <div class="adopt-grid" id="adoptGrid"></div>
+        <div style="height:var(--space-12)"></div>
+      </div>
+    </section>
+
+    <section class="adopt-section adopt-section--offset">
+      <div class="container--wide">
+        <h2>How it works</h2>
+        <ol class="adopt-steps">
+          <li>
+            <strong>Tell us which grave</strong>
+            Use the button on any grave above. It reaches the volunteers directly &mdash;
+            nothing is published on the site and your details are not shown to anyone else.
+          </li>
+          <li>
+            <strong>We check nobody else has it</strong>
+            Then we send you everything we hold on that plot: the inscription as it was
+            transcribed, the photograph if there is one, and anything already known about
+            the people named.
+          </li>
+          <li>
+            <strong>You go at your own pace</strong>
+            There is no schedule and no reporting. Visit when you can, or research when
+            you have an evening free.
+          </li>
+          <li>
+            <strong>Anything you find comes back to the record</strong>
+            Send us a photograph, a corrected date, a newspaper cutting, a family
+            connection. It goes into the register under the grave, and your name goes
+            beside it as the person who found it &mdash; unless you would rather it did not.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="adopt-section">
+      <div class="container--wide">
+        <h2>What about the rest of the graveyard?</h2>
+        <p>
+          There are several hundred more people we know were buried at Saron whose
+          exact plot we have not yet fixed. Those graves cannot be adopted for
+          maintenance, because we cannot yet point to which stone is which. But their
+          <em>research</em> is wide open, and it is some of the most useful work
+          anybody could do for this project. If a surname in the register means
+          something to you, say so &mdash; you do not need a plot number to start.
+        </p>
+        <p style="margin-top:var(--space-6)">
+          <a href="#" class="btn btn--green" onclick="showPage('burials');return false;">Browse the burials register</a>
+        </p>
+      </div>
+    </section>
+
+  </div><!-- end page-adopt -->
+
+  <!-- adopt interest dialog -->
+  <div class="adopt-modal" id="adoptModal" role="dialog" aria-modal="true" aria-labelledby="adoptModalTitle">
+    <div class="adopt-modal__box">
+      <h3 id="adoptModalTitle">Adopt this grave</h3>
+      <p class="adopt-modal__sub" id="adoptModalSub"></p>
+      <form id="adoptForm" novalidate>
+        <div class="field">
+          <label for="adoptName">Your name</label>
+          <input id="adoptName" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="adoptEmail">Your email</label>
+          <input id="adoptEmail" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label>How would you like to help?</label>
+          <div class="adopt-help-choice">
+            <label><input type="radio" name="helptype" value="maintenance" checked> Maintenance</label>
+            <label><input type="radio" name="helptype" value="research"> Research</label>
+            <label><input type="radio" name="helptype" value="both"> Both</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="adoptNote">Anything you would like to add</label>
+          <textarea id="adoptNote" name="note" rows="4" placeholder="A family connection, how often you could visit, or a question. Optional."></textarea>
+        </div>
+        <div class="adopt-modal__actions">
+          <button type="button" class="adopt-cancel" onclick="closeAdoptModal()">Cancel</button>
+          <button type="submit" class="adopt-send" id="adoptSend">Send to the volunteers</button>
+        </div>
+        <p class="adopt-modal__msg" id="adoptMsg"></p>
+      </form>
+    </div>
+  </div>
+
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__inner">
@@ -2089,6 +2394,7 @@
         <ul class="footer__links">
           <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
           <li><a href="#" onclick="showPage('burials');return false;">Burials Register</a></li>
+          <li><a href="#" onclick="showPage('adopt');return false;">Adopt a Grave</a></li>
           <li><a href="#" onclick="showPage('owain');return false;">Ask Owain</a></li>
           <li><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a></li>
           <li><a href="#about" onclick="showPage('home');return false;">About</a></li>
@@ -2497,6 +2803,7 @@ function openStory(slug, skipHash){
 function routeFromHash(){
   const hash = (location.hash || '').replace(/^#/,'');
   if(hash === 'stories'){ showPage('stories'); return true; }
+  if(hash === 'adopt'){ showPage('adopt'); return true; }
   const m = hash.match(/^story\/([a-z0-9-]+)$/i);
   if(m && storyBySlug(m[1])){ openStory(m[1], true); return true; }
   return false;
@@ -14572,6 +14879,302 @@ function syncOwainPill(page){
   const pill = document.getElementById('owainPill');
   if(pill) pill.hidden = (page === 'owain');
 }
+
+
+/* ======================= ADOPT A GRAVE ======================= */
+(function(){
+
+  /* ------------------------------------------------------------------
+     ADOPTIONS — the only thing that needs editing when a grave is taken.
+     Key is the plot code exactly as it appears in the register.
+
+       'A-14': { by: 'Sian Rees', since: 'March 2026', kind: 'maintenance' }
+
+     kind is one of 'maintenance', 'research' or 'both'. `since` is free
+     text and is shown as written. Leave this object empty and every grave
+     shows as available.
+  ------------------------------------------------------------------ */
+  const ADOPTIONS = {};
+
+  /* Where each surveyed area sits on the ground. Written from the plan,
+     so an adopter can find it without being walked round. */
+  const AREA_NOTES = {
+    A: 'The long row along the back boundary, starting at the far left corner as you come through the gate and running toward the chapel.',
+    B: 'Immediately in front of row A, running the same way. The stones here are smaller and several have gone over.',
+    K: 'The stretch nearest the chapel corner, including the Rev Morgan memorial and the Rees tomb.'
+  };
+
+  const ENDPOINT = 'https://rixllmbogporsctwdiif.supabase.co/functions/v1/thomas-contribute';
+  const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpeGxsbWJvZ3BvcnNjdHdkaWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwMDU2MzksImV4cCI6MjA3MDU4MTYzOX0.eWI93zUpmAYXyGVMg7qldzpJ1-TFyNqA7SpLFKlPL8M';
+
+  const grid = document.getElementById('adoptGrid');
+  if(!grid || typeof BURIALS === 'undefined') return;
+
+  const KIND_WORD = { maintenance:'maintenance', research:'research', both:'maintenance and research' };
+
+  /* ---- build the plot list from the register, confirmed rows only ---- */
+  const plotMap = new Map();
+  BURIALS.forEach(b => {
+    const plot = (b.plot || '').trim();
+    const row  = (b.row  || '').trim();
+    if(!/^[A-Z]-\d+$/.test(plot)) return;
+    if(typeof rowVerified === 'function' && !rowVerified(row)) return;
+    if(!plotMap.has(plot)) plotMap.set(plot, { plot:plot, row:row, people:[], photo:null });
+    const rec = plotMap.get(plot);
+    rec.people.push(b);
+    if(!rec.photo && b.photo) rec.photo = b.photo;
+  });
+
+  const PLOTS = [...plotMap.values()].sort((x,y) =>
+    x.row.localeCompare(y.row) || (+x.plot.split('-')[1]) - (+y.plot.split('-')[1])
+  );
+
+  /* A readable name for a person, tolerating the register's rougher entries */
+  function personLabel(p){
+    const fore = (p.forenames || '').trim();
+    const sur  = (p.surname   || '').trim();
+    if(/^INITIALS ONLY$/i.test(fore)) return (sur ? sur : 'Name') + ' \u2014 initials only on the stone';
+    if(/^[?\u2026.\s]+$/.test(fore) && fore) return (sur ? sur : 'Name') + ' \u2014 forename not legible';
+    if(!fore) return sur || 'Name not recovered';
+    return fore + ' ' + sur;
+  }
+  /* true where the register holds a single name with no second name against it */
+  function oneNameOnly(p){
+    const fore = (p.forenames || '').trim();
+    const sur  = (p.surname   || '').trim();
+    return !fore && !!sur;
+  }
+  function personYears(p){
+    if(p.died && p.age)  return p.died + ', aged ' + p.age;
+    if(p.died)           return String(p.died);
+    return '';
+  }
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+  /* ---- area cards ---- */
+  const rowsPresent = [...new Set(PLOTS.map(p => p.row))].sort();
+
+  function renderAreas(){
+    const wrap = document.getElementById('adoptAreas');
+    const sel  = document.getElementById('adoptArea');
+    if(!wrap) return;
+    wrap.innerHTML = rowsPresent.map(row => {
+      const inRow  = PLOTS.filter(p => p.row === row);
+      const people = inRow.reduce((n,p) => n + p.people.length, 0);
+      const taken  = inRow.filter(p => ADOPTIONS[p.plot]).length;
+      return '<div class="adopt-area">' +
+        '<h3>Row ' + esc(row) + '</h3>' +
+        '<p class="adopt-area__where">' + esc(AREA_NOTES[row] || 'Position on the ground still being described.') + '</p>' +
+        '<div class="adopt-area__meta">' +
+          '<div><strong>' + inRow.length + '</strong>graves</div>' +
+          '<div><strong>' + people + '</strong>people</div>' +
+          '<div><strong>' + (inRow.length - taken) + '</strong>still free</div>' +
+        '</div></div>';
+    }).join('');
+    if(sel && sel.options.length <= 1){
+      rowsPresent.forEach(row => {
+        const o = document.createElement('option');
+        o.value = row; o.textContent = 'Row ' + row;
+        sel.appendChild(o);
+      });
+    }
+  }
+
+  /* ---- one grave card ---- */
+  function card(p){
+    const a = ADOPTIONS[p.plot];
+    const shown = p.people.slice(0,4);
+    const rest  = p.people.length - shown.length;
+
+    let names = '<ul class="adopt-card__names">' + shown.map(pr => {
+      const yrs = personYears(pr);
+      return '<li>' + esc(personLabel(pr)) +
+             (yrs ? ' <span class="adopt-yrs">&middot; ' + esc(yrs) + '</span>' : '') + '</li>';
+    }).join('');
+    if(rest > 0) names += '<li class="adopt-card__more">and ' + rest + ' more on the same stone</li>';
+    names += '</ul>';
+
+    const noPhoto = p.photo ? '' :
+      '<p class="adopt-nostones">No photograph of this stone yet &mdash; one would be very welcome.</p>';
+
+    const singles = p.people.filter(oneNameOnly).length;
+    const singleNote = singles ? '<p class="adopt-nostones">' +
+      (singles === 1 ? 'One name here was' : singles + ' names here were') +
+      ' written down without a second name, so we cannot yet say which part is the surname.</p>' : '';
+
+    let foot;
+    if(a){
+      foot = '<div class="adopt-card__foot">' +
+        '<p class="adopt-card__by">Looked after by <strong>' + esc(a.by) + '</strong></p>' +
+        '<p class="adopt-card__since">' +
+          esc(KIND_WORD[a.kind] || 'maintenance') +
+          (a.since ? ' since ' + esc(a.since) : '') +
+        '</p>' +
+        '<p class="adopt-card__note">Happy to share what you know about this grave? ' +
+        'Ask Owain to pass it on &mdash; more than one person can research the same family.</p>' +
+        '</div>';
+    } else {
+      foot = '<div class="adopt-card__foot">' +
+        '<button class="adopt-btn" data-plot="' + esc(p.plot) + '">Adopt ' + esc(p.plot) + '</button>' +
+        '</div>';
+    }
+
+    return '<article class="adopt-card' + (a ? ' adopt-card--taken' : '') + '">' +
+      '<div class="adopt-card__top">' +
+        '<h3 class="adopt-card__plot">' + esc(p.plot) + '</h3>' +
+        '<span class="adopt-card__flag ' + (a ? 'adopt-card__flag--taken' : 'adopt-card__flag--free') + '">' +
+          (a ? 'Adopted' : 'Available') +
+        '</span>' +
+      '</div>' + names + singleNote + noPhoto + foot +
+    '</article>';
+  }
+
+  /* ---- filtering ---- */
+  function currentList(){
+    const q      = (document.getElementById('adoptSearch').value || '').trim().toLowerCase();
+    const area   = document.getElementById('adoptArea').value;
+    const status = document.getElementById('adoptStatus').value;
+    return PLOTS.filter(p => {
+      if(area && p.row !== area) return false;
+      const taken = !!ADOPTIONS[p.plot];
+      if(status === 'free'  &&  taken) return false;
+      if(status === 'taken' && !taken) return false;
+      if(!q) return true;
+      if(p.plot.toLowerCase().includes(q)) return true;
+      return p.people.some(pr =>
+        ((pr.surname || '') + ' ' + (pr.forenames || '')).toLowerCase().includes(q));
+    });
+  }
+
+  function render(){
+    const list = currentList();
+    grid.innerHTML = list.length
+      ? list.map(card).join('')
+      : '<p class="adopt-empty">No graves match that. Try a different spelling, ' +
+        'or clear the filters &mdash; the register holds many more people whose plot ' +
+        'is not yet fixed.</p>';
+    document.getElementById('adoptShowing').textContent = list.length;
+    grid.querySelectorAll('.adopt-btn').forEach(b => {
+      b.addEventListener('click', () => openAdoptModal(b.dataset.plot));
+    });
+  }
+
+  /* ---- headline figures ---- */
+  function renderStats(){
+    const taken  = PLOTS.filter(p => ADOPTIONS[p.plot]).length;
+    const people = PLOTS.reduce((n,p) => n + p.people.length, 0);
+    document.getElementById('adoptStatTotal').textContent  = PLOTS.length;
+    document.getElementById('adoptStatTaken').textContent  = taken;
+    document.getElementById('adoptStatPeople').textContent = people;
+  }
+
+  /* ---- the dialog ---- */
+  let activePlot = null;
+  const modal = document.getElementById('adoptModal');
+
+  window.openAdoptModal = function(plot){
+    const p = plotMap.get(plot);
+    if(!p) return;
+    activePlot = plot;
+    const who = p.people.slice(0,3).map(personLabel).join(', ');
+    document.getElementById('adoptModalTitle').textContent = 'Adopt grave ' + plot;
+    document.getElementById('adoptModalSub').innerHTML =
+      'Row ' + esc(p.row) + '. ' +
+      (who ? 'Remembering ' + esc(who) +
+             (p.people.length > 3 ? ' and ' + (p.people.length - 3) + ' others' : '') + '. ' : '') +
+      'This goes straight to the volunteers, who will reply to you by email. ' +
+      'Nothing here is published on the site.';
+    const msg = document.getElementById('adoptMsg');
+    msg.className = 'adopt-modal__msg';
+    msg.textContent = '';
+    document.getElementById('adoptSend').disabled = false;
+    document.getElementById('adoptSend').textContent = 'Send to the volunteers';
+    modal.classList.add('open');
+    setTimeout(() => document.getElementById('adoptName').focus(), 60);
+  };
+
+  window.closeAdoptModal = function(){
+    modal.classList.remove('open');
+    activePlot = null;
+  };
+
+  modal.addEventListener('click', e => { if(e.target === modal) closeAdoptModal(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeAdoptModal();
+  });
+
+  document.getElementById('adoptForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('adoptSend');
+    const msg = document.getElementById('adoptMsg');
+    const name  = document.getElementById('adoptName').value.trim();
+    const email = document.getElementById('adoptEmail').value.trim();
+    const note  = document.getElementById('adoptNote').value.trim();
+    const kind  = (document.querySelector('input[name="helptype"]:checked') || {}).value || 'maintenance';
+
+    function fail(t){
+      msg.className = 'adopt-modal__msg adopt-modal__msg--bad show';
+      msg.textContent = t;
+    }
+    if(!name)  return fail('Please tell us your name so we know who to reply to.');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail('That email address does not look quite right.');
+
+    const p = plotMap.get(activePlot) || { people:[], row:'' };
+    const body =
+      'ADOPT-A-GRAVE ENQUIRY\n' +
+      'Plot: ' + activePlot + ' (row ' + p.row + ')\n' +
+      'Would like to help with: ' + (KIND_WORD[kind] || kind) + '\n' +
+      'People on this grave: ' + (p.people.map(personLabel).join('; ') || 'not recorded') + '\n\n' +
+      (note || 'No additional note.');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+    msg.className = 'adopt-modal__msg';
+
+    try{
+      const r = await fetch(ENDPOINT, {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':'Bearer ' + ANON_KEY,
+          'apikey': ANON_KEY
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          content: body,
+          context_question: 'Adopt a grave — ' + activePlot
+        })
+      });
+      const data = await r.json().catch(() => ({}));
+      if(!r.ok || data.error) throw new Error(data.error || ('status ' + r.status));
+      msg.className = 'adopt-modal__msg adopt-modal__msg--ok show';
+      msg.textContent = 'Thank you — that has reached the volunteers. Somebody will email you ' +
+                        'about ' + activePlot + ', usually within a few days. Nothing has been ' +
+                        'published on the site.';
+      btn.textContent = 'Sent';
+      document.getElementById('adoptForm').reset();
+    }catch(err){
+      btn.disabled = false;
+      btn.textContent = 'Try again';
+      fail('We could not send that just now (' + err.message + '). Please try again in a moment, ' +
+           'or use the contact form on the home page.');
+    }
+  });
+
+  renderAreas();
+  renderStats();
+  render();
+  ['adoptSearch','adoptArea','adoptStatus'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', render);
+    if(el && el.tagName === 'SELECT') el.addEventListener('change', render);
+  });
+
+})();
 
 </script>
 
