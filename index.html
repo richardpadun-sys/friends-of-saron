@@ -452,6 +452,11 @@
   .burial-name-cell{font-weight:600;color:var(--color-text);display:flex;align-items:center;gap:var(--space-2);}
   .burial-name-cell .has-bio{width:8px;height:8px;border-radius:var(--radius-full);background:var(--color-primary);flex-shrink:0;}
   .plot-badge{display:inline-block;background:var(--color-primary-light);border:1px solid var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:2px 8px;border-radius:var(--radius-full);font-family:monospace;}
+  /* A grave we know of but cannot yet place. Deliberately quiet and not
+     mistakable for a real plot code. */
+  .plot-badge--pending{background:transparent;border:1px dashed var(--color-border);color:var(--color-text-muted);font-weight:600;font-family:inherit;letter-spacing:.01em;}
+  .plot-map-pending{margin:var(--space-6) 0 0;padding:var(--space-4) var(--space-5);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;max-width:70ch;}
+  .modal__plot-pending{margin-top:var(--space-4);padding:var(--space-4);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;}
   .no-results{text-align:center;padding:var(--space-16);color:var(--color-text-muted);}
   .no-results svg{margin-inline:auto;margin-bottom:var(--space-4);color:var(--color-text-faint);}
 
@@ -1613,7 +1618,7 @@
               How are plots numbered and lettered?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </button>
-            <div class="faq-answer"><p>The graveyard is divided into rows A through K. Each row contains numbered plots. So plot B-14 means Row B, plot 14. You can explore all 438 plots on our interactive plot map on the Burials Register page.</p></div>
+            <div class="faq-answer"><p>The graveyard is divided into rows A through K, and each row contains numbered plots, so plot B-14 means Row B, plot 14. You can explore the rows we have confirmed on the interactive plot map on the Burials Register page.</p><p>Not every burial we know of has a plot against it yet. The chapel&rsquo;s 2012 index letters the rows starting at the back fence and working toward the gate, which is the opposite of the way the graveyard is lettered today. Rows A, B and K have now been walked and checked against the stones; the rest are still being surveyed, and until a row is checked we show its burials without a plot rather than risk pointing you at the wrong grave.</p></div>
           </div>
         </div>
       </div>
@@ -1736,15 +1741,8 @@
             <option value="">All</option>
             <option value="A">Row A</option>
             <option value="B">Row B</option>
-            <option value="C">Row C</option>
-            <option value="D">Row D</option>
-            <option value="E">Row E</option>
-            <option value="F">Row F</option>
-            <option value="G">Row G</option>
-            <option value="H">Row H</option>
-            <option value="I">Row I</option>
-            <option value="J">Row J</option>
             <option value="K">Row K</option>
+            <option value="__pending">Row not yet confirmed</option>
           </select>
         </div>
 
@@ -1853,9 +1851,10 @@
               Interactive Grave Plot Map
             </h2>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2)">
-              438 plots across Rows A–K, read like a book from A1 (top) to K18 (bottom). Hover or tap
-              a plot to see details. Click to view a burial record. Plot counts per row are our best
-              estimate from the ongoing burial survey.
+              Rows A, B and K have been walked and checked against the stones, so they are mapped here.
+              Hover or tap a plot to see details; click to open the burial record. The other rows are
+              still being surveyed and are not mapped yet &mdash; everyone recorded in them is still in
+              the register above and searchable by name.
             </p>
           </div>
           <div class="plot-legend">
@@ -1871,6 +1870,7 @@
           </div>
         </div>
         <div class="plot-row-wrap" id="plotMapContainer"></div>
+        <p class="plot-map-pending" id="plotMapPending" hidden></p>
 
         <figure class="burial-plan-figure">
           <figcaption class="burial-plan-caption">
@@ -2146,6 +2146,7 @@
         <span id="modalHeadstoneFile">headstone-[plot].jpg</span>
       </p>
       <div class="modal__meta-grid" id="modalMetaGrid"></div>
+      <p class="modal__plot-pending" id="modalPlotPending" hidden></p>
       <div id="modalBioSection"></div>
       <button type="button" class="modal__back" onclick="closeBioModal()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -13698,7 +13699,10 @@ const PLOT_PHOTOS={
   ]
 };
 function plotPhotos(b){
-  if(b.plot && PLOT_PHOTOS[b.plot]) return PLOT_PHOTOS[b.plot];
+  /* PLOT_PHOTOS is keyed on the plot code, so only trust it where the plot
+     itself is confirmed. A photograph attached directly to the person record
+     is safe either way — that came off the stone Sheila photographed. */
+  if(plotVerified(b) && PLOT_PHOTOS[b.plot]) return PLOT_PHOTOS[b.plot];
   return b.photo ? [{f:b.photo,c:"Headstone"}] : [];
 }
 
@@ -13737,7 +13741,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateBurialStats(){
   const recorded=BURIALS.length;
-  const plots=new Set(BURIALS.map(b=>b.plot));
+  /* Only count plots we can actually stand behind. A plot code carried over
+     from the 2012 index is not a confirmed location, so it is not a plot we
+     can claim to have filled in. */
+  const plots=new Set(BURIALS.filter(plotVerified).map(b=>b.plot));
   document.getElementById("statRecorded").textContent=recorded;
   document.getElementById("statPlots").textContent=plots.size;
 }
@@ -13764,12 +13771,13 @@ function filterBurials(){
     if(q && !(
       (b.surname+" "+b.forenames).toLowerCase().includes(q) ||
       (b.occupation||"").toLowerCase().includes(q) ||
-      (b.plot||"").toLowerCase().includes(q) ||
+      (plotVerified(b) ? (b.plot||"").toLowerCase().includes(q) : false) ||
       (b.bio||"").toLowerCase().includes(q) ||
       String(b.died||"").includes(q) ||
       String(b.born||"").includes(q)
     )) return false;
-    if(row && b.row!==row) return false;
+    if(row==="__pending"){ if(plotVerified(b)) return false; }
+    else if(row && (b.row!==row || !plotVerified(b))) return false;
     if(era){
       const dec=Math.floor((b.died||0)/10)*10;
       if(era==="1920s+"){
@@ -13822,7 +13830,7 @@ function renderTable(){
         </span>
         <span class="row-summary__meta">
           <span class="row-summary__years">${b.born ? (b.born+"\u2013"+(b.died||"?")) : (b.died ? ("d. "+b.died) : "")}</span>
-          ${b.plot ? '<span class="plot-badge">'+b.plot+'</span>' : ""}
+          ${plotVerified(b) ? '<span class="plot-badge">'+b.plot+'</span>' : '<span class="plot-badge plot-badge--pending" title="We have not confirmed which row this grave is in">Plot TBC</span>'}
           <span class="row-summary__chevron">›</span>
         </span>
       </td>
@@ -13835,7 +13843,7 @@ function renderTable(){
       <td data-label="Forenames">${b.forenames || "—"}</td>
       <td data-label="Died">${b.died || "—"}</td>
       <td data-label="Age">${b.age || "—"}</td>
-      <td data-label="Plot">${b.plot ? '<span class="plot-badge">'+b.plot+'</span>' : "—"}</td>
+      <td data-label="Plot">${plotVerified(b) ? '<span class="plot-badge">'+b.plot+'</span>' : '<span class="plot-badge plot-badge--pending" title="We have not confirmed which row this grave is in">TBC</span>'}</td>
       <td data-label="Notes" style="color:var(--color-text-muted);font-size:var(--text-xs)">
         ${
           b.bio
@@ -13862,11 +13870,11 @@ function renderGrid(){
           <div class="burial-card__name">${displayName(b)}</div>
           <div class="burial-card__dates">${b.born ? (b.born+" – "+(b.died||"?")) : (b.died ? ("d. "+b.died) : "Dates unknown")}</div>
         </div>
-        ${b.plot ? '<span class="plot-badge">'+b.plot+'</span>' : ""}
+        ${plotVerified(b) ? '<span class="plot-badge">'+b.plot+'</span>' : '<span class="plot-badge plot-badge--pending" title="We have not confirmed which row this grave is in">Plot TBC</span>'}
       </div>
       <div class="burial-card__meta">
         ${b.age ? '<span class="meta-tag">Age '+b.age+'</span>' : ""}
-        ${b.row ? '<span class="meta-tag">Row '+b.row+'</span>' : ""}
+        ${plotVerified(b) ? '<span class="meta-tag">Row '+b.row+'</span>' : ""}
       </div>
       ${
         b.bio
@@ -13946,7 +13954,7 @@ function openBio(id){
   const b=BURIALS.find(x=>x.id===id);
   if(!b) return;
   document.getElementById("modalName").textContent=displayNameNatural(b);
-  document.getElementById("modalSubtitle").textContent = b.plot ? ("Plot "+b.plot) : (b.row?("Row "+b.row):"Saron Graveyard");
+  document.getElementById("modalSubtitle").textContent = plotVerified(b) ? ("Plot "+b.plot) : "Saron Graveyard, Troedyrhiw";
   const hsEl=document.getElementById("modalHeadstone");
   const hsNoteEl=document.getElementById("modalHeadstoneNote");
   const photos=plotPhotos(b);
@@ -13986,9 +13994,14 @@ function openBio(id){
   document.getElementById("modalMetaGrid").innerHTML=`
     <div class="modal__meta-item"><div class="modal__meta-label">Died</div><div class="modal__meta-value">${b.died||"Unknown"}</div></div>
     <div class="modal__meta-item"><div class="modal__meta-label">Age at Death</div><div class="modal__meta-value">${b.age||"Unknown"}</div></div>
-    <div class="modal__meta-item"><div class="modal__meta-label">Plot</div><div class="modal__meta-value">${b.plot?('<span class="plot-badge">'+b.plot+'</span>'):"Unknown"}</div></div>
-    <div class="modal__meta-item"><div class="modal__meta-label">Row</div><div class="modal__meta-value">${b.row?("Row "+b.row):"Unknown"}</div></div>
+    <div class="modal__meta-item"><div class="modal__meta-label">Plot</div><div class="modal__meta-value">${plotVerified(b)?('<span class="plot-badge">'+b.plot+'</span>'):('<span class="plot-badge plot-badge--pending">'+UNCONFIRMED_LABEL+'</span>')}</div></div>
+    <div class="modal__meta-item"><div class="modal__meta-label">Row</div><div class="modal__meta-value">${plotVerified(b)?("Row "+b.row):UNCONFIRMED_LABEL}</div></div>
   `;
+  const pendEl=document.getElementById("modalPlotPending");
+  if(pendEl){
+    pendEl.hidden=plotVerified(b);
+    pendEl.innerHTML=plotVerified(b)?"":"We know this burial from the chapel&rsquo;s 2012 index, but that index letters the rows the opposite way round to the way the graveyard is lettered today. Until this row has been walked and checked against the stones we cannot tell you which grave is which, so we are leaving it blank rather than guessing. If you know where this grave is, we would be glad to hear from you.";
+  }
   document.getElementById("modalBioSection").innerHTML = b.bio ? `
     <h3 class="modal__bio-title">Notes &amp; inscription</h3>
     <p class="modal__bio-text" style="white-space:pre-line;">${b.bio}</p>
@@ -14019,15 +14032,34 @@ function closeModal(e){
   if(e.target===document.getElementById("bioModal")) closeBioModal();
 }
 
+/* ── Which rows we can actually stand behind ──────────────────────────────
+   Rows A, B and K have been read off the stones by Sheila and checked against
+   David's documents, so we place them on the map.
+
+   The rest of the register came from the 2012 Burial Index. The names, dates
+   and ages in it are real, but that index letters the rows starting from the
+   back fence and working toward the gate, which is the opposite of the way the
+   graveyard is lettered now. Until each row has been walked and checked, a
+   letter taken from the index is not a fact about where somebody lies, so we
+   do not print one. Those people stay searchable by name; their location shows
+   as not yet confirmed.
+
+   To bring a row onto the map once it has been checked, add its letter here. */
+const VERIFIED_ROWS=["A","B","K"];
+function rowVerified(r){return !!r && VERIFIED_ROWS.indexOf(r)!==-1;}
+function plotVerified(b){return rowVerified(b&&b.row)&&!!b.plot;}
+const UNCONFIRMED_LABEL="Not yet confirmed";
+
 function buildPlotMap(){
-  const rows="ABCDEFGHIJK".split("");
+  const rows=VERIFIED_ROWS.slice();
   const PLOTS_PER_ROW={A:69,B:52,C:40,D:36,E:34,F:33,G:32,H:46,I:52,J:22,K:22};
   const burialsByPlot={};
-  BURIALS.forEach(b=>{if(b.plot)burialsByPlot[b.plot]=(burialsByPlot[b.plot]||[]).concat(b);});
+  BURIALS.forEach(b=>{if(plotVerified(b))burialsByPlot[b.plot]=(burialsByPlot[b.plot]||[]).concat(b);});
   // Ensure every occupied plot is rendered even if it sits beyond the estimated row count.
   const maxOccupied={};
   Object.keys(burialsByPlot).forEach(p=>{const m=p.match(/^([A-K])-(\d+)/);if(m){const r=m[1],n=parseInt(m[2],10);if(n>(maxOccupied[r]||0))maxOccupied[r]=n;}});
   rows.forEach(r=>{PLOTS_PER_ROW[r]=Math.max(PLOTS_PER_ROW[r]||0, maxOccupied[r]||0);});
+  const pending=BURIALS.filter(b=>!plotVerified(b)).length;
   const container=document.getElementById("plotMapContainer");
   let html="";
   rows.forEach(row=>{
@@ -14058,6 +14090,16 @@ function buildPlotMap(){
     html+="</div>";
   });
   container.innerHTML=html;
+  const pendEl=document.getElementById("plotMapPending");
+  if(pendEl){
+    pendEl.hidden = pending===0;
+    pendEl.innerHTML = pending===0 ? "" :
+      `<strong>${pending} more people are recorded at Saron than are shown on this map.</strong> We know them from the
+       chapel&rsquo;s 2012 burial index, but that index letters the rows starting at the back fence and working toward
+       the gate &mdash; the opposite of the way the graveyard is lettered today. Until each row has been walked and
+       checked against the stones we cannot say which grave is which, so we leave the plot blank rather than send you
+       to the wrong one. Every one of them is in the register above and can be found by name.`;
+  }
 }
 function plotClick(plotId,id){
   if(id){openBio(id);}
