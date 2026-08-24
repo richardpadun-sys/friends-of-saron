@@ -384,6 +384,9 @@
   .field input:focus,.field textarea:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-highlight);}
   .contact-success{display:none;font-size:var(--text-sm);color:var(--color-primary);margin-top:var(--space-3);}
   #contactSuccess.show{display:block;}
+  .contact-error{display:none;margin-top:1rem;font-size:.9375rem;line-height:1.6;color:#7a2020;}
+  .contact-error.show{display:block;}
+  html[data-theme="dark"] .contact-error{color:#e39b9b;}
   .map-card{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border);box-shadow:var(--shadow-sm);}
   .map-card iframe{border:0;}
   @media(max-width:767px){
@@ -1758,9 +1761,10 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
               </div>
-              <button type="submit" class="btn btn--green">Send message</button>
+              <button type="submit" class="btn btn--green" id="contactSubmit">Send message</button>
             </form>
-            <p class="contact-success" id="contactSuccess">Thank you — your message has been sent to Friends of Saron.</p>
+            <p class="contact-error" id="contactError" role="alert"></p>
+            <p class="contact-success" id="contactSuccess">Thank you — your message has reached the Friends of Saron volunteers, who will reply to you by email.</p>
           </div>
           <div class="map-card" aria-label="Map showing Troedyrhiw">
             <iframe
@@ -2879,10 +2883,66 @@ function submitNewsletter(e){
   document.getElementById('newsletterSuccess').classList.add('show');
   e.target.reset();
 }
-function submitContact(e){
+/* Where visitor messages go. Publishable anon key — safe in the page; the
+   function itself decides who is notified and nothing is published unreviewed. */
+const CONTRIBUTE_ENDPOINT = 'https://rixllmbogporsctwdiif.supabase.co/functions/v1/thomas-contribute';
+const SUPABASE_ANON_KEY   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpeGxsbWJvZ3BvcnNjdHdkaWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwMDU2MzksImV4cCI6MjA3MDU4MTYzOX0.eWI93zUpmAYXyGVMg7qldzpJ1-TFyNqA7SpLFKlPL8M';
+
+/* Sends the message to the volunteers through the same route the Adopt a Grave
+   and Ask Owain forms use, so nothing typed here is lost. */
+async function submitContact(e){
   e.preventDefault();
-  document.getElementById('contactSuccess').classList.add('show');
-  e.target.reset();
+  const form = e.target;
+  const btn  = document.getElementById('contactSubmit');
+  const ok   = document.getElementById('contactSuccess');
+  const bad  = document.getElementById('contactError');
+
+  const name    = form.querySelector('#name').value.trim();
+  const email   = form.querySelector('#email').value.trim();
+  const message = form.querySelector('#message').value.trim();
+
+  ok.classList.remove('show');
+  bad.classList.remove('show');
+
+  if(message.length < 10){
+    bad.textContent = 'Could you tell us a little more? A sentence or two is plenty.';
+    bad.classList.add('show');
+    return;
+  }
+
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try{
+    const r = await fetch(CONTRIBUTE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'apikey': SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        content: message,
+        context_question: 'Contact form — Friends of Saron website'
+      })
+    });
+    const data = await r.json().catch(() => ({}));
+    if(!r.ok || data.error) throw new Error(data.error || ('HTTP ' + r.status));
+
+    ok.classList.add('show');
+    form.reset();
+  }catch(err){
+    bad.innerHTML = 'We could not send that just now. Please try again in a moment, ' +
+      'or email us directly at <a href="mailto:info@troedyrhiwancestors.com">info@troedyrhiwancestors.com</a>.';
+    bad.classList.add('show');
+    console.error('contact form failed:', err);
+  }finally{
+    btn.disabled = false;
+    btn.textContent = label;
+  }
 }
 
 /* BURIALS DATA — real burial index (Saron Burial Index, 861 records, updated 2026) */
