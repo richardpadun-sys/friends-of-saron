@@ -675,7 +675,7 @@
   @media(max-width:400px){
     .modal__meta-grid{grid-template-columns:1fr;}
   }
-/* ======================= THOMAS ======================= */
+/* ======================= OWAIN ======================= */
 
 /* outline button for light backgrounds (site .btn--outline is white-on-dark) */
 .btn--quiet{
@@ -692,25 +692,25 @@
 }
 
 
-.thomas-hero{
+.owain-hero{
   padding:var(--space-16,4rem) 0 var(--space-12,3rem);
   background:linear-gradient(180deg,var(--color-surface-offset) 0%,var(--color-bg) 100%);
   border-bottom:1px solid var(--color-border);
 }
-.thomas-hero__grid{
+.owain-hero__grid{
   display:grid;
   grid-template-columns:1.15fr .85fr;
   gap:clamp(2rem,5vw,4rem);
   align-items:center;
 }
-.thomas-hero__text h1{
+.owain-hero__text h1{
   font-family:var(--font-display);
   font-size:clamp(2.25rem,5vw,3.5rem);
   line-height:1.08;
   margin:0 0 1rem;
   letter-spacing:-.02em;
 }
-.thomas-badge{
+.owain-badge{
   display:inline-flex;align-items:center;gap:.5rem;
   font-family:var(--font-body);
   font-size:.75rem;font-weight:600;
@@ -721,12 +721,12 @@
   padding:.4rem .75rem;border-radius:999px;
   margin-bottom:1.25rem;
 }
-.thomas-hero__lede{
+.owain-hero__lede{
   font-size:1.125rem;line-height:1.7;
   color:var(--color-text-muted);
   margin:0 0 1.5rem;max-width:52ch;
 }
-.thomas-hero__note{
+.owain-hero__note{
   font-size:.9375rem;line-height:1.65;
   background:var(--color-surface-2);
   border-left:3px solid var(--color-primary);
@@ -735,33 +735,33 @@
   color:var(--color-text-muted);
   margin-bottom:1.75rem;max-width:56ch;
 }
-.thomas-hero__note strong{color:var(--color-text);}
-.thomas-hero__cta{margin-top:.25rem;}
+.owain-hero__note strong{color:var(--color-text);}
+.owain-hero__cta{margin-top:.25rem;}
 
-.thomas-hero__portrait{margin:0;}
-.thomas-hero__portrait img{
+.owain-hero__portrait{margin:0;}
+.owain-hero__portrait img{
   width:100%;height:auto;display:block;
   border-radius:var(--radius-lg);
   box-shadow:0 18px 48px rgba(0,0,0,.18);
 }
-.thomas-hero__portrait figcaption{
+.owain-hero__portrait figcaption{
   font-size:.75rem;line-height:1.5;
   color:var(--color-text-faint);
   margin-top:.65rem;text-align:center;font-style:italic;
 }
 
 /* ---- chat ---- */
-.thomas-chat-section{padding:var(--space-12,3rem) 0 var(--space-16,4rem);}
+.owain-chat-section{padding:var(--space-12,3rem) 0 var(--space-16,4rem);}
 .container--narrow{max-width:780px;}
 
-.thomas-chat{
+.owain-chat{
   background:var(--color-surface);
   border:1px solid var(--color-border);
   border-radius:var(--radius-lg);
   overflow:hidden;
   box-shadow:0 4px 20px rgba(0,0,0,.05);
 }
-.thomas-chat__log{
+.owain-chat__log{
   padding:1.5rem;
   display:flex;flex-direction:column;gap:1.5rem;
   max-height:min(60vh,620px);
@@ -856,23 +856,23 @@
 }
 @media (prefers-reduced-motion:reduce){
   .tdot{animation:none;opacity:.6;}
-  .thomas-chat__log{scroll-behavior:auto;}
+  .owain-chat__log{scroll-behavior:auto;}
 }
 
 /* suggestions */
-.thomas-suggestions{
+.owain-suggestions{
   padding:0 1.5rem 1.25rem;
   border-top:1px solid var(--color-divider);
   padding-top:1.25rem;
 }
-.thomas-suggestions__label{
+.owain-suggestions__label{
   font-size:.75rem;font-weight:600;
   letter-spacing:.06em;text-transform:uppercase;
   color:var(--color-text-faint);
   margin-bottom:.75rem;
 }
-.thomas-suggestions__list{display:flex;flex-wrap:wrap;gap:.5rem;}
-.thomas-chip{
+.owain-suggestions__list{display:flex;flex-wrap:wrap;gap:.5rem;}
+.owain-chip{
   font-family:var(--font-body);
   font-size:.8125rem;
   padding:.45rem .85rem;
@@ -883,20 +883,20 @@
   cursor:pointer;
   transition:background .15s ease,border-color .15s ease,color .15s ease;
 }
-.thomas-chip:hover{
+.owain-chip:hover{
   background:var(--color-primary-light);
   border-color:var(--color-primary-highlight);
   color:var(--color-primary);
 }
 
 /* composer */
-.thomas-composer{
+.owain-composer{
   display:flex;gap:.75rem;align-items:flex-end;
   padding:1rem 1.5rem 1.25rem;
   border-top:1px solid var(--color-divider);
   background:var(--color-surface-2);
 }
-.thomas-composer textarea{
+.owain-composer textarea{
   flex:1;resize:none;
   font-family:var(--font-body);
   font-size:.9375rem;line-height:1.55;
@@ -907,49 +907,49 @@
   color:var(--color-text);
   max-height:160px;overflow-y:auto;
 }
-.thomas-composer textarea:focus{
+.owain-composer textarea:focus{
   outline:none;
   border-color:var(--color-primary);
   box-shadow:0 0 0 3px var(--color-primary-light);
 }
-.thomas-send{
+.owain-send{
   flex:0 0 44px;width:44px;height:44px;
   display:grid;place-items:center;
   border:none;border-radius:50%;
   background:var(--color-primary);color:#fff;
   cursor:pointer;transition:background .15s ease,transform .15s ease;
 }
-.thomas-send:hover:not(:disabled){background:var(--color-primary-hover);}
-.thomas-send:disabled{opacity:.45;cursor:not-allowed;}
-.thomas-hint{
+.owain-send:hover:not(:disabled){background:var(--color-primary-hover);}
+.owain-send:disabled{opacity:.45;cursor:not-allowed;}
+.owain-hint{
   font-size:.75rem;line-height:1.5;
   color:var(--color-text-faint);
   text-align:center;
   margin-top:.75rem;
 }
-.thomas-hint a{color:var(--color-primary);}
+.owain-hint a{color:var(--color-primary);}
 
 /* contribute */
-.thomas-contribute-prompt{
+.owain-contribute-prompt{
   text-align:center;margin-top:2.5rem;
   padding-top:2rem;
   border-top:1px solid var(--color-border);
 }
-.thomas-contribute-prompt p{
+.owain-contribute-prompt p{
   font-family:var(--font-display);
   font-size:1.125rem;margin:0 0 1rem;
 }
-.thomas-contribute{
+.owain-contribute{
   margin-top:2rem;padding:1.75rem;
   background:var(--color-surface);
   border:1px solid var(--color-border);
   border-radius:var(--radius-lg);
 }
-.thomas-contribute h3{
+.owain-contribute h3{
   font-family:var(--font-display);
   font-size:1.375rem;margin:0 0 .625rem;
 }
-.thomas-contribute > p{
+.owain-contribute > p{
   font-size:.9375rem;line-height:1.65;
   color:var(--color-text-muted);
   margin:0 0 1.5rem;max-width:60ch;
@@ -984,7 +984,7 @@
 .tc-status.err{color:#b3261e;}
 
 /* floating pill on other pages */
-.thomas-pill{
+.owain-pill{
   position:fixed;
   right:1.25rem;bottom:1.25rem;
   z-index:900;
@@ -1000,11 +1000,11 @@
   color:var(--color-text);
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.thomas-pill:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2);}
-.thomas-pill img{
+.owain-pill:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2);}
+.owain-pill img{
   width:34px;height:34px;border-radius:50%;object-fit:cover;
 }
-.thomas-pill[hidden]{display:none;}
+.owain-pill[hidden]{display:none;}
 
 /* dark mode — this site toggles [data-theme], so target that (not prefers-color-scheme) */
 [data-theme="dark"] .tmsg__text{background:var(--color-surface-offset-2);}
@@ -1012,28 +1012,28 @@
   background:var(--color-primary);
   color:#0d1109;
 }
-[data-theme="dark"] .thomas-hero__portrait img{box-shadow:0 18px 48px rgba(0,0,0,.55);}
+[data-theme="dark"] .owain-hero__portrait img{box-shadow:0 18px 48px rgba(0,0,0,.55);}
 [data-theme="dark"] .tc-status.err{color:#f2b8b5;}
-[data-theme="dark"] .thomas-pill{box-shadow:0 6px 24px rgba(0,0,0,.5);}
-[data-theme="dark"] .thomas-hero{
+[data-theme="dark"] .owain-pill{box-shadow:0 6px 24px rgba(0,0,0,.5);}
+[data-theme="dark"] .owain-hero{
   background:linear-gradient(180deg,var(--color-surface-offset) 0%,var(--color-bg) 100%);
 }
 
 /* responsive */
 @media (max-width:860px){
-  .thomas-hero__grid{grid-template-columns:1fr;}
-  .thomas-hero__portrait{
+  .owain-hero__grid{grid-template-columns:1fr;}
+  .owain-hero__portrait{
     order:-1;max-width:300px;margin:0 auto;
   }
   .tc-row{grid-template-columns:1fr;gap:0;}
 }
 @media (max-width:560px){
-  .thomas-chat__log{padding:1.125rem;gap:1.25rem;}
+  .owain-chat__log{padding:1.125rem;gap:1.25rem;}
   .tmsg__body{max-width:88%;}
-  .thomas-composer{padding:.875rem 1.125rem 1rem;}
-  .thomas-suggestions{padding-left:1.125rem;padding-right:1.125rem;}
-  .thomas-pill span{display:none;}
-  .thomas-pill{padding:.4rem;right:1rem;bottom:1rem;}
+  .owain-composer{padding:.875rem 1.125rem 1rem;}
+  .owain-suggestions{padding-left:1.125rem;padding-right:1.125rem;}
+  .owain-pill span{display:none;}
+  .owain-pill{padding:.4rem;right:1rem;bottom:1rem;}
 }
 
   /* Standing notice on the register: this data is a work in progress and always will be */
@@ -1092,7 +1092,7 @@
       <a href="#" class="nav__link active" data-page="home" onclick="showPage('home');return false;">Home</a>
       <a href="#" class="nav__link" data-page="burials" onclick="showPage('burials');return false;">Burials</a>
       <a href="#" class="nav__link" data-page="stories" onclick="showPage('stories');return false;">Stories</a>
-      <a href="#" class="nav__link" data-page="thomas" onclick="showPage('thomas');return false;">Ask Thomas</a>
+      <a href="#" class="nav__link" data-page="owain" onclick="showPage('owain');return false;">Ask Owain</a>
       <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact</a>
@@ -1113,7 +1113,7 @@
     <a href="#" onclick="showPage('home');closeMobile();return false;" role="menuitem">Home</a>
     <a href="#" onclick="showPage('burials');closeMobile();return false;" role="menuitem">Burials Register</a>
     <a href="#" onclick="showPage('stories');closeMobile();return false;" role="menuitem">Stories behind the stones</a>
-    <a href="#" onclick="showPage('thomas');closeMobile();return false;" role="menuitem">Ask Thomas</a>
+    <a href="#" onclick="showPage('owain');closeMobile();return false;" role="menuitem">Ask Owain</a>
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Contact</a>
@@ -1892,48 +1892,48 @@
     </div>
   </div><!-- end page-burials -->
 
-  <!-- ============================ THOMAS ============================ -->
-  <div class="page" id="page-thomas">
+  <!-- ============================ OWAIN ============================ -->
+  <div class="page" id="page-owain">
 
     <!-- Hero -->
-    <section class="thomas-hero">
+    <section class="owain-hero">
       <div class="container">
-        <div class="thomas-hero__grid">
+        <div class="owain-hero__grid">
 
-          <div class="thomas-hero__text">
-            <div class="thomas-badge">
+          <div class="owain-hero__text">
+            <div class="owain-badge">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0-3 3v2a3 3 0 0 0 0 6 3 3 0 0 0 3 3 3 3 0 0 0 3 2 3 3 0 0 0 3-2 3 3 0 0 0 3-3 3 3 0 0 0 0-6V9a3 3 0 0 0-3-3V5a3 3 0 0 0-3-3z"/>
               </svg>
               A guide to the register
             </div>
 
-            <h1>Meet Thomas.</h1>
+            <h1>Meet Owain.</h1>
 
-            <p class="thomas-hero__lede">
-              Thomas knows this graveyard. Ask him about a name on a stone, a
+            <p class="owain-hero__lede">
+              Owain knows this graveyard. Ask him about a name on a stone, a
               family in the register, or the story of the chapel itself — he'll
               answer from the project's own records, and tell you plainly when a
               stone is too worn to say.
             </p>
 
-            <div class="thomas-hero__note">
-              <strong>Thomas is imagined. The records are not.</strong>
+            <div class="owain-hero__note">
+              <strong>Owain is imagined. The records are not.</strong>
               He is a character we created to give the archive a voice — there was
-              never a Thomas at Saron. What he knows comes from
-              <span data-thomas-count>867</span> transcribed burial records and the
+              never an Owain at Saron. What he knows comes from
+              <span data-owain-count>867</span> transcribed burial records and the
               history published on these pages. He works only from those, and where
               the register is silent he says so rather than guess.
             </div>
 
-            <a href="#thomasChat" class="btn btn--primary thomas-hero__cta">Ask Thomas a question</a>
+            <a href="#owainChat" class="btn btn--primary owain-hero__cta">Ask Owain a question</a>
           </div>
 
-          <figure class="thomas-hero__portrait">
-            <img src="images/thomas/thomas-hero.jpg"
-                 alt="An illustrated portrait of Thomas, an elderly Welshman seated at a table with a notebook in a stone chapel"
+          <figure class="owain-hero__portrait">
+            <img src="images/owain/owain-hero.jpg"
+                 alt="An illustrated portrait of Owain, an elderly Welshman seated at a table with a notebook in a stone chapel"
                  width="933" height="1400" loading="eager">
-            <figcaption>Thomas, as we imagine him.</figcaption>
+            <figcaption>Owain, as we imagine him.</figcaption>
           </figure>
 
         </div>
@@ -1941,17 +1941,17 @@
     </section>
 
     <!-- Chat -->
-    <section class="thomas-chat-section" id="thomasChat">
+    <section class="owain-chat-section" id="owainChat">
       <div class="container container--narrow">
 
-        <div class="thomas-chat" role="region" aria-label="Conversation with Thomas">
+        <div class="owain-chat" role="region" aria-label="Conversation with Owain">
 
-          <div class="thomas-chat__log" id="thomasLog" aria-live="polite" aria-atomic="false">
+          <div class="owain-chat__log" id="owainLog" aria-live="polite" aria-atomic="false">
             <!-- Opening message -->
-            <div class="tmsg tmsg--thomas">
-              <img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
+            <div class="tmsg tmsg--owain">
+              <img class="tmsg__avatar" src="images/owain/owain-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
               <div class="tmsg__body">
-                <div class="tmsg__who">Thomas</div>
+                <div class="tmsg__who">Owain</div>
                 <div class="tmsg__text">
                   <p>Croeso — welcome. I've spent a long while among these stones, and I'm glad of the company.</p>
                   <p>Ask me about anyone in the register, or about Saron itself. If a stone is worn and I can't read it, I'll say so rather than invent something.</p>
@@ -1961,32 +1961,32 @@
           </div>
 
           <!-- Suggested openers -->
-          <div class="thomas-suggestions" id="thomasSuggestions">
-            <div class="thomas-suggestions__label">Not sure where to start?</div>
-            <div class="thomas-suggestions__list">
-              <button type="button" class="thomas-chip" data-q="Who is buried in plot A-01?">Who is buried in plot A-01?</button>
-              <button type="button" class="thomas-chip" data-q="Tell me the story of Saron chapel.">The story of Saron chapel</button>
-              <button type="button" class="thomas-chip" data-q="Which are the oldest graves here?">The oldest graves</button>
-              <button type="button" class="thomas-chip" data-q="Are there any Welsh-language inscriptions?">Welsh inscriptions</button>
-              <button type="button" class="thomas-chip" data-q="I'm looking for the Rees family. What can you tell me?">Finding a family</button>
+          <div class="owain-suggestions" id="owainSuggestions">
+            <div class="owain-suggestions__label">Not sure where to start?</div>
+            <div class="owain-suggestions__list">
+              <button type="button" class="owain-chip" data-q="Who is buried in plot A-01?">Who is buried in plot A-01?</button>
+              <button type="button" class="owain-chip" data-q="Tell me the story of Saron chapel.">The story of Saron chapel</button>
+              <button type="button" class="owain-chip" data-q="Which are the oldest graves here?">The oldest graves</button>
+              <button type="button" class="owain-chip" data-q="Are there any Welsh-language inscriptions?">Welsh inscriptions</button>
+              <button type="button" class="owain-chip" data-q="I'm looking for the Rees family. What can you tell me?">Finding a family</button>
             </div>
           </div>
 
           <!-- Composer -->
-          <form class="thomas-composer" id="thomasForm" autocomplete="off">
-            <label class="sr-only" for="thomasInput">Your question for Thomas</label>
-            <textarea id="thomasInput" rows="1" maxlength="1000"
-                      placeholder="Ask Thomas about a name, a plot, or the chapel&hellip;"
-                      aria-describedby="thomasHint"></textarea>
-            <button type="submit" id="thomasSend" class="thomas-send" aria-label="Send your question">
+          <form class="owain-composer" id="owainForm" autocomplete="off">
+            <label class="sr-only" for="owainInput">Your question for Owain</label>
+            <textarea id="owainInput" rows="1" maxlength="1000"
+                      placeholder="Ask Owain about a name, a plot, or the chapel&hellip;"
+                      aria-describedby="owainHint"></textarea>
+            <button type="submit" id="owainSend" class="owain-send" aria-label="Send your question">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
               </svg>
             </button>
           </form>
-          <div class="thomas-hint" id="thomasHint">
-            Thomas speaks from the register — the
+          <div class="owain-hint" id="owainHint">
+            Owain speaks from the register — the
             <a href="#" onclick="showPage('burials');return false;">original entry</a>
             is always there to read.
           </div>
@@ -1994,7 +1994,7 @@
         </div>
 
         <!-- Contribute -->
-        <aside class="thomas-contribute" id="thomasContribute" hidden>
+        <aside class="owain-contribute" id="owainContribute" hidden>
           <h3>Do you know something we don't?</h3>
           <p>
             If you have a memory, a photograph, or a family record that adds to
@@ -2002,7 +2002,7 @@
             volunteers first — nothing appears on the site until a person has
             read and approved it.
           </p>
-          <form id="thomasContribForm">
+          <form id="owainContribForm">
             <div class="tc-row">
               <div class="tc-field">
                 <label for="tcName">Your name</label>
@@ -2027,7 +2027,7 @@
           </form>
         </aside>
 
-        <div class="thomas-contribute-prompt">
+        <div class="owain-contribute-prompt">
           <p>Know something about the people buried here?</p>
           <button type="button" class="btn btn--quiet" onclick="openContribute()">Share what you know</button>
         </div>
@@ -2035,7 +2035,7 @@
       </div>
     </section>
 
-  </div><!-- end page-thomas -->
+  </div><!-- end page-owain -->
 
 
   <div class="page" id="page-stories">
@@ -2055,7 +2055,7 @@
       <div class="stories-grid" id="storiesGrid"></div>
       <div class="stories-more">
         More stories are being prepared from the project's research files.
-        If you know something about a name in the register, Thomas can pass it on
+        If you know something about a name in the register, Owain can pass it on
         to the volunteers who look after the records.
       </div>
       <div style="height:var(--space-16)"></div>
@@ -2069,11 +2069,11 @@
 
 </main>
 
-<button type="button" class="thomas-pill" id="thomasPill"
-        onclick="showPage('thomas');return false;"
-        aria-label="Ask Thomas, our guide to the graveyard">
-  <img src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
-  <span>Ask Thomas</span>
+<button type="button" class="owain-pill" id="owainPill"
+        onclick="showPage('owain');return false;"
+        aria-label="Ask Owain, our guide to the graveyard">
+  <img src="images/owain/owain-avatar-sm.jpg" alt="" width="128" height="128" loading="lazy">
+  <span>Ask Owain</span>
 </button>
 
 
@@ -2089,7 +2089,7 @@
         <ul class="footer__links">
           <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
           <li><a href="#" onclick="showPage('burials');return false;">Burials Register</a></li>
-          <li><a href="#" onclick="showPage('thomas');return false;">Ask Thomas</a></li>
+          <li><a href="#" onclick="showPage('owain');return false;">Ask Owain</a></li>
           <li><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a></li>
           <li><a href="#about" onclick="showPage('home');return false;">About</a></li>
           <li><a href="#contact" onclick="showPage('home');return false;">Contact</a></li>
@@ -2320,7 +2320,7 @@ function showPage(page){
     a.classList.toggle('active',a.dataset.page===navFor);
   });
   window.scrollTo({top:0,behavior:'smooth'});
-  if(typeof syncThomasPill === 'function') syncThomasPill(page);
+  if(typeof syncOwainPill === 'function') syncOwainPill(page);
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -14063,16 +14063,16 @@ function plotClick(plotId,id){
   }
 }
 
-/* ======================= THOMAS ======================= */
+/* ======================= OWAIN ======================= */
 (function(){
   const ENDPOINT = 'https://rixllmbogporsctwdiif.supabase.co/functions/v1/thomas-chat';
   const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpeGxsbWJvZ3BvcnNjdHdkaWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwMDU2MzksImV4cCI6MjA3MDU4MTYzOX0.eWI93zUpmAYXyGVMg7qldzpJ1-TFyNqA7SpLFKlPL8M';
 
-  const log         = document.getElementById('thomasLog');
-  const form        = document.getElementById('thomasForm');
-  const input       = document.getElementById('thomasInput');
-  const sendBtn     = document.getElementById('thomasSend');
-  const suggestions = document.getElementById('thomasSuggestions');
+  const log         = document.getElementById('owainLog');
+  const form        = document.getElementById('owainForm');
+  const input       = document.getElementById('owainInput');
+  const sendBtn     = document.getElementById('owainSend');
+  const suggestions = document.getElementById('owainSuggestions');
   if(!log || !form) return;
 
   let conversationId = null;
@@ -14098,7 +14098,7 @@ function plotClick(plotId,id){
       let html = b.replace(/\n/g,'<br>');
       html = html.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       html = html.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:!?)]|$)/g,'$1<em>$2</em>');
-      // Markdown links, for the places Thomas points people to next.
+      // Markdown links, for the places Owain points people to next.
       // The text was escaped above, so the href cannot break out of the attribute,
       // and only http/https is matched at all.
       html = html.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,
@@ -14125,12 +14125,12 @@ function plotClick(plotId,id){
 
   function addTyping(){
     const el = document.createElement('div');
-    el.className = 'tmsg tmsg--thomas tmsg--typing';
-    el.id = 'thomasTyping';
+    el.className = 'tmsg tmsg--owain tmsg--typing';
+    el.id = 'owainTyping';
     el.innerHTML =
-      '<img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128">' +
+      '<img class="tmsg__avatar" src="images/owain/owain-avatar-sm.jpg" alt="" width="128" height="128">' +
       '<div class="tmsg__body">' +
-        '<div class="tmsg__who">Thomas</div>' +
+        '<div class="tmsg__who">Owain</div>' +
         '<div class="tmsg__text"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div>' +
       '</div>';
     log.appendChild(el);
@@ -14138,13 +14138,13 @@ function plotClick(plotId,id){
   }
 
   function removeTyping(){
-    const t = document.getElementById('thomasTyping');
+    const t = document.getElementById('owainTyping');
     if(t) t.remove();
   }
 
-  function addThomas(text, sources){
+  function addOwain(text, sources){
     const el = document.createElement('div');
-    el.className = 'tmsg tmsg--thomas';
+    el.className = 'tmsg tmsg--owain';
 
     let srcHtml = '';
     if(sources && sources.length){
@@ -14160,9 +14160,9 @@ function plotClick(plotId,id){
     }
 
     el.innerHTML =
-      '<img class="tmsg__avatar" src="images/thomas/thomas-avatar-sm.jpg" alt="" width="128" height="128">' +
+      '<img class="tmsg__avatar" src="images/owain/owain-avatar-sm.jpg" alt="" width="128" height="128">' +
       '<div class="tmsg__body">' +
-        '<div class="tmsg__who">Thomas</div>' +
+        '<div class="tmsg__who">Owain</div>' +
         '<div class="tmsg__text">'+format(text)+srcHtml+'</div>' +
       '</div>';
     log.appendChild(el);
@@ -14208,19 +14208,19 @@ function plotClick(plotId,id){
 
       if(data.conversation_id) conversationId = data.conversation_id;
 
-      addThomas(answer, data.sources);
+      addOwain(answer, data.sources);
 
       history.push({role:'user', content:question});
-      history.push({role:'thomas', content:answer});
+      history.push({role:'owain', content:answer});
 
-      // Nudge toward contributing when Thomas comes up short.
+      // Nudge toward contributing when Owain comes up short.
       if(typeof data.confidence === 'number' && data.confidence < 0.5){
         setTimeout(showContributeNudge, 700);
       }
 
     }catch(err){
       removeTyping();
-      addThomas('Forgive me — I couldn\u2019t reach my notes just then. Do check your connection and try once more.');
+      addOwain('Forgive me — I couldn\u2019t reach my notes just then. Do check your connection and try once more.');
     }finally{
       busy = false;
       sendBtn.disabled = false;
@@ -14229,8 +14229,8 @@ function plotClick(plotId,id){
   }
 
   function showContributeNudge(){
-    const prompt = document.querySelector('.thomas-contribute-prompt');
-    if(prompt && !document.getElementById('thomasContribute').hasAttribute('hidden')) return;
+    const prompt = document.querySelector('.owain-contribute-prompt');
+    if(prompt && !document.getElementById('owainContribute').hasAttribute('hidden')) return;
     if(prompt){
       prompt.scrollIntoView({behavior:'smooth', block:'nearest'});
     }
@@ -14256,14 +14256,14 @@ function plotClick(plotId,id){
     input.style.height = Math.min(input.scrollHeight, 160) + 'px';
   });
 
-  document.querySelectorAll('.thomas-chip').forEach(chip => {
+  document.querySelectorAll('.owain-chip').forEach(chip => {
     chip.addEventListener('click', () => ask(chip.dataset.q));
   });
 
   /* ---------- contributions ---------- */
 
   window.openContribute = function(){
-    const box = document.getElementById('thomasContribute');
+    const box = document.getElementById('owainContribute');
     if(!box) return;
     box.hidden = false;
     box.scrollIntoView({behavior:'smooth', block:'center'});
@@ -14271,11 +14271,11 @@ function plotClick(plotId,id){
   };
 
   window.closeContribute = function(){
-    const box = document.getElementById('thomasContribute');
+    const box = document.getElementById('owainContribute');
     if(box) box.hidden = true;
   };
 
-  const contribForm = document.getElementById('thomasContribForm');
+  const contribForm = document.getElementById('owainContribForm');
   if(contribForm){
     contribForm.addEventListener('submit', async e => {
       e.preventDefault();
@@ -14286,7 +14286,7 @@ function plotClick(plotId,id){
       status.textContent = 'Sending\u2026';
 
       try{
-        const res = await fetch(ENDPOINT.replace('thomas-chat','thomas-contribute'), {
+        const res = await fetch(ENDPOINT.replace('owain-chat','owain-contribute'), {
           method:'POST',
           headers:{
             'Content-Type':'application/json',
@@ -14323,7 +14323,7 @@ function plotClick(plotId,id){
   /* ---------- burial count in hero ---------- */
   try{
     if(typeof BURIALS !== 'undefined' && Array.isArray(BURIALS)){
-      document.querySelectorAll('[data-thomas-count]').forEach(el => {
+      document.querySelectorAll('[data-owain-count]').forEach(el => {
         el.textContent = BURIALS.length.toLocaleString('en-GB');
       });
     }
@@ -14331,10 +14331,10 @@ function plotClick(plotId,id){
 
 })();
 
-/* floating pill visibility — hidden on Thomas's own page */
-function syncThomasPill(page){
-  const pill = document.getElementById('thomasPill');
-  if(pill) pill.hidden = (page === 'thomas');
+/* floating pill visibility — hidden on Owain's own page */
+function syncOwainPill(page){
+  const pill = document.getElementById('owainPill');
+  if(pill) pill.hidden = (page === 'owain');
 }
 
 </script>

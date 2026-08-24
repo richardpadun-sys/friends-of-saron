@@ -144,7 +144,7 @@
         '<div class="quote">' + esc(c.content) + '</div>' +
         '<button class="btn btn--danger" id="go">Yes, decline it</button>' +
         '<p class="muted" style="margin-top:16px;">' +
-        'It won\u2019t appear on the site and Thomas won\u2019t use it. ' +
+        'It won\u2019t appear on the site and Owain won\u2019t use it. ' +
         'The record is kept so you can look back at it.</p>');
       wire(function(){ return {op:'commit'}; });
 
@@ -164,7 +164,7 @@
         '<div class="quote">' + esc(c.content) + '</div>' +
         '<button class="btn" id="go">Yes, publish it</button>' +
         '<p class="muted" style="margin-top:16px;">' +
-        'Once published, Thomas can draw on it when answering visitors.</p>');
+        'Once published, Owain can draw on it when answering visitors.</p>');
       wire(function(){ return {op:'commit'}; });
     }
   }).catch(function(){
@@ -192,14 +192,14 @@
           render('<div class="badge badge--no">\u00d7</div>' +
             '<p class="eyebrow">Friends of Saron</p>' +
             '<h1>Declined.</h1>' +
-            '<p>This note won\u2019t appear on the site and Thomas won\u2019t use it.</p>' +
+            '<p>This note won\u2019t appear on the site and Owain won\u2019t use it.</p>' +
             '<p class="muted">You can close this window.</p>');
         } else {
           render('<div class="badge badge--ok">\u2713</div>' +
             '<p class="eyebrow">Friends of Saron</p>' +
             '<h1>Published.</h1>' +
             '<p>Thank you. It is now part of the record' +
-            (d.indexed ? ' and Thomas can draw on it' : '') + '.</p>' +
+            (d.indexed ? ' and Owain can draw on it' : '') + '.</p>' +
             '<div class="quote">' + esc(d.content) + '</div>' +
             '<p class="muted">You can close this window.</p>');
         }
