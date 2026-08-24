@@ -2184,11 +2184,14 @@ function escAttr(v){return escHtml(v);}
 const STORIES = [
   {
     slug: 'willie-lloyd',
-    ref: 'Row I, plot 31',
+    /* No plot reference until the burial map is settled. The row lettering is
+       still being reconciled, so quoting a plot here would state as fact
+       something the project has not yet confirmed. `kicker` is what shows
+       in its place; add `ref` back once the map is complete. */
+    kicker: 'Troedyrhiw, 1903',
     title: 'Killed by a rolling stone',
     subtitle: 'Willie Lloyd, aged 9 \u2014 20 June 1903',
     person: 'Willie Lloyd',
-    plot: 'I-31',
     card: { img: 'images/stories/story-willie-lloyd-headstone.jpg',
             alt: 'The Lloyd family headstone at Saron, green with algae, its lettering still legible' },
     lede: 'On a Saturday afternoon in June 1903, four boys went up the mountainside above Troedyrhiw to play. One of them dislodged a stone. It weighed about eight pounds.',
@@ -2234,7 +2237,7 @@ function renderStoriesGrid(){
     <button class="story-card" onclick="openStory('${s.slug}')" aria-label="Read: ${escAttr(s.title)}">
       <img class="story-card__img" src="${s.card.img}" alt="${escAttr(s.card.alt)}" loading="lazy">
       <div class="story-card__body">
-        <span class="story-card__kicker">${escHtml(s.ref)}</span>
+        <span class="story-card__kicker">${escHtml(s.kicker || s.ref || '')}</span>
         <h2 class="story-card__title">${escHtml(s.title)}</h2>
         <p class="story-card__sub">${escHtml(s.subtitle)}</p>
       </div>
@@ -2285,13 +2288,15 @@ function openStory(slug, skipHash){
   ).join(' ');
   document.getElementById('storyBody').innerHTML = `
     <button class="story__back" onclick="showPage('stories')">&larr; All stories</button>
-    <p class="story__kicker">${escHtml(s.ref)}</p>
+    <p class="story__kicker">${escHtml(s.kicker || s.ref || '')}</p>
     <h1 class="story__title">${escHtml(s.title)}</h1>
     <p class="story__sub">${escHtml(s.subtitle)}</p>
     <p class="story__lede">${escHtml(s.lede)}</p>
     ${s.blocks.map(renderStoryBlock).join('')}
     <div class="story__plot">
-      <span><strong>${escHtml(s.person)}</strong> is buried at ${escHtml(s.ref)}.</span>
+      <span>${s.ref
+        ? `<strong>${escHtml(s.person)}</strong> is buried at ${escHtml(s.ref)}.`
+        : `<strong>${escHtml(s.person)}</strong> is buried at Saron. We have not yet fixed the plot \u2014 the graveyard is being resurveyed and the row lettering settled, and we would rather say nothing than say the wrong thing.`}</span>
       ${rel}
     </div>`;
   showPage('story');
