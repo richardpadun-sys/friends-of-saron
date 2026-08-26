@@ -1225,7 +1225,9 @@
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;">Volunteer</a>
+      <!-- Donate link HIDDEN 26 AUGUST 2026 — see the donations section further down for why
       <a href="#" class="nav__link nav__link--donate" onclick="showPage('home');setTimeout(()=>document.getElementById('donate').scrollIntoView({behavior:'smooth'}),200);return false;">Donate</a>
+      -->
     </nav>
     <div class="nav__actions">
       <button class="btn-theme" type="button" aria-label="Toggle colour theme" data-theme-toggle>
@@ -1248,7 +1250,9 @@
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Contact</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Volunteer</a>
+    <!-- Donate link HIDDEN 26 AUGUST 2026
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('donate').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Donate</a>
+    -->
   </div>
 </header>
 
@@ -1663,13 +1667,6 @@
       </div>
     </section>
 
-    <!-- DONATION SECTION -->
-    <!-- ============================================================
-         TO GO LIVE: replace each PLACEHOLDER_STRIPE_LINK_* below with
-         the matching Stripe Payment Link URL (looks like
-         https://buy.stripe.com/xxxxxxxx). No other changes needed.
-         Create the links at https://dashboard.stripe.com/payment-links
-         ============================================================ -->
     <section class="vol-section" id="volunteer" aria-labelledby="volunteer-heading">
       <div class="container">
         <p class="section-label">Volunteer</p>
@@ -1792,6 +1789,29 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         DONATIONS SECTION — HIDDEN 26 AUGUST 2026
+
+         Removed from the live page at David Collier's request while the
+         group seeks HMRC recognition as an unregistered charity. Friends
+         of Saron is an unincorporated community group, so it does not yet
+         meet the eligibility criteria for nonprofit payment processing,
+         and the four buttons below pointed at placeholder addresses that
+         went nowhere.
+
+         TO PUT IT BACK: delete the opening marker on the line below and
+         the closing marker after the section, then replace each
+         PLACEHOLDER_STRIPE_LINK_* with a real Stripe Payment Link
+         (https://dashboard.stripe.com/payment-links). Nothing else on the
+         page depends on it, and the .donate-* styles are still in the
+         stylesheet, so it will render exactly as it did before.
+
+         Also hidden at the same time, and needed again if this returns:
+           - the Donate link in the desktop header
+           - the Donate link in the mobile menu
+         Both are marked HIDDEN 26 AUGUST 2026 where they sit.
+         ============================================================ -->
+    <!--
     <section class="donate-section" id="donate" aria-labelledby="donate-heading">
       <div class="container">
         <div class="donate-card">
@@ -1827,6 +1847,8 @@
         </div>
       </div>
     </section>
+    -->
+
 
     <section aria-labelledby="faq-heading">
       <div class="container" style="max-width:var(--content-narrow)">
@@ -1859,7 +1881,7 @@
               Can I donate to the project?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </button>
-            <div class="faq-answer"><p>Donations are gratefully received and go directly to materials, professional conservation work, and archive access costs. Please get in touch via the contact form and we'll provide donation details.</p></div>
+            <div class="faq-answer"><p>We are putting proper arrangements in place for this and are not accepting online donations yet. In the meantime the most useful thing you can give us is time — see the volunteering section, where even an hour is worth having. If you would still like to contribute towards materials, conservation work or archive access, get in touch through the contact form and we will explain where things stand.</p></div>
           </div>
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">
