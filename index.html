@@ -204,6 +204,22 @@
   .nav__link:hover{color:var(--color-text);background:var(--color-surface-offset);}
   .nav__link.active{color:var(--color-primary);font-weight:600;}
   .nav__actions{display:flex;align-items:center;gap:var(--space-3);}
+
+  /* Grouped nav: five primary links, a More menu, and Volunteer as the single call to action */
+  .nav__group{position:relative;display:flex;align-items:center;}
+  .nav__more{display:flex;align-items:center;gap:0.3rem;font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);background:none;border:0;cursor:pointer;padding:var(--space-2) var(--space-2);border-radius:var(--radius-md);font-family:inherit;white-space:nowrap;}
+  .nav__more:hover{color:var(--color-text);background:var(--color-surface-offset);}
+  .nav__more svg{transition:transform .18s ease;}
+  .nav__group.open .nav__more{color:var(--color-text);background:var(--color-surface-offset);}
+  .nav__group.open .nav__more svg{transform:rotate(180deg);}
+  .nav__dropdown{position:absolute;top:calc(100% + 0.5rem);right:0;min-width:230px;flex-direction:column;gap:2px;padding:var(--space-2);background:var(--color-surface,#fff);border:1px solid var(--color-border);border-radius:var(--radius-lg,10px);box-shadow:0 10px 30px rgba(0,0,0,.14);z-index:120;display:none;}
+  .nav__group.open .nav__dropdown{display:flex;}
+  .nav__dropdown a{display:block;padding:0.55rem 0.7rem;font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);text-decoration:none;border-radius:var(--radius-md);white-space:nowrap;}
+  .nav__dropdown a:hover,.nav__dropdown a:focus-visible{background:var(--color-surface-offset);color:var(--color-text);}
+  .nav__cta{display:inline-flex;align-items:center;font-size:var(--text-sm);font-weight:600;color:var(--color-primary);text-decoration:none;padding:0.45rem 0.95rem;border:1.5px solid var(--color-primary);border-radius:var(--radius-md);white-space:nowrap;transition:background .15s ease,color .15s ease;}
+  .nav__cta:hover{background:var(--color-primary);color:#fff;}
+  @media(max-width:1023px){.nav__cta{display:none;}}
+  @media(min-width:1024px) and (max-width:1180px){.nav__more{font-size:0.8125rem;padding-inline:0.4rem;}.nav__cta{font-size:0.8125rem;padding-inline:0.7rem;}}
   .btn-theme{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full);color:var(--color-text-muted);}
   .btn-theme:hover{background:var(--color-surface-offset);color:var(--color-text);}
   .nav__hamburger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:var(--radius-md);color:var(--color-text);}
@@ -1221,15 +1237,23 @@
       <a href="#" class="nav__link" data-page="stories" onclick="showPage('stories');return false;">Stories</a>
       <a href="#" class="nav__link" data-page="adopt" onclick="showPage('adopt');return false;">Adopt a Grave</a>
       <a href="#" class="nav__link" data-page="owain" onclick="showPage('owain');return false;">Ask Owain</a>
-      <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
-      <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
-      <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact</a>
-      <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;">Volunteer</a>
+      <div class="nav__group" id="navMore">
+        <button type="button" class="nav__more" id="navMoreBtn" aria-expanded="false" aria-haspopup="true" aria-controls="navMoreMenu">
+          More
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav__dropdown" id="navMoreMenu" role="menu" aria-labelledby="navMoreBtn">
+          <a href="#" role="menuitem" onclick="closeMore();showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About the project</a>
+          <a href="https://friendsofsaron.wordpress.com" role="menuitem" target="_blank" rel="noopener noreferrer" onclick="closeMore();">Project Blog &amp; Archive</a>
+          <a href="#" role="menuitem" onclick="closeMore();showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact us</a>
+        </div>
+      </div>
       <!-- Donate link HIDDEN 26 AUGUST 2026 — see the donations section further down for why
       <a href="#" class="nav__link nav__link--donate" onclick="showPage('home');setTimeout(()=>document.getElementById('donate').scrollIntoView({behavior:'smooth'}),200);return false;">Donate</a>
       -->
     </nav>
     <div class="nav__actions">
+      <a href="#" class="nav__cta" onclick="showPage('home');setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;">Volunteer</a>
       <button class="btn-theme" type="button" aria-label="Toggle colour theme" data-theme-toggle>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -3003,7 +3027,15 @@ if(hamburger){
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 }
-function closeMobile(){
+function closeMore(){var g=document.getElementById('navMore');if(!g)return;g.classList.remove('open');var b=document.getElementById('navMoreBtn');if(b)b.setAttribute('aria-expanded','false');}
+  (function(){
+    var g=document.getElementById('navMore'),b=document.getElementById('navMoreBtn');
+    if(!g||!b)return;
+    b.addEventListener('click',function(e){e.stopPropagation();var open=g.classList.toggle('open');b.setAttribute('aria-expanded',open?'true':'false');});
+    document.addEventListener('click',function(e){if(!g.contains(e.target))closeMore();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMore();});
+  })();
+  function closeMobile(){
   hamburger.classList.remove('open');
   mobileNav.classList.remove('open');
   hamburger.setAttribute('aria-expanded','false');
