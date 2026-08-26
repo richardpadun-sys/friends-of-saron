@@ -334,6 +334,24 @@
   .dated-item__caption{padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);}
 
   /* Donation section */
+  .vol-section{padding:var(--space-14) 0;background:var(--color-surface-offset);border-block:1px solid var(--color-divider);}
+  .vol-lede{font-size:var(--text-lg);line-height:1.7;color:var(--color-text-muted);max-width:62ch;margin:var(--space-4) 0 0;}
+  .vol-ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:var(--space-5);margin-top:var(--space-9);}
+  .vol-way{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);display:flex;flex-direction:column;}
+  .vol-way__tag{font-size:var(--text-xs);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-primary);margin:0;}
+  .vol-way__title{font-family:var(--font-display);font-size:var(--text-xl);line-height:1.25;margin:var(--space-2) 0 var(--space-3);}
+  .vol-way__body{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin:0 0 var(--space-5);flex:1;}
+  .vol-way__btn{align-self:flex-start;font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;padding:0.6rem 1.1rem;border:1.5px solid var(--color-primary);border-radius:var(--radius-sm);background:transparent;color:var(--color-primary);cursor:pointer;transition:background var(--transition-interactive),color var(--transition-interactive);}
+  .vol-way__btn:hover{background:var(--color-primary);color:#fff;}
+  .vol-worth{margin-top:var(--space-12);padding-top:var(--space-10);border-top:1px solid var(--color-divider);}
+  .vol-worth__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-6) var(--space-8);margin-top:var(--space-6);}
+  .vol-worth__item h4{font-family:var(--font-display);font-size:var(--text-base);margin:0 0 var(--space-2);}
+  .vol-worth__item p{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin:0;}
+  .vol-practical{margin-top:var(--space-10);background:var(--color-surface);border:1px solid var(--color-border);border-left:3px solid var(--color-primary);border-radius:var(--radius-md);padding:var(--space-6) var(--space-7);}
+  .vol-practical h4{font-family:var(--font-display);font-size:var(--text-base);margin:0 0 var(--space-3);}
+  .vol-practical ul{margin:0;padding-left:1.15rem;}
+  .vol-practical li{font-size:var(--text-sm);line-height:1.75;color:var(--color-text-muted);margin-bottom:0.35rem;}
+  .vol-practical li:last-child{margin-bottom:0;}
   .donate-section{background:var(--color-primary);color:#fff;}
   .donate-card{max-width:var(--content-narrow,720px);margin:0 auto;text-align:center;}
   .donate-section .section-label{color:rgba(255,255,255,.85);}
@@ -1206,6 +1224,7 @@
       <a href="https://friendsofsaron.wordpress.com" class="nav__link" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;">About</a>
       <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;">Contact</a>
+      <a href="#" class="nav__link" onclick="showPage('home');setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;">Volunteer</a>
       <a href="#" class="nav__link nav__link--donate" onclick="showPage('home');setTimeout(()=>document.getElementById('donate').scrollIntoView({behavior:'smooth'}),200);return false;">Donate</a>
     </nav>
     <div class="nav__actions">
@@ -1228,6 +1247,7 @@
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">About</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Contact</a>
+    <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Volunteer</a>
     <a href="#" onclick="showPage('home');closeMobile();setTimeout(()=>document.getElementById('donate').scrollIntoView({behavior:'smooth'}),200);return false;" role="menuitem">Donate</a>
   </div>
 </header>
@@ -1650,6 +1670,128 @@
          https://buy.stripe.com/xxxxxxxx). No other changes needed.
          Create the links at https://dashboard.stripe.com/payment-links
          ============================================================ -->
+    <section class="vol-section" id="volunteer" aria-labelledby="volunteer-heading">
+      <div class="container">
+        <p class="section-label">Volunteer</p>
+        <h2 class="section-title" id="volunteer-heading">Come and give us a hand.</h2>
+        <p class="vol-lede">
+          Friends of Saron is a small group of local people. Everything you can see on this site —
+          the cleared ground, the reset headstones, the burial records, the photographs — was done by
+          volunteers, most of them in their own time and at their own pace. There is always more to do
+          than there are hands to do it, so if any of the following sounds like you, we would be glad to hear from you.
+        </p>
+
+        <div class="vol-ways">
+          <div class="vol-way">
+            <p class="vol-way__tag">On site</p>
+            <h3 class="vol-way__title">Work days at the graveyard</h3>
+            <p class="vol-way__body">
+              Clearing brambles and ivy, cutting back, tidying paths, making leaning stones safe.
+              Hand tools only and always carefully, because the stones are fragile. No experience needed —
+              come for an hour or come for the morning. Tools, gloves and tea are provided.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('work days at the graveyard')">I could help with this</button>
+          </div>
+          <div class="vol-way">
+            <p class="vol-way__tag">From home</p>
+            <h3 class="vol-way__title">Records and research</h3>
+            <p class="vol-way__body">
+              Checking names against the census, birth and death indexes and the Welsh newspaper archives.
+              Chasing down a date that does not quite add up. This can be done from a kitchen table
+              anywhere in the world, and it is how most of our register was built.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('records and research from home')">I could help with this</button>
+          </div>
+          <div class="vol-way">
+            <p class="vol-way__tag">Photography</p>
+            <h3 class="vol-way__title">Photographing headstones</h3>
+            <p class="vol-way__body">
+              Hundreds of the people in our register have no photograph of their memorial yet. If you are
+              handy with a camera or even just a phone, a morning of careful photography adds something
+              permanent that anyone searching for their family can see.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('photographing headstones')">I could help with this</button>
+          </div>
+          <div class="vol-way">
+            <p class="vol-way__tag">Welsh language</p>
+            <h3 class="vol-way__title">Reading and translating</h3>
+            <p class="vol-way__body">
+              Many of the older inscriptions are in Welsh, some of it worn and some of it verse.
+              If you read Welsh, you can help us get the wording and the translations right — and tell us
+              when we have got them wrong.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('reading and translating Welsh inscriptions')">I could help with this</button>
+          </div>
+          <div class="vol-way">
+            <p class="vol-way__tag">Groups</p>
+            <h3 class="vol-way__title">Scouts, schools and clubs</h3>
+            <p class="vol-way__body">
+              A group can take on a whole row or a corner of the ground and see a visible difference in a
+              single session. We will show you what needs doing, work alongside you, and record what your
+              group achieved so it is on the public record.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('bringing a group to help')">Talk to us about a group</button>
+          </div>
+          <div class="vol-way">
+            <p class="vol-way__tag">Skills</p>
+            <h3 class="vol-way__title">Something else you can do</h3>
+            <p class="vol-way__body">
+              Stonework, dry stone walling, joinery, gardening, fundraising, minute-taking, publicity,
+              teaching, or simply knowing who to ask in Troedyrhiw. Small groups run on whatever skills
+              turn up. Tell us what yours are.
+            </p>
+            <button type="button" class="vol-way__btn" onclick="volunteerAsk('something else I can offer')">Offer a skill</button>
+          </div>
+        </div>
+
+        <div class="vol-worth">
+          <h3 class="section-title" style="font-size:var(--text-2xl)">What you get back</h3>
+          <div class="vol-worth__grid">
+            <div class="vol-worth__item">
+              <h4>You can see what you did</h4>
+              <p>
+                A row that was under brambles in the morning is readable by the afternoon.
+                Very little else in life gives you that.
+              </p>
+            </div>
+            <div class="vol-worth__item">
+              <h4>Company, and a reason to be out of the house</h4>
+              <p>
+                A few hours of steady outdoor work with other people, at whatever pace suits you.
+                Several of our volunteers came for the history and stayed for the company.
+              </p>
+            </div>
+            <div class="vol-worth__item">
+              <h4>You learn how this work is really done</h4>
+              <p>
+                Reading a worn inscription, tracing a family through the records, handling old stone
+                without damaging it. These are proper skills, and we will teach you them.
+              </p>
+            </div>
+            <div class="vol-worth__item">
+              <h4>Names come back</h4>
+              <p>
+                Every inscription recorded is somebody's ancestor found by somebody else, sometimes
+                from the other side of the world. We have had visitors from Patagonia.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vol-practical">
+          <h4>Before you ask, the practical bits</h4>
+          <ul>
+            <li>There is no minimum commitment. Turn up once or turn up for years; both are useful.</li>
+            <li>You do not need to be from Troedyrhiw, and you do not need a family connection to Saron.</li>
+            <li>Nobody has to climb, lift or kneel. There is plenty of work that involves none of those.</li>
+            <li>The group carries insurance covering volunteers working on site.</li>
+            <li>Under-18s are welcome with a parent, carer or group leader.</li>
+            <li>We are not a registered charity — we are a community group with a constitution adopted at a public meeting in 2009, minuted meetings and accounts presented at each AGM.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section class="donate-section" id="donate" aria-labelledby="donate-heading">
       <div class="container">
         <div class="donate-card">
@@ -2402,6 +2544,7 @@
           <li><a href="#" onclick="showPage('owain');return false;">Ask Owain</a></li>
           <li><a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer">Project Blog &amp; Archive</a></li>
           <li><a href="#about" onclick="showPage('home');return false;">About</a></li>
+          <li><a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('volunteer').scrollIntoView({behavior:'smooth'}),200);return false;">Volunteer</a></li>
           <li><a href="#contact" onclick="showPage('home');return false;">Contact</a></li>
         </ul>
       </div>
@@ -2890,7 +3033,22 @@ const SUPABASE_ANON_KEY   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdX
 
 /* Sends the message to the volunteers through the same route the Adopt a Grave
    and Ask Owain forms use, so nothing typed here is lost. */
-async function submitContact(e){
+function volunteerAsk(kind){
+    var msgEl = document.getElementById('message');
+    var contact = document.getElementById('contact');
+    if(msgEl){
+      var line = 'I would like to volunteer with Friends of Saron — ' + kind + '.';
+      if(!msgEl.value.trim()){
+        msgEl.value = line + '\n\nA little about me: ';
+      } else if(msgEl.value.indexOf(line) === -1){
+        msgEl.value = line + '\n\n' + msgEl.value;
+      }
+    }
+    if(contact){ contact.scrollIntoView({behavior:'smooth', block:'start'}); }
+    setTimeout(function(){ if(msgEl){ msgEl.focus(); try{ msgEl.setSelectionRange(msgEl.value.length, msgEl.value.length); }catch(e){} } }, 520);
+  }
+
+  async function submitContact(e){
   e.preventDefault();
   const form = e.target;
   const btn  = document.getElementById('contactSubmit');
