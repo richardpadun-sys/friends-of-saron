@@ -2745,6 +2745,7 @@ const STORIES = [
   },
   {
     slug: 'jones-brothers',
+    plural: true,
     kicker: 'Troedyrhiw, 1870',
     title: 'A fall of stone',
     subtitle: 'Morgan Jones, aged 28, and Rees Jones, aged 23 \u2014 2 September 1870',
@@ -2875,6 +2876,7 @@ const STORIES = [
   },
   {
     slug: 'john-ann-jones',
+    plural: true,
     kicker: 'Troedyrhiw, 1923',
     title: 'A stone paid for from the goldfields',
     subtitle: 'John and Ann Jones, Duffryn Top \u2014 stone replaced in 1923',
@@ -2897,6 +2899,7 @@ const STORIES = [
   },
   {
     slug: 'blemey-children',
+    plural: true,
     kicker: 'Troedyrhiw, 1860 and 1861',
     title: 'Two children, found again in 2022',
     subtitle: 'William and Elizabeth Blemey \u2014 1860 and 1861',
@@ -2914,7 +2917,7 @@ const STORIES = [
         verse: 'Sweet innocencey\u2019s form lies here.\nLamented by its Parents dear:\nWe hope at last in endless days\nTo meet again our lovely boy.' },
       { kind: 'text', html: 'Thomas Blemey was a collier. He and Ann lost William two days before Christmas 1860, and Elizabeth the following May. The verse was chosen for William \u2014 it is his parents speaking about a boy \u2014 and Elizabeth\u2019s line was cut in afterwards, below it.' },
       { kind: 'text', html: 'Blemey, which also appears as Blamey, is a Cornish name. The family had come to south Wales from the Gwennap area of Cornwall in the 1840s, part of the movement of Cornish mining families into the Welsh coalfield.' },
-      { kind: 'note', html: 'The stone reads BLEMEY. The burial index has carried this family as BLENEY, and the name appears elsewhere as BLAMEY. The project is treating the stone as the better reading, and the index is being corrected to match it.' }
+      { kind: 'note', html: 'The stone reads BLEMEY. The name appears elsewhere as BLAMEY, and the burial index had carried it as BLENEY \u2014 the index now follows the stone. Elizabeth had also been indexed as five years old rather than five months; that too has been put right.' }
     ]
   },
   {
@@ -3086,6 +3089,7 @@ const STORIES = [
   },
   {
     slug: 'jones-canton',
+    plural: true,
     kicker: 'Troedyrhiw, five generations',
     title: 'The family of the Canton Shop',
     subtitle: 'Daniel Jones, d. 1897, and the five generations after him',
@@ -3167,6 +3171,7 @@ const STORIES = [
   },
   {
     slug: 'price-children',
+    plural: true,
     kicker: 'Troedyrhiw, 1893 and 1898',
     title: 'The minister\u2019s two children',
     subtitle: 'William David and Maggie Mary Price \u2014 1893 and 1898',
@@ -3223,6 +3228,7 @@ const STORIES = [
   },
   {
     slug: 'lloyd-carnegie',
+    plural: true,
     kicker: 'Carnegie, Pennsylvania, 1906',
     title: 'Buried in Pennsylvania, named at Saron',
     subtitle: 'William Lloyd, aged 34 \u2014 Christmas Day 1906',
@@ -3368,9 +3374,9 @@ function openStory(slug, skipHash){
     <p class="story__lede">${escHtml(s.lede)}</p>
     ${s.blocks.map(renderStoryBlock).join('')}
     <div class="story__plot">
-      <span>${s.ref
-        ? `<strong>${escHtml(s.person)}</strong> is buried at ${escHtml(s.ref)}.`
-        : `<strong>${escHtml(s.person)}</strong> is buried at Saron. We have not yet fixed the plot \u2014 the graveyard is being resurveyed and the row lettering settled, and we would rather say nothing than say the wrong thing.`}</span>
+      <span>${(() => { const be = s.plural ? 'are' : 'is'; const pl = s.plural ? 'the plots' : 'the plot'; return s.ref
+        ? `<strong>${escHtml(s.person)}</strong> ${be} buried at ${escHtml(s.ref)}.`
+        : `<strong>${escHtml(s.person)}</strong> ${be} buried at Saron. We have not yet fixed ${pl} \u2014 the graveyard is being resurveyed and the row lettering settled, and we would rather say nothing than say the wrong thing.`; })()}</span>
       ${rel}
     </div>`;
   showPage('story');
