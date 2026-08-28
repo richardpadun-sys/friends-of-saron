@@ -562,6 +562,7 @@
   .story__report-head{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--color-primary);margin:0 0 var(--space-3);}
   .story__cite{font-size:var(--text-sm);color:var(--color-text-muted);margin:0 0 var(--space-8);}
   .insc{width:calc(100% + 2 * var(--space-8));margin-inline:calc(-1 * var(--space-8));display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:var(--space-6);margin:0 0 var(--space-4);}
+  .insc--one{grid-template-columns:1fr;}
   .insc__col h3{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--color-primary);margin:0 0 var(--space-3);font-family:var(--font-body);}
   .insc__col p{font-family:var(--font-display);line-height:1.5;margin:0 0 var(--space-4);white-space:pre-line;}
   .insc__col p:last-child{margin:0;}
@@ -2871,6 +2872,425 @@ const STORIES = [
         caption: 'The site of the shop today.' },
       { kind: 'note', html: 'Two questions remain open. The monument names Morgan Rees as the butcher, so we do not yet know how he and David stood in relation to one another, and the six-year-old David who died in 1858 is a different David from the one in the photograph. The other people in the tomb are not yet identified. If you can help, the volunteers would be glad to hear from you.' }
     ]
+  },
+  {
+    slug: 'john-ann-jones',
+    kicker: 'Troedyrhiw, 1923',
+    title: 'A stone paid for from the goldfields',
+    subtitle: 'John and Ann Jones, Duffryn Top \u2014 stone replaced in 1923',
+    person: 'John and Ann Jones',
+    card: { img: 'images/stories/story-john-ann-jones-headstone.jpg',
+            alt: 'A plain arched headstone, its lettering worn but legible, to John and Ann Jones of Duffryn Top' },
+    lede: 'The stone standing over John and Ann Jones is not the one their family first raised. It went up in 1923 to replace an earlier stone that had stood some thirty years and fallen into a poor state \u2014 and the money for it had travelled a very long way to get there.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-john-ann-jones-headstone.jpg',
+        alt: 'The replacement headstone at Saron, arched, the inscription cut in plain capitals',
+        caption: 'The replacement stone, erected in 1923.' },
+      { kind: 'stone', head: 'The inscription',
+        lines: ['IN LOVING MEMORY OF\nJOHN JONES\nDUFFRYN TOP, TROEDYRHIW,\nWHO DEPARTED THIS LIFE DEC 5 1893,\nAGED 79 YEARS',
+                'ALSO OF\nANN JONES,\nWIFE OF THE ABOVE\nWHO DEPARTED THIS LIFE OCT 6 1890,\nAGED 75 YEARS\nAT REST.'] },
+      { kind: 'text', html: 'Among their children was Sarah, known in the family as Sally, who emigrated from Troedyrhiw to the United States in 1866 with her husband and family, and who appears in the records as Sally Blamey.' },
+      { kind: 'text', html: 'Sally had a brother, William Jones (1837\u20131893), who had gone looking for gold. He worked the goldfields of California and Australia over a period running from the mid-1850s to the early 1870s, and he profited by it. When he died, a significant sum passed to his wife, Mary Jones n\u00e9e Phillips (1846\u20131923).' },
+      { kind: 'text', html: 'It was Mary \u2014 Sally\u2019s sister-in-law \u2014 who paid for the replacement memorial. She died in the same year it was raised.' },
+      { kind: 'note', html: 'From the research of David Collier for the Friends of Saron project. The gold that paid for this stone was won on two other continents, and none of it shows on the face of it.' }
+    ]
+  },
+  {
+    slug: 'blemey-children',
+    kicker: 'Troedyrhiw, 1860 and 1861',
+    title: 'Two children, found again in 2022',
+    subtitle: 'William and Elizabeth Blemey \u2014 1860 and 1861',
+    person: 'William and Elizabeth Blemey',
+    card: { img: 'images/stories/story-blemey-headstone.jpg',
+            alt: 'A gabled sandstone headstone carved with cherubs, its inscription sharp and clear' },
+    lede: 'On 20 August 2022, volunteers working in the graveyard unearthed a buried headstone. Its carving had been protected by the soil and was almost untouched. It named two small children who had died five months apart.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-blemey-headstone.jpg',
+        alt: 'The Blemey headstone, its gabled top carved with cherubs among clouds, the lettering crisp',
+        caption: 'The stone as it came out of the ground in August 2022. The cherubs across the gable are barely weathered.' },
+      { kind: 'stone', head: 'The inscription',
+        lines: ['In memory of WILLIAM,\nSon of\nTHOMAS & ANN BLEMEY,\nCollier\ndied Dec 20th 1860 : aged 2 Years.',
+                'Also ELIZABETH, their daughr.\ndied May 8th 1861; aged 5 months.'],
+        verse: 'Sweet innocencey\u2019s form lies here.\nLamented by its Parents dear:\nWe hope at last in endless days\nTo meet again our lovely boy.' },
+      { kind: 'text', html: 'Thomas Blemey was a collier. He and Ann lost William two days before Christmas 1860, and Elizabeth the following May. The verse was chosen for William \u2014 it is his parents speaking about a boy \u2014 and Elizabeth\u2019s line was cut in afterwards, below it.' },
+      { kind: 'text', html: 'Blemey, which also appears as Blamey, is a Cornish name. The family had come to south Wales from the Gwennap area of Cornwall in the 1840s, part of the movement of Cornish mining families into the Welsh coalfield.' },
+      { kind: 'note', html: 'The stone reads BLEMEY. The burial index has carried this family as BLENEY, and the name appears elsewhere as BLAMEY. The project is treating the stone as the better reading, and the index is being corrected to match it.' }
+    ]
+  },
+  {
+    slug: 'david-thomas-jp',
+    kicker: 'Troedyrhiw, 1947',
+    title: 'A grave brought back',
+    subtitle: 'David Thomas J.P., Yew Street \u2014 17 September 1947',
+    person: 'David Thomas J.P.',
+    card: { img: 'images/stories/story-david-thomas-jp-restored.jpg',
+            alt: 'A pink granite kerbed grave, rebuilt and level, with white chippings inside the kerb' },
+    lede: 'Just round the corner from the main gate stands a striking grave of polished pink granite. The family who raised it had clearly cared a great deal. By the time the volunteers reached it, it had been pulled apart.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-david-thomas-jp-before.jpg',
+        alt: 'Two photographs: the pink granite grave leaning and sunken among other stones, and the same grave broken up with debris scattered around it',
+        caption: 'Before the work began. The effects of long-term neglect were plain across this part of the graveyard.' },
+      { kind: 'text', html: 'David Thomas was a justice of the peace and lived in Yew Street. He and his wife Elizabeth Ann were active and valued members of the village, and this is not a distant grave \u2014 the last burial in it was in 1953.' },
+      { kind: 'stone', head: 'The inscriptions on this grave',
+        lines: ['SACRED TO THE MEMORY OF\nDAVID THOMAS, J.P.\nBELOVED HUSBAND OF\nELIZABETH ANN THOMAS,\nYEW STREET TROEDYRHIW,\nWHO DIED SEP. 17TH 1947, AGED 61 YEARS',
+                'ALSO OF\nELIZABETH ANN THOMAS\nWHO DIED SEP. 8TH 1950 AGED 64 YEARS.',
+                'On the kerb:\nTREASURED MEMORIES OF\nTHOMAS WALTER HUGHES\nBELOVED HUSBAND OF HILDA HUGHES\nWHO DIED AUGUST 4TH 1953, AGED 46 YEARS.'] },
+      { kind: 'figure', img: 'images/stories/story-david-thomas-jp-restored.jpg',
+        alt: 'The restored grave, the pink granite kerb square and level, the interior filled with white chippings',
+        caption: 'Skilled volunteers have returned this grave to a fitting condition.' },
+      { kind: 'note', html: 'Work like this is slow, heavy and done by hand. If you would like to help \u2014 with the work itself, with the records, or by supporting the project \u2014 the volunteers would be glad to hear from you.' }
+    ]
+  },
+  {
+    slug: 'dorothy-buckthought',
+    kicker: 'Troedyrhiw, 1938',
+    title: 'A schoolgirl\u2019s funeral',
+    subtitle: 'Dorothy Lilian Buckthought, aged 11 \u2014 June 1938',
+    person: 'Dorothy Lilian Buckthought',
+    card: { img: 'images/stories/story-dorothy-buckthought-portrait.jpg',
+            alt: 'A colourised photograph of a girl of about eleven in a dark pinafore and glasses, standing against a stone wall' },
+    lede: 'Dorothy Buckthought was eleven years old and was ill for only a few days. Her class mates and her teacher walked behind her coffin. She was buried at Saron in an unmarked grave.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-dorothy-buckthought-portrait.jpg',
+        alt: 'Dorothy Buckthought in a dark pinafore over a light blouse, wearing round glasses, her hands folded',
+        caption: 'Dorothy Buckthought. The photograph has been colourised.' },
+      { kind: 'text', html: 'She was the daughter of Mr and Mrs Ewart Buckthought of 17 Ash Road. She attended Tabernacle Church and was preparing to take a part in the annual Sunday School services.' },
+      { kind: 'report',
+        head: 'Schoolgirl\u2019s funeral',
+        paras: [
+          'The funeral of Dorothy Lilian Buckthought, the 11 years old daughter of Mr and Mrs Ewart Buckthought, 17, Ash-road, who died after only a few days\u2019 illness, took place on Tuesday at Saron Cemetery. Rev. J. C. Bowen officiated. Dorothy attended at Tabernacle Church and was preparing to take a part in the annual Sunday School services. Her class mates and teacher attended the funeral.',
+          'The mourners were: Mr Ewart Buckthought (father); Thomas Buckthought (brother); Messrs. James, Joe, Willie and Idris Williams, D. Jenkins (Merthyr), Levi and D. T. Williams, Elijah Blyde, Harry Jones, uncles. At the house were: Mrs E. Buckthought, mother; Mrs J. Williams, grandmother; Mesdames Rachel Williams, Mary Blyde, Bessie Williams, Nellie Jones, Hannah, Ivy and Ella Williams, aunts; and B. Daniels, Hafod. The bearers were Messrs. Leslie Good, Trevor Evans, Albt. Smith and W. Powell.',
+          'Floral tributes were sent by: Mammie and Daddy; Brothers and Sisters; Gran and Idris; Gran (Cornwall); Rachel and Tom; Mary and Elijah; Jim and Hannah; Joe and Jenny; Margaret and Tom (London); Levi and Ivy; Willie and Ella; Bess and Will; Nellie and Harry; Gladys and Ray (Torquay); Gertie and Frank (Acton); Sunday School Class; Day School Staff and Pupils; Tabernacle Church; Muriel; and neighbours. The funeral arrangements were carried out by Mr W. Lewis, undertaker, Merthyr.'
+        ],
+        cite: 'Merthyr Express, 4 June 1938. Transcribed by the Friends of Saron project.' },
+      { kind: 'figure', img: 'images/stories/story-dorothy-buckthought-report.jpg',
+        alt: 'The original newspaper column reporting the funeral, set in close type',
+        caption: 'The report as it appeared in the Merthyr Express.' },
+      { kind: 'text', html: 'The paper printed sixteen lines of names \u2014 uncles, aunts, bearers, the London cousins, the Cornish grandmother, the Sunday School class, the day school staff and pupils. A village turned out for her. And then she was put in a grave with nothing on it.' },
+      { kind: 'note', html: 'Dorothy has no headstone. We know where she is only because the burial index and this newspaper report survive. She is one of the reasons the project exists.' }
+    ]
+  },
+  {
+    slug: 'evan-williams',
+    kicker: 'South Africa, 1901',
+    title: 'For King and Empire',
+    subtitle: 'Trooper Evan J. Williams, aged 27 \u2014 20 May 1901',
+    person: 'Evan J. Williams',
+    card: { img: 'images/stories/story-evan-williams-marker.jpg',
+            alt: 'A stone cross grave marker in a South African cemetery, its ring carved IN MEMORY OF and FOR KING AND EMPIRE' },
+    lede: 'Evan J. Williams died in South Africa during the second Boer War. His family put his name on their stone at Saron. Nearly six thousand miles away, in Harrismith, there is a marker on his grave \u2014 and it gives the wrong date.',
+    blocks: [
+      { kind: 'text', html: 'Part of the inscription on his family\u2019s headstone at Saron reads:' },
+      { kind: 'stone', head: 'On the family stone at Saron',
+        lines: ['ALSO OF EVAN J. WILLIAMS, SON OF THE ABOVE\nWHO DIED IN SOUTH AFRICA\nMAY 20, 1901. AGED 27 YEARS'] },
+      { kind: 'text', html: 'His death is recorded, with those of his comrades from the Borough who also died in that conflict, on the Boer War Memorial in Merthyr.' },
+      { kind: 'text', html: 'An enquiry made of the South Africa War Graves Project returned the service record and a photograph of the grave: No 278748, Trooper E. J. Williams, 1st Battalion, 4th (Glamorgan) Company, Imperial Yeomanry, died of disease on 20 May 1901 and buried in Harrismith Cemetery.' },
+      { kind: 'figure', img: 'images/stories/story-evan-williams-marker.jpg',
+        alt: 'The ringed stone cross over Trooper Williams\u2019s grave in Harrismith Cemetery, other markers behind it',
+        caption: 'The marker on the grave of Evan J. Williams, Harrismith Cemetery, South Africa.' },
+      { kind: 'note', html: 'The marker in Harrismith states that he died on 21 May 1901. The service record and the family stone at Saron both give 20 May. Two stones, on two continents, and one of them is wrong.' }
+    ]
+  },
+  {
+    slug: 'glyn-davies',
+    kicker: 'Lancaster and Woolwich, 1942',
+    title: 'The name that took the most finding',
+    subtitle: 'Lance Corporal David Glyndwr Davies, aged 24 \u2014 10 October 1942',
+    person: 'David Glyndwr Davies',
+    card: { img: 'images/stories/story-glyn-davies-headstone.jpg',
+            alt: 'A tall pale headstone at Saron, the inscription in Welsh, a later English addition lower down' },
+    lede: 'One line on this stone posed more questions than the rest of it put together. Someone called Glyndwr had died on active service in 1942, and was buried at Woolwich. He had not lived in Troedyrhiw for thirteen years. So why is he named here?',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-glyn-davies-headstone.jpg',
+        alt: 'The Williams family headstone at Saron, its Welsh inscription weathered, later lines cut lower down',
+        caption: 'The stone at Saron. The Welsh inscription begins in 1893; the last name on it was added in 1956.' },
+      { kind: 'stone', head: 'The inscription, in English',
+        lines: ['IN MEMORY OF\nDAVID WILLIAMS\nOF THIS PLACE\nHE DIED MAY 17, 1893, AT 33 YEARS OLD.\n\u201cI\u2019VE FINISHED MY COURSE, YOUR CROWN, YOU GAVE ME TO KEEP\u201d.',
+                'ALSO OF SARAH, LOVING WIFE OF THE ABOVE,\nWHO DIED MARCH 10 1938 AT 74 YEARS OLD.\n\u201cBLESSED ARE THOSE THAT ARE PURE IN HEART\u201d.',
+                'ALSO OF GLYNDWR, GRANDSON OF THE ABOVE\nWHO DIED ON ACTIVE SERVICE OCT. 10, 1942\nAGED 24 YEARS. INTERRED AT WOOLWICH CEMETERY.\n\u201cONE WHO NEVER TURNED HIS BACK, BUT MARCHED BREAST FORWARD.\u201d',
+                'ALSO OF SARAH EDITH MORGAN,\nBELOVED WIFE OF ENOCH,\nDIED JULY 5, 1956, AGED 63,\nIN WHOM THERE WAS NO GUILE.'] },
+      { kind: 'text', html: 'Glyndwr was David Glyndwr Davies, known as Glyn. He was born in Troedyrhiw in 1918 and, during the depression years of the 1920s, moved with his family from the village to Kent. He married Joyce E. M. Hills at Dartford in September 1940, around the time he enlisted.' },
+      { kind: 'text', html: 'The Eythorne War Memorial website in Kent adds to the bare details on the Saron stone: Lance Corporal 2127658, 19 Field Squadron, Royal Engineers; died as a result of an accident on 10 October 1942; born Glamorgan, resident Kent; husband of J. Davies of Welling, Kent; buried Woolwich Cemetery, Section 12, Grave 381.' },
+      { kind: 'text', html: 'Two local newspaper reports set out what happened.' },
+      { kind: 'report',
+        head: 'Pontoon crash: 8 men missing',
+        paras: [
+          'Eight men of the Royal Engineers are missing following an accident during bridge building operations on the River Lune at Halton, near Lancaster, yesterday.',
+          'Two pontoon piers broke adrift on the river with three or four men on board. A folding boat and another pontoon with about 20 men on board was sent to their aid.',
+          'One of the piers had become lodged against the stancheons of an aqueduct bridge and the pontoon pier sent to the rescue collided with it and overturned, and the men plunged into the river which was running very fast.'
+        ],
+        cite: 'Contemporary local newspaper report, October 1942. Transcribed by the Friends of Saron project.' },
+      { kind: 'report',
+        head: 'Drowned while rescuing',
+        paras: [
+          'While engaged in rescue work following a bridge building accident at Lancaster on October 10, L/Cpl David Glyndwr Davies, E., aged 24, eldest son of Mr and Mrs A. Davies of 6, St John\u2019s Road, Elvington, near Dover, was drowned in a swift running river despite being a good swimmer. He was educated at Elvington Council School, Dover Evening Institute and Woolwich Polytechnic, and was a member of the Institute of Builders. Before joining the Army about two years ago he was engaged in the building trade in the London area.',
+          'Full military honours were accorded at the funeral at Woolwich where his widow resides. The chief mourners were the widow, Mr and Mrs Davies (parents), Messrs M. and D. Davies (brothers), Mr and Mrs J. Knott (brother-in-law and sister), Mrs Hills (mother-in-law), Mrs Lippart, Mr and Mrs E. Morgan, Mr and Mrs J. Hughes, Mr S. Davies (uncles and aunts), Aunts Flo and Emma and a number of friends.'
+        ],
+        cite: 'Contemporary local newspaper report, October 1942. Transcribed by the Friends of Saron project.' },
+      { kind: 'text', html: 'Glyn went into the water after other men. He was a strong swimmer and the river beat him anyway.' },
+      { kind: 'note', html: 'By the time he died at 24, Glyn had been away from Troedyrhiw for some thirteen years, and both maternal grandparents buried in this grave had died before him. Someone in the wider family wanted his name here regardless. The likeliest candidate is his aunt Sarah Edith Morgan n\u00e9e Williams \u2014 sister of Glyn\u2019s mother Annie Mary Davies n\u00e9e Williams \u2014 who is buried in the same grave, and whose own name was the last to be added.' }
+    ]
+  },
+  {
+    slug: 'john-w-williams',
+    kicker: 'British Columbia, 1877',
+    title: 'Crushed at Mission Creek',
+    subtitle: 'John W. Williams, aged 52 \u2014 3 May 1877',
+    person: 'John W. Williams',
+    card: { img: 'images/stories/story-john-w-williams-report.jpg',
+            alt: 'A column of a Victorian newspaper, the Daily British Colonist, reporting on the Cherry Creek diggings' },
+    lede: 'A Troedyrhiw collier learned his trade in the local pits and then went to look for gold in British Columbia. The inscription on his family stone gives a place name that took some working out.',
+    blocks: [
+      { kind: 'text', html: 'The inscriptions on this stone can now only be read with difficulty. They include the following:' },
+      { kind: 'stone', head: 'On the family stone at Saron',
+        lines: ['IN MEMORY OF\nJOHN W. WILLIAMS\nLATE OF TROEDYRHIW\nHE DIED MAY 3 1877\nAT 52 YEARS OLD\nBURIED AT OHANACAN BRITISH COLUMBIA'] },
+      { kind: 'text', html: '\u2018Ohanacan\u2019 would appear to be the Okanagan region of British Columbia. On Friday 18 May 1877 the Daily British Colonist, a newspaper published in that area, reported that \u201cat Mission Creek, a miner named Williams was crushed to death.\u201d' },
+      { kind: 'figure', img: 'images/stories/story-john-w-williams-report.jpg',
+        alt: 'The Daily British Colonist column reporting a strike at the Cherry Creek diggings and a man killed',
+        caption: 'The report in the Daily British Colonist, 18 May 1877. The line about Williams is at the foot of the column.' },
+      { kind: 'text', html: 'A report by the Gold Commissioner for British Columbia, Charles A. Vernon, for the previous year supports it. Vernon recorded the mining at Mission Creek and named an experienced man who had worked the Cariboo region before coming to the Okanagan: \u201cConsiderable mining and prospecting has also been done on Mission Creek this fall, with a fair average yield of gold. John Williams, an old Caribooite, has run a tunnel into the hill from the creek some 60 feet, and found a good prospect.\u201d' },
+      { kind: 'text', html: 'He had run his tunnel sixty feet into the hill and found a good prospect. Some months later the hill came down on him.' },
+      { kind: 'note', html: 'John Williams left a wife, Elizabeth, and two children, Mary Ann and William, in Troedyrhiw. They never saw him again. His name is on the family stone at Saron; his body is in British Columbia.' }
+    ]
+  },
+  {
+    slug: 'john-william-davies',
+    kicker: 'Belgium, 1918',
+    title: '\u201cWho sacrificed himself on the altar for his country\u201d',
+    subtitle: 'Private John William Davies, aged 24 \u2014 April 1918',
+    person: 'John William Davies',
+    card: { img: 'images/stories/story-john-william-davies-headstone.jpg',
+            alt: 'A tall Welsh headstone at Saron, green with algae, a carved emblem near the top' },
+    lede: 'In February 1917 John William Davies had a medical examination at Castle Pit, Troedyrhiw, where he worked as a coal trimmer. Fourteen months later he was dead in Belgium, and he has no grave that anyone can visit.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-john-william-davies-headstone.jpg',
+        alt: 'The Davies family headstone at Saron, the Welsh inscription filling the face of the stone',
+        caption: 'The Davies family stone at Saron. John William\u2019s name is near the foot of it.' },
+      { kind: 'text', html: 'He was examined at Castle Pit on 19 February 1917 and mobilised in May of that year \u2014 first with the Welsh Regiment, number 59944, then transferred to the 11th Battalion, Cheshire Regiment, number 53381. Less than a year later he was killed in action.' },
+      { kind: 'text', html: 'He was listed in a German report as having fallen near De Ghen \u2014 Ghent \u2014 in Belgium, and buried there. That is all the location anyone has.' },
+      { kind: 'text', html: 'He is now remembered by inscriptions on the Troedyrhiw War Memorial and on panel 4 and 5 of the Ploegsteert Memorial in Hainaut, Belgium \u2014 the memorial to the missing of that sector.' },
+      { kind: 'figure', img: 'images/stories/story-john-william-davies-memorial.jpg',
+        alt: 'The bronze soldier of the Troedyrhiw War Memorial, standing at rest with his rifle, the mountainside behind',
+        caption: 'Troedyrhiw War Memorial.' },
+      { kind: 'figure', img: 'images/stories/story-john-william-davies-ploegsteert.jpg',
+        alt: 'The circular colonnaded Ploegsteert Memorial in Belgium, headstones visible through the columns',
+        caption: 'Ploegsteert Memorial, Hainaut, Belgium.' },
+      { kind: 'stone', head: 'The inscription, in English',
+        lines: ['IN RESPECTFUL MEMORY OF\nANN, LOVING WIFE OF JOHN DAVIES OF THIS PLACE,\nWHO SUCCUMBED TO JESUS APRIL 12 1916 AT 67 YEARS OLD.\n\u201cHAIL THE DAY WE WILL MEET IN SALEM, AROUND THE TABLE.\u201d',
+                'ALSO OF DAVID JOHN, SON OF THE ABOVE,\nWHO DIED SEPTEMBER 29, 1873, AT 3 YEARS OLD.',
+                'ALSO OF MARTHA ANN, DAUGHTER OF THE ABOVE,\nWHO DIED MARCH 10, 1879, AT 13 MONTHS OLD.',
+                'ALSO IN RESPECTFUL MEMORY OF JOHN DAVIES,\nFAITHFUL DEACON OF THIS CHURCH,\nWHO DIED AUGUST 3 1919 AT 72 YEARS OLD.\n\u201cFOR HE WAS THE CANDLE BURNING AND ILLUMINATING,\nAND YOU WERE MY WILL TO TRIUMPH OVER TIME IN HIS LIGHT.\u201d',
+                'ALSO IN DEAR MEMORY OF JOHN WILLIAM DAVIES,\nGRANDSON OF THE ABOVE, WHO SACRIFICED HIMSELF ON\nTHE ALTAR FOR HIS COUNTRY IN FRANCE APRIL 1918,\nAGED 24 YEARS.\n\u201cTHE LORD GIVETH AND THE LORD TAKETH AWAY.\u201d\n\u201cTHY WILL BE DONE.\u201d'] },
+      { kind: 'note', html: 'The English above is a working translation of the Welsh, not a literal one. Note that the family cut \u201cin France\u201d into the stone; the records place his death in Belgium. Families were often told very little.' }
+    ]
+  },
+  {
+    slug: 'jones-canton',
+    kicker: 'Troedyrhiw, five generations',
+    title: 'The family of the Canton Shop',
+    subtitle: 'Daniel Jones, d. 1897, and the five generations after him',
+    person: 'The Jones \u2018Canton\u2019 family',
+    card: { img: 'images/stories/story-jones-canton-headstone.jpg',
+            alt: 'A pale headstone with a carved lamb in a roundel, the inscription in Welsh to Daniel Jones' },
+    lede: 'They were called the Jones \u2018Canton\u2019 family after the tea the family once imported from Canton in China. Between them they had a hand in the grocery, the ironmongery, the printing, the pharmacy, the books and the newspapers of Troedyrhiw for five generations.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-jones-canton-headstone.jpg',
+        alt: 'The headstone of Daniel Jones, founder of the business, a lamb carved in a roundel above the Welsh inscription',
+        caption: 'The grave of Daniel Jones, founder of the business, at Saron.' },
+      { kind: 'text', html: 'Daniel Jones came from Carmarthenshire to Troedyrhiw in the 1850s, at an early stage in the village\u2019s development, and established a grocery business in what became Bridge Street. His wife Mary died in 1882 aged 68; Daniel himself died in 1897, aged 85.' },
+      { kind: 'text', html: 'His two sons, William and John Daniel \u2014 known as \u2018J.D.\u2019 \u2014 followed him into the business and were successful in their own right, adding ironmongery, furnishing, printing, pharmacy, books and newspapers to the family\u2019s commercial interests.' },
+      { kind: 'figure', img: 'images/stories/story-jones-canton-advert.jpg',
+        alt: 'A Victorian advertisement reading J. D. JONES, GROCER, IRONMONGER, STATIONER AND GENERAL DEALER, CANTON SHOP, TROEDYRHIW',
+        caption: 'An advertisement for the Canton Shop. Mild-cured bacon, corned beef, salmon, lobster and sardines always in stock \u2014 and home-made bread daily.' },
+      { kind: 'stone', head: 'The second family grave',
+        lines: ['In Memory of\nDAVID\nSON OF WILLIAM & MARY JONES\n(CHEMIST) OF THIS PLACE\nWHO DIED JAN 22ND 1876\nAGED 3 MONTHS',
+                'ALSO OF THE ABOVE NAMED\nMARY JONES,\nWHO DIED JUNE 18TH 1879\nAGED 28 YEARS.',
+                'ALSO THE AFORESAID\nWILLIAM JONES\nWHO DIED APRIL 19TH 1883\nAGED 40 YEARS.'] },
+      { kind: 'text', html: 'William was the chemist. He lost his infant son David in 1876 and his wife Mary in 1879, and died himself in 1883 at forty. The businesses were carried on by his brother J.D., then by J.D.\u2019s son Brynmor (\u2018Bryn\u2019), his grandson Kenneth (\u2018Ken\u2019) and his great-grandson Frederick Graham (\u2018Fred\u2019).' },
+      { kind: 'figure', img: 'images/stories/story-jones-canton-bryn-ken.jpg',
+        alt: 'Two photographs: Bryn Jones seated behind a table of trophies, and Ken Jones handing out prizes at a village event',
+        caption: 'Bryn Jones (left) and Ken Jones (right) during the Festival of Britain celebrations in Troedyrhiw, 1951. The family were actively involved in this and many other events in the village.' },
+      { kind: 'note', html: 'Both of these graves are at Saron, which tells us the family attended the Welsh Independent chapel at this point. Later generations appear to have moved their religious allegiance to St John\u2019s Church, the Anglican church in the village \u2014 so the graves stop here, even though the family did not.' }
+    ]
+  },
+  {
+    slug: 'marsden-williams',
+    kicker: 'Kantara, Egypt, 1918',
+    title: 'The stretcher-bearer at Kantara',
+    subtitle: 'Private Godfrey Marsden Williams, aged 25 \u2014 26 April 1918',
+    person: 'Marsden Williams',
+    card: { img: 'images/stories/story-marsden-williams-headstone.jpg',
+            alt: 'A pale headstone carved with flowers and skulls, in memory of Samson Williams and his son Marsden' },
+    lede: 'Marsden Williams was a stretcher-bearer with a field ambulance in Egypt. He died there in April 1918, aged 25, and is buried at Kantara. On his village\u2019s war memorial he appears under a name almost nobody used.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-marsden-williams-headstone.jpg',
+        alt: 'The Williams memorial at Saron, its border carved with flowers and winged skulls, the inscription weathered',
+        caption: 'The Williams memorial in Saron Graveyard, Troedyrhiw.' },
+      { kind: 'stone', head: 'The inscription',
+        lines: ['IN MEMORY OF\nSAMSON WILLIAMS\nTHE BELOVED HUSBAND OF\nRACHEL WILLIAMS TROEDYRHIW\nWHO DIED JULY 5 1923,\nAGED 59 YEARS.\nPEACE PERFECT PEACE',
+                'ALSO OF\nMARSDEN WILLIAMS\nBELOVED SON OF THE ABOVE\nWHO DIED ON ACTIVE SERVICE AT\nKANTARA EGYPT, APRIL 26, 1918.\nAGED 25 YEARS.\nHE OBEYED THE CALL OF DUTY.',
+                'ALSO RACHEL BELOVED WIFE OF THE ABOVE SAMSON WILLIAMS\nDIED APRIL 26, 1932, AGED 67 YEARS\nUNITED IN LOVE.'] },
+      { kind: 'text', html: 'The Commonwealth War Graves Commission records him as Private Marsden Williams, 362162, Welsh Border Mounted Brigade Field Ambulance, Royal Army Medical Corps, who died on 26 April 1918 aged 25 \u2014 son of Samson and Rachel Williams of 2 Industrial Buildings, Troedyrhiw. He is remembered at Kantara War Memorial Cemetery.' },
+      { kind: 'figure', img: 'images/stories/story-marsden-williams-certificate.jpg',
+        alt: 'A Commonwealth War Graves Commission certificate for Private Marsden Williams, with a photograph of Kantara War Memorial Cemetery',
+        caption: 'The Commonwealth War Graves Commission certificate, with Kantara War Memorial Cemetery. Palms, bougainvillea and rows of white headstones.' },
+      { kind: 'figure', img: 'images/stories/story-marsden-williams-memorial.jpg',
+        alt: 'A panel of the Troedyrhiw War Memorial listing names and regiments, including C. M. WILLIAMS',
+        caption: 'Marsden Williams on the Troedyrhiw War Memorial, listed as G. M. WILLIAMS \u2014 his full name was Godfrey Marsden Williams.' },
+      { kind: 'note', html: 'Rachel Williams died on 26 April 1932 \u2014 the same date, fourteen years on, as the son whose name she had put on this stone. Whether that is coincidence we cannot say; the stone records it either way.' }
+    ]
+  },
+  {
+    slug: 'rees-davies',
+    kicker: 'Boulogne, 1914',
+    title: 'One of the first',
+    subtitle: 'Driver Rees Davies, aged 25 \u2014 7 December 1914',
+    person: 'Rees Davies',
+    card: { img: 'images/stories/story-rees-davies-headstone.jpg',
+            alt: 'A stepped grey monument at Saron to Ellen and Isaac B. Davies, with a line for their son Rees who died in France' },
+    lede: 'The war was four months old when Rees Davies died of his wounds at Boulogne. He was 25, from 7 Wyndham Street, and he was among the first men from the village to be killed.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-rees-davies-headstone.jpg',
+        alt: 'The stepped Davies monument at Saron, the lettering cut on each face',
+        caption: 'The Davies family grave at Saron. Rees is named on his parents\u2019 monument.' },
+      { kind: 'text', html: 'He was a member of the Army Service Corps, regimental number T2/01668, probably working in horse transport rather than mechanical. The field service report of his death recorded that he had suffered a gunshot wound which required a below-the-knee amputation of the leg.' },
+      { kind: 'text', html: 'He is buried in Plot III.B.55 of Boulogne Eastern Cemetery, and is remembered on his parents\u2019 grave at Saron and on the village war memorial.' },
+      { kind: 'figure', img: 'images/stories/story-rees-davies-boulogne.jpg',
+        alt: 'A Commonwealth War Graves headstone at Boulogne Eastern Cemetery for Driver Rees Davies, Royal Army Service Corps',
+        caption: 'His grave at Boulogne Eastern Cemetery. The foot of the stone names his parents and 7 Wyndham Street, Troedyrhiw.' },
+      { kind: 'stone', head: 'The inscription at Saron',
+        lines: ['IN LOVING MEMORY OF\nELLEN\nBELOVED WIFE OF\nISAAC B DAVIES\nDIED MAY 27TH 1930 AGED 60 YEARS\nLIFE\u2019S WORK WELL DONE, LIFE\u2019S CROWN\nWELL WON. THEN COMES REST.',
+                'ALSO REES THEIR SON, WHO DIED IN FRANCE',
+                'ALSO OF THE AFORESAID ISAAC B DAVIES WHO DIED\nFEB 20, 1934 AGED 85 YEARS\nTHY WILL BE DONE.'] },
+      { kind: 'note', html: 'Six words on his parents\u2019 stone: \u201cAlso Rees their son, who died in France.\u201d No number, no unit, no date. Isaac lived another twenty years after his wife, and nearly twenty-five years past his son.' }
+    ]
+  },
+  {
+    slug: 'price-children',
+    kicker: 'Troedyrhiw, 1893 and 1898',
+    title: 'The minister\u2019s two children',
+    subtitle: 'William David and Maggie Mary Price \u2014 1893 and 1898',
+    person: 'The children of Rev J. W. Price',
+    card: { img: 'images/stories/story-price-children-headstone.jpg',
+            alt: 'A stone carved as an open book on a rough cobbled base, its pages inscribed, green with moss' },
+    lede: 'In the 1890s the Rev and Mrs Price lost two of their children, and buried them both at Saron. Child mortality in Wales in this period was extraordinarily high: one child in six died before reaching their sixth birthday.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-price-children-headstone.jpg',
+        alt: 'The Price children\u2019s memorial at Saron, carved as an open book resting on a base of rounded river cobbles',
+        caption: 'The memorial at Saron, carved as an open book on a base of rounded cobbles.' },
+      { kind: 'stone', head: 'The inscription',
+        lines: ['IN MEMORY OF\nWILLIAM DAVID AND\nMAGGIE MARY.\nTHE BELOVED CHILDREN OF\nTHE REV. J.W. AND\nMARY PRICE\nSARON VILLA, TROEDYRHIW\nWHO FELL ASLEEP\nFEB 23RD 1893 AND\nJUNE 23RD 1898\nAGED 19 MONTHS\nAND 11 YEARS.'],
+        verse: 'THEY ARE NOT DEAD\nBUT ASLEEP' },
+      { kind: 'figure', img: 'images/stories/story-price-children-portraits.jpg',
+        alt: 'Two studio portraits side by side: a bearded man in a dark suit and high collar, and a woman with her hair drawn up',
+        caption: 'Rev and Mrs J. W. Price.' },
+      { kind: 'text', html: 'Rev John Walter Price was, perhaps, the best known of Saron\u2019s ministers, serving the people of Troedyrhiw in that capacity for forty-two years, from 1886 to 1928.' },
+      { kind: 'text', html: 'During his first year he oversaw the completion of a new vestry, and by 1892 a fine manse called Saron Villa \u2014 which still stands \u2014 had been built. While he established himself in the role, conducting services, building up the chapel membership, improving its finances, visiting the old and the sick and organising educational and cultural events, Mrs Price was busy as a Sunday School teacher, leader of the Ladies Guild and in other ways.' },
+      { kind: 'text', html: 'Rev Price achieved considerable status and influence outside Troedyrhiw, rising to leadership roles in church organisations and championing causes in both Wales and England. He was particularly active in the temperance movement, which was vigorously opposed to the sale and consumption of alcohol; he was responsible for trebling the membership of its youth section, the Juvenile Rechabites, in his region, from 2,000 to over 6,000.' },
+      { kind: 'text', html: 'After two successful preaching trips to America, one in 1900 and the other in 1906, he was sometimes known as \u2018Price America\u2019 \u2014 an alternative to the more usual \u2018Price Saron\u2019.' },
+      { kind: 'note', html: 'William David was 19 months old; Maggie Mary was 11. The burial index had recorded William David\u2019s age as 19 years. The stone corrects it, and the index now reads 19 months.' }
+    ]
+  },
+  {
+    slug: 'thomas-griffiths',
+    kicker: 'Gethin Colliery, 1862',
+    title: 'A quiet and diligent boy',
+    subtitle: 'Thomas Griffiths, aged 18 \u2014 20 February 1862',
+    person: 'Thomas Griffiths',
+    card: { img: 'images/stories/story-thomas-griffiths-headstone.jpg',
+            alt: 'A pale headstone with a carved scroll across the top reading ER COF AM, the Welsh inscription below' },
+    lede: 'Few of the people enjoying Bike Park Wales in Gethin Woods today will know that this was the site of two terrible mining accidents. Thomas Griffiths, eighteen years old, died in the first of them.',
+    blocks: [
+      { kind: 'text', html: 'The accidents were caused by firedamp \u2014 methane \u2014 explosions deep underground at the Gethin Collieries Nos. 1 and 2.' },
+      { kind: 'text', html: 'The first, in February 1862, occurred in the No. 1 Pit and claimed the lives of 47 men and boys. The youngest was aged just 11 and the oldest 62. The tragedy left 21 women widowed and 57 children fatherless. Just over three years later, in December 1865, a second explosion in the No. 2 Pit killed a further 36 miners.' },
+      { kind: 'figure', img: 'images/stories/story-thomas-griffiths-headstone.jpg',
+        alt: 'The Griffiths family headstone at Saron, a carved scroll across the head reading ER COF AM, the Welsh inscription weathered but readable',
+        caption: 'The Griffiths family stone at Saron. Thomas is the third of four children named on it.' },
+      { kind: 'inscription',
+        welsh: ['ER COF AM\nHANNAH merch BENJAMIN\na MARI GRIFFITHS o\u2019r lle hwn\nbu farw Chwef 24 1843\nyn flwydd a 10 mis oed.',
+                'Hefyd BENJAMIN eu mab\na fu farw Medi 20 1850\nyn flwydd ac 8 mis oed.',
+                'Hefyd am THOMAS eu mab\na fu farw trwy danchwa Cethin\nChwef 20 1862 yn 18 mlwydd oed.',
+                'Hefyd baban iddynt a fu farw\nIon 18 1866 yn 6 mis oed.'],
+        verseWelsh: 'Thomas oedd dawel a diwyd yn ei ddydd\nOnd heddy mewn gwynfyd\n\u2026 a thrwy boen yr aeth ar byd.',
+        english: ['IN MEMORY OF\nHANNAH, daughter of BENJAMIN\n& MARI GRIFFITHS of this place,\nwho died Feb 24 1843\nat a year and 10 months old.',
+                  'Also BENJAMIN their son,\nwho died Sept 20 1850\nat one year and 8 months old.',
+                  'Also of THOMAS their son,\nwho died at the Gethin explosion\nFeb 20 1862 at 18 years old.',
+                  'Also their baby who died\nJan 18 1866 at 6 months old.'],
+        verseEnglish: 'Thomas was quiet and diligent in his day\nBut today he is in bliss\n\u2026 and through pain he left this world.' },
+      { kind: 'text', html: 'Four children on one stone: a girl of not quite two, a boy of one year and eight months, a working man of eighteen killed underground, and a baby of six months. Benjamin and Mari Griffiths outlived all four.' },
+      { kind: 'note', html: 'The Welsh is worn in places and the middle of the verse cannot be read with confidence; the reading above is provisional, and the English is a plain rendering rather than a literal translation. The line the family chose for Thomas \u2014 that he was quiet and diligent in his day \u2014 is the clearest thing on the stone.' }
+    ]
+  },
+  {
+    slug: 'lloyd-carnegie',
+    kicker: 'Carnegie, Pennsylvania, 1906',
+    title: 'Buried in Pennsylvania, named at Saron',
+    subtitle: 'William Lloyd, aged 34 \u2014 Christmas Day 1906',
+    person: 'The Lloyd family',
+    card: { img: 'images/stories/story-thomas-lloyd-headstone.jpg',
+            alt: 'A tall headstone at Saron with a carved rose in a roundel, the Welsh inscription running round it' },
+    lede: 'This stone carries a burial place four thousand miles from Troedyrhiw. William Lloyd died in Pennsylvania on Christmas Day 1906 and was buried there, and his family had the fact cut into the stone at home.',
+    blocks: [
+      { kind: 'figure', img: 'images/stories/story-thomas-lloyd-headstone.jpg',
+        alt: 'The Lloyd headstone at Saron, a rose carved in a roundel, the Welsh inscription wrapping around the face of the stone',
+        caption: 'The Lloyd stone at Saron.' },
+      { kind: 'stone', head: 'The inscription, in English',
+        lines: ['IN MEMORY OF THOMAS LLOYD\nCWMBACH\nPREVIOUSLY OF THIS PLACE\nHE DIED MAY 12 1888\nAT 65 YEARS OLD\n\u201cBECAUSE HE WAS FAITHFUL AND FEARED GOD MORE THAN MOST\u201d',
+                'ALSO FOR MARY LLOYD HIS WIFE\nWHO DIED MAY 8 1902\nAT 72 YEARS OLD.\nWHAT SHE COULD DO SHE DID',
+                'IN LOVING MEMORY OF WILLIAM LLOYD THEIR SON\nWHO DIED CHRISTMAS 1906 AT 34 YEARS OLD\nWHO WAS BURIED IN CHARTER CEMETERY \u2014 CARNEGIE, U.S. AMERICA.\n\u201cIN THE MIDST OF OUR LIVES WE ARE IN DEATH\u201d',
+                'ALSO JAMES\nDEAR SON OF MARGARET AND\nTHE LATE JOHN JAMES TROEDYRHIW,\nHE DIED AUGUST 9 1945\nAT 68 YEARS OLD\n\u201cI AM THE RESURRECTION AND THE LIFE\u201d'] },
+      { kind: 'text', html: 'Welsh emigration to Carnegie, Pennsylvania \u2014 originally incorporated as Chartiers in 1867 and renamed in 1894 after Andrew Carnegie \u2014 was driven by the region\u2019s booming nineteenth-century coal and steel industries. Attracted by the mills, many skilled Welsh ironworkers and miners relocated from south Wales to western Pennsylvania.' },
+      { kind: 'figure', img: 'images/stories/story-thomas-lloyd-chartiers.jpg',
+        alt: 'A white painted gate pier at the entrance to Chartiers Cemetery, the name on two plates, trees and headstones beyond',
+        caption: 'Chartiers Cemetery, Carnegie, Pennsylvania \u2014 the \u2018Charter Cemetery\u2019 of the Saron inscription.' },
+      { kind: 'text', html: 'The word the mason cut was \u2018Charter\u2019, which is close enough. Someone in Troedyrhiw was told the name of an American cemetery, probably in a letter, and passed it to a stonemason who had never heard of it.' },
+      { kind: 'note', html: 'The research sheet for this grave is headed as though Thomas Lloyd were the emigrant. The inscription reads otherwise: Thomas had moved only as far as Cwmbach, and it is his son William whose burial is recorded in America. One for David to confirm \u2014 the stone is the evidence we have.' }
+    ]
+  },
+  {
+    slug: 'william-sharp',
+    kicker: 'Troedyrhiw, 1917',
+    title: 'Postmaster for fifty years',
+    subtitle: 'William Sharp, aged 87 \u2014 1917',
+    person: 'William Sharp',
+    card: { img: 'images/stories/story-william-sharp-tomb.jpg',
+            alt: 'A large table-top monument at Saron, a flat slab carried on stone legs, greened with age' },
+    lede: 'William Sharp walked to Merthyr at the age of thirteen to make his fortune. He kept a Sunday diary, sat on the Burial Board for twelve years, and at eighty-five wrote the only first-hand account of Victorian Troedyrhiw we have.',
+    blocks: [
+      { kind: 'text', html: 'Of Scottish descent but born in Whitchurch, Cardiff, he came to the Merthyr area on foot in 1844, aged 13. After some years working in several different shops in Merthyr he was able to set up business on his own account in 1851. By 1853 he was married and living in Troedyrhiw, where he remained until his death at 87 in 1917, having outlived his wife and most of his children.' },
+      { kind: 'text', html: 'An American nephew described him in later life as \u201ca fine man with kindly eyes and patriarchal beard. Postmaster there for 50 years, father to the folk of the place, father confessor, legal adviser, banker, everything, greatly honoured and respected.\u201d' },
+      { kind: 'text', html: 'In 1915 he wrote a short biography which he called \u201cLeaves from My Notebook\u201d. He explained: \u201cI have frequently been asked to write a History of Troedyrhiw, having lived here for 64 years. I am the oldest resident of the place, and have kept a record of many events, but never a regular diary, except a Sunday diary. I could always tell where I spent my Sunday, whom I heard preach, and privately what I thought of the sermon.\u201d' },
+      { kind: 'text', html: 'He was a deacon of three chapels \u2014 Market Square in Merthyr, and Saron and Mount Zion in Troedyrhiw, which with others he had a hand in establishing. He served on the School Board for three years and on the Burial Board for twelve. \u201cI was a member of the Congregational Union for many years and made it a rule to attend the Autumnal meetings\u2026 Freemason in a very old lodge in Merthyr\u2026. Secretary of the first Building Society in Troedyrhiw\u2026 We built 60 houses on Yew Street, which have always been well tenanted, and I don\u2019t remember that we ever lost a shilling.\u201d' },
+      { kind: 'text', html: 'He was successful as a grocer, house agent, emigration agent and postmaster. By his own account he took holidays in Scotland, Ireland, France, Jersey, Guernsey and the USA \u2014 well beyond the means of most Troedyrhiw residents at the time. He was much taken with America, particularly California, and pondered whether it would be a good place \u2018to end my days\u2019 before deciding it would be \u2018the old country for me!\u2019 Two of his sons and several nephews emigrated to the USA, where they established a large and successful branch of the family.' },
+      { kind: 'figure', img: 'images/stories/story-william-sharp-tomb.jpg',
+        alt: 'The Sharp table-top monument, a heavy slab on square legs, standing among grass and undergrowth',
+        caption: 'The tomb of William Sharp, Saron Graveyard, Troedyrhiw.' },
+      { kind: 'text', html: 'The table-top monument stands over the grave of William Sharp (d. 1917 aged 87), which also holds his wife Harriet (d. 1890 aged 62) and four of their children: George Lewis (d. 1856 aged 15 months), Peter William (d. 1858 aged 10 months), Mary Sophia (d. 1868 aged 4 years) and Frank Lewis (d. 1872 aged 15 years). Inscribed on it is also a note about another son:' },
+      { kind: 'stone', head: 'Also on the monument',
+        lines: ['WILLIAM L. SHARP DIED FEB 15 1892 AGED 31.\nBURIED IN BAKERSFIELD CALIFORNIA'] },
+      { kind: 'note', html: 'He served twelve years on the Burial Board, so the ground he lies in was in part his own responsibility. And of the man who kept a record of many events, and wrote the history of the place \u2014 much of what we know about Victorian Troedyrhiw comes from his notebook.' }
+    ]
+  },
+  {
+    slug: 'william-thomas',
+    kicker: 'Brazil Level, 1891',
+    title: 'The fall that the family remembered wrongly',
+    subtitle: 'William Thomas, 9 Upper Mount Pleasant \u2014 10 April 1891',
+    person: 'William Thomas',
+    card: { img: 'images/stories/story-william-thomas-bible.jpg',
+            alt: 'A page of a Welsh family bible headed COFLYFR TEULUAIDD with a handwritten entry recording a death and burial' },
+    lede: 'For a century the family story was that William Thomas had fallen off the Plymouth stack. He had not. He was buried under a fall of roof in his own stall, half a mile away, and the two deaths happened on the same day.',
+    blocks: [
+      { kind: 'text', html: 'An official report from 1892 shows how dangerous the south Wales coalfield was. It listed one death for every 291 colliers here, against a UK average of one in 676.' },
+      { kind: 'text', html: 'On 11 April 1891 the South Wales Daily News reported on two fatalities that had occurred at collieries in the Troedyrhiw area the previous day.' },
+      { kind: 'text', html: 'William Thomas of 9 Upper Mount Pleasant was working in his stall at Brazil Level when there was \u201can immense fall from the roof\u201d that completely buried him. It took his fellow workmen around half an hour to get him out, after which he died \u201cwithin a few minutes\u201d.' },
+      { kind: 'figure', img: 'images/stories/story-william-thomas-bible.jpg',
+        alt: 'The Coflyfr Teuluaidd page of the Thomas family bible, with a handwritten entry recording William Thomas\u2019s death and burial at Saron',
+        caption: 'The record in the Thomas family bible: \u201cBuried in Saron Graveyard 14th April 1891\u201d.' },
+      { kind: 'text', html: 'Until the facts were uncovered by Friends of Saron research, the story handed down in the family was that William had \u201cfallen off the Plymouth stack\u201d. Over time his fate had been conflated with that of someone else entirely.' },
+      { kind: 'text', html: 'Earlier on the same day, 10 April 1891, Louis (Lewis) Knott, a mason living locally but originally from Devon, was killed when he fell some 150 feet from the top of a new chimney stack being erected at Plymouth (South Duffryn) Colliery. An inquest found that \u201cthe deceased was standing on some scaffolding inside the stack and leaning over to point the outside bricks, when the brick-work gave way, and he was precipitated to the ground\u201d.' },
+      { kind: 'note', html: 'Two men killed in one day in one village, and a hundred years later the family had them the wrong way round. It is worth remembering, when a story has been told the same way for generations, that a written record can still overturn it.' }
+    ]
   }
 ];
 
@@ -2916,6 +3336,14 @@ function renderStoryBlock(b){
             <h3>In English</h3>
             ${b.english.map(p => `<p>${escHtml(p)}</p>`).join('')}
             ${b.verseEnglish ? `<p class="insc__verse">${escHtml(b.verseEnglish)}</p>` : ''}
+          </div>
+        </div>`;
+    case 'stone':
+      return `<div class="insc insc--one">
+          <div class="insc__col">
+            <h3>${escHtml(b.head || 'The inscription')}</h3>
+            ${b.lines.map(p => `<p>${escHtml(p)}</p>`).join('')}
+            ${b.verse ? `<p class="insc__verse">${escHtml(b.verse)}</p>` : ''}
           </div>
         </div>`;
     case 'note':
@@ -4037,20 +4465,20 @@ const BURIALS = [
   "plot": "A-26",
   "row": "A",
   "photo": "headstone-A-26.jpg",
-  "bio": "I\nN MEMORY OF WILLIAM\nSON OF\nTHOMAS & ANN BLENEY\nCOLLIER\nDIED DEC 20 1860 AGED 2 YEARS.\nSWEET MEMORIES FOR IN LIES HERE\nLAMENTED BY HIS PARENTS DEAR\nWE HOPE AT LAST IN ENDLESS JOY\nTO MEET AGAIN OUR LOVELY BOY.\nALSO ELIZABETH THEIR DAUGHTER\nDIED MAY 8TH 1861 AGED 5 MONTHS.\nNOTE: Blemey is an alternative form of the surname Blemmey or Blamey."
+  "bio": "IN MEMORY OF WILLIAM,\nSON OF\nTHOMAS & ANN BLEMEY,\nCOLLIER\nDIED DEC 20TH 1860 : AGED 2 YEARS.\nSWEET INNOCENCEY’S FORM LIES HERE.\nLAMENTED BY ITS PARENTS DEAR:\nWE HOPE AT LAST IN ENDLESS DAYS\nTO MEET AGAIN OUR LOVELY BOY.\nALSO ELIZABETH, THEIR DAUGHR.\nDIED MAY 8TH 1861; AGED 5 MONTHS.\n\nN.B. THIS BURIED STONE WAS UNEARTHED BY VOLUNTEERS ON 20 AUGUST 2022 AND ITS CARVING WAS ALMOST UNTOUCHED. THE STONE READS BLEMEY; THE NAME ALSO APPEARS AS BLAMEY AND HAD PREVIOUSLY BEEN INDEXED AS BLENEY. THE FAMILY CAME TO SOUTH WALES FROM THE GWENNAP AREA OF CORNWALL IN THE 1840S."
  },
  {
   "id": 1072,
-  "surname": "Elizabeth",
-  "forenames": "",
+  "surname": "Blemey",
+  "forenames": "Elizabeth",
   "born": null,
   "died": 1861,
-  "age": 5,
+  "age": "5 months",
   "occupation": "",
   "plot": "A-26",
   "row": "A",
   "photo": "headstone-A-26.jpg",
-  "bio": "I\nN MEMORY OF WILLIAM\nSON OF\nTHOMAS & ANN BLENEY\nCOLLIER\nDIED DEC 20 1860 AGED 2 YEARS.\nSWEET MEMORIES FOR IN LIES HERE\nLAMENTED BY HIS PARENTS DEAR\nWE HOPE AT LAST IN ENDLESS JOY\nTO MEET AGAIN OUR LOVELY BOY.\nALSO ELIZABETH THEIR DAUGHTER\nDIED MAY 8TH 1861 AGED 5 MONTHS.\nNOTE: Blemey is an alternative form of the surname Blemmey or Blamey."
+  "bio": "IN MEMORY OF WILLIAM,\nSON OF\nTHOMAS & ANN BLEMEY,\nCOLLIER\nDIED DEC 20TH 1860 : AGED 2 YEARS.\nSWEET INNOCENCEY’S FORM LIES HERE.\nLAMENTED BY ITS PARENTS DEAR:\nWE HOPE AT LAST IN ENDLESS DAYS\nTO MEET AGAIN OUR LOVELY BOY.\nALSO ELIZABETH, THEIR DAUGHR.\nDIED MAY 8TH 1861; AGED 5 MONTHS.\n\nN.B. THIS BURIED STONE WAS UNEARTHED BY VOLUNTEERS ON 20 AUGUST 2022 AND ITS CARVING WAS ALMOST UNTOUCHED. THE STONE READS BLEMEY; THE NAME ALSO APPEARS AS BLAMEY AND HAD PREVIOUSLY BEEN INDEXED AS BLENEY. THE FAMILY CAME TO SOUTH WALES FROM THE GWENNAP AREA OF CORNWALL IN THE 1840S."
  },
  {
   "id": 1073,
@@ -12482,7 +12910,7 @@ const BURIALS = [
   "forenames": "William David",
   "born": null,
   "died": 1893,
-  "age": 19,
+  "age": "19 months",
   "occupation": "",
   "plot": "J-44",
   "row": "J",
