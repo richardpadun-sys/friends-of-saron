@@ -542,6 +542,28 @@
   .story-card__kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--color-primary);}
   .story-card__title{font-family:var(--font-display);font-size:var(--text-lg);line-height:1.2;margin:0;}
   .story-card__sub{font-size:var(--text-sm);color:var(--color-text-muted);margin:0;}
+
+  /* Story chips + index (compact page) */
+  .story-chips{display:flex;flex-wrap:wrap;gap:var(--space-2);padding-top:var(--space-8);padding-bottom:var(--space-4);}
+  .story-chip{appearance:none;border:1px solid var(--color-divider);background:var(--color-surface);color:inherit;font-family:inherit;font-size:var(--text-sm);padding:0.5rem 0.9rem;border-radius:var(--radius-full);cursor:pointer;transition:background var(--transition-interactive),color var(--transition-interactive),border-color var(--transition-interactive);}
+  .story-chip:hover{border-color:var(--color-primary);}
+  .story-chip[aria-pressed="true"]{background:var(--color-primary);color:#fff;border-color:var(--color-primary);}
+  .story-chip__count{opacity:0.75;font-variant-numeric:tabular-nums;margin-left:0.35rem;}
+  .story-chip[aria-pressed="true"] .story-chip__count{opacity:0.85;}
+  .stories-featured{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-5);padding-block:var(--space-6);}
+  .stories-featured:empty{padding:0;}
+  .stories-section-heading{display:flex;align-items:baseline;gap:var(--space-3);margin:var(--space-8) 0 var(--space-3);}
+  .stories-section-heading h2{font-family:var(--font-display);font-size:1.35rem;margin:0;color:var(--color-text);font-weight:600;}
+  .stories-section-heading .n{font-size:var(--text-sm);color:var(--color-text-muted);font-variant-numeric:tabular-nums;}
+  .story-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--space-8);border-top:1px solid var(--color-divider);}
+  @media (max-width:700px){.story-index{grid-template-columns:1fr;}}
+  .story-row{display:grid;grid-template-columns:5rem 1fr;gap:var(--space-4);align-items:baseline;padding:0.85rem 0.25rem;border-bottom:1px solid var(--color-divider);background:none;border-left:0;border-right:0;border-top:0;text-align:left;color:inherit;font-family:inherit;cursor:pointer;width:100%;transition:color var(--transition-interactive);}
+  .story-row:hover .story-row__title{color:var(--color-primary);}
+  .story-row:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;border-radius:var(--radius-sm);}
+  .story-row__year{font-size:var(--text-xs);letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:var(--color-text-muted);font-variant-numeric:tabular-nums;}
+  .story-row__title{font-family:var(--font-display);font-size:1.02rem;line-height:1.3;color:var(--color-text);}
+  .story-row__place{display:block;font-family:var(--font-sans,inherit);font-size:var(--text-xs);color:var(--color-text-muted);margin-top:0.15rem;letter-spacing:0.02em;font-weight:400;text-transform:none;}
+  .stories-empty{padding:var(--space-8) 0;color:var(--color-text-muted);text-align:center;font-style:italic;}
   .stories-more{border:1px dashed var(--color-divider);border-radius:var(--radius-lg);padding:var(--space-6);font-size:var(--text-sm);color:var(--color-text-muted);max-width:58ch;}
 
   .story__wrap{max-width:720px;margin-inline:auto;padding:var(--space-10) var(--space-6) var(--space-16);}
@@ -2350,7 +2372,10 @@
     </section>
 
     <div class="container--wide">
-      <div class="stories-grid" id="storiesGrid"></div>
+      <div class="story-chips" id="storyChips" role="tablist" aria-label="Filter stories by theme"></div>
+      <div class="stories-featured" id="storiesFeatured"></div>
+      <div class="stories-section-heading"><h2 id="storiesIndexHeading">All stories</h2><span class="n" id="storiesIndexCount"></span></div>
+      <div class="story-index" id="storiesGrid"></div>
       <div class="stories-more">
         More stories are being prepared from the project's research files.
         If you know something about a name in the register, Owain can pass it on
@@ -2686,7 +2711,7 @@ function escAttr(v){return escHtml(v);}
 =================================================================================== */
 const STORIES = [
   {
-    slug: 'willie-lloyd',
+    slug: 'willie-lloyd', theme: 'family', year: 1903, featured: true,
     /* No plot reference until the burial map is settled. The row lettering is
        still being reconciled, so quoting a plot here would state as fact
        something the project has not yet confirmed. `kicker` is what shows
@@ -2730,7 +2755,7 @@ const STORIES = [
     related: [{ id: 562, label: 'Willie Lloyd' }, { id: 561, label: 'Maggie May Lloyd' }]
   },
 {
-    slug: 'edward-curnow',
+    slug: 'edward-curnow', theme: 'family', year: 1951, featured: false,
     kicker: 'Troedyrhiw, 1951',
     title: 'A sailor welcomed home',
     subtitle: 'Edward Curnow, aged 82 \u2014 20 June 1951',
@@ -2746,7 +2771,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'jones-brothers',
+    slug: 'jones-brothers', theme: 'colliery', year: 1870, featured: false,
     plural: true,
     kicker: 'Troedyrhiw, 1870',
     title: 'A fall of stone',
@@ -2764,7 +2789,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'joseph-williams',
+    slug: 'joseph-williams', theme: 'ministers', year: 1920, featured: false,
     kicker: 'Troedyrhiw, 1920',
     title: 'The bandmaster\'s baton',
     subtitle: 'Joseph Williams \u2014 bandmaster',
@@ -2781,7 +2806,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'david-thomas',
+    slug: 'david-thomas', theme: 'ministers', year: 1843, featured: false,
     kicker: 'Troedyrhiw, 1843',
     title: 'Saron\'s first minister',
     subtitle: 'Rev David Thomas, aged 29 \u2014 6 October 1843',
@@ -2797,7 +2822,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'william-morgan',
+    slug: 'william-morgan', theme: 'ministers', year: 1876, featured: false,
     kicker: 'Troedyrhiw, 1876',
     title: 'Thirty-two years of ministry',
     subtitle: 'Rev William Morgan, aged 64 \u2014 31 January 1876',
@@ -2816,7 +2841,7 @@ const STORIES = [
   
   
   {
-    slug: 'john-broad',
+    slug: 'john-broad', theme: 'family', year: 1861, featured: false,
     kicker: 'Taibach, 1861',
     title: 'John and Margaret Broad',
     subtitle: 'John Broad, aged 67 \u2014 29 December 1861',
@@ -2833,7 +2858,7 @@ const STORIES = [
   },
   
   {
-    slug: 'james-morris',
+    slug: 'james-morris', theme: 'colliery', year: 1912, featured: false,
     kicker: 'Troedyrhiw, 1912',
     title: 'A pit accident in 1912',
     subtitle: 'James Morris, aged 45 \u2014 6 December 1912',
@@ -2849,7 +2874,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'david-rees',
+    slug: 'david-rees', theme: 'family', year: 1901, featured: false,
     kicker: 'Troedyrhiw, 1901',
     title: 'The Rees family butchers',
     subtitle: 'David Rees, aged 38 \u2014 died 1901',
@@ -2877,7 +2902,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'john-ann-jones',
+    slug: 'john-ann-jones', theme: 'family', year: 1923, featured: false,
     plural: true,
     kicker: 'Troedyrhiw, 1923',
     title: 'A stone paid for from the goldfields',
@@ -2900,7 +2925,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'blemey-children',
+    slug: 'blemey-children', theme: 'family', year: 1860, featured: true,
     plural: true,
     kicker: 'Troedyrhiw, 1860 and 1861',
     title: 'Two children, found again in 2022',
@@ -2923,7 +2948,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'david-thomas-jp',
+    slug: 'david-thomas-jp', theme: 'family', year: 1947, featured: false,
     kicker: 'Troedyrhiw, 1947',
     title: 'A grave brought back',
     subtitle: 'David Thomas J.P., Yew Street \u2014 17 September 1947',
@@ -2947,7 +2972,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'dorothy-buckthought',
+    slug: 'dorothy-buckthought', theme: 'family', year: 1938, featured: false,
     kicker: 'Troedyrhiw, 1938',
     title: 'A schoolgirl\u2019s funeral',
     subtitle: 'Dorothy Lilian Buckthought, aged 11 \u2014 June 1938',
@@ -2976,7 +3001,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'evan-williams',
+    slug: 'evan-williams', theme: 'wars', year: 1901, featured: false,
     kicker: 'South Africa, 1901',
     title: 'For King and Empire',
     subtitle: 'Trooper Evan J. Williams, aged 27 \u2014 20 May 1901',
@@ -2997,7 +3022,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'glyn-davies',
+    slug: 'glyn-davies', theme: 'wars', year: 1942, featured: false,
     kicker: 'Lancaster and Woolwich, 1942',
     title: 'The name that took the most finding',
     subtitle: 'Lance Corporal David Glyndwr Davies, aged 24 \u2014 10 October 1942',
@@ -3037,7 +3062,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'john-w-williams',
+    slug: 'john-w-williams', theme: 'colliery', year: 1877, featured: false,
     kicker: 'British Columbia, 1877',
     title: 'Crushed at Mission Creek',
     subtitle: 'John W. Williams, aged 52 \u2014 3 May 1877',
@@ -3059,7 +3084,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'john-william-davies',
+    slug: 'john-william-davies', theme: 'wars', year: 1918, featured: true,
     kicker: 'Belgium, 1918',
     title: '\u201cWho sacrificed himself on the altar for his country\u201d',
     subtitle: 'Private John William Davies, aged 24 \u2014 April 1918',
@@ -3090,7 +3115,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'jones-canton',
+    slug: 'jones-canton', theme: 'family', year: 1897, featured: false,
     plural: true,
     kicker: 'Troedyrhiw, five generations',
     title: 'The family of the Canton Shop',
@@ -3120,7 +3145,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'marsden-williams',
+    slug: 'marsden-williams', theme: 'wars', year: 1918, featured: false,
     kicker: 'Kantara, Egypt, 1918',
     title: 'The stretcher-bearer at Kantara',
     subtitle: 'Private Godfrey Marsden Williams, aged 25 \u2014 26 April 1918',
@@ -3147,7 +3172,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'rees-davies',
+    slug: 'rees-davies', theme: 'wars', year: 1914, featured: false,
     kicker: 'Boulogne, 1914',
     title: 'One of the first',
     subtitle: 'Driver Rees Davies, aged 25 \u2014 7 December 1914',
@@ -3172,7 +3197,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'price-children',
+    slug: 'price-children', theme: 'ministers', year: 1893, featured: false,
     plural: true,
     kicker: 'Troedyrhiw, 1893 and 1898',
     title: 'The minister\u2019s two children',
@@ -3199,7 +3224,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'thomas-griffiths',
+    slug: 'thomas-griffiths', theme: 'colliery', year: 1862, featured: false,
     kicker: 'Gethin Colliery, 1862',
     title: 'A quiet and diligent boy',
     subtitle: 'Thomas Griffiths, aged 18 \u2014 20 February 1862',
@@ -3229,7 +3254,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'lloyd-carnegie',
+    slug: 'lloyd-carnegie', theme: 'family', year: 1906, featured: false,
     plural: true,
     kicker: 'Carnegie, Pennsylvania, 1906',
     title: 'Buried in Pennsylvania, named at Saron',
@@ -3256,7 +3281,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'william-sharp',
+    slug: 'william-sharp', theme: 'family', year: 1917, featured: false,
     kicker: 'Troedyrhiw, 1917',
     title: 'Postmaster for fifty years',
     subtitle: 'William Sharp, aged 87 \u2014 1917',
@@ -3280,7 +3305,7 @@ const STORIES = [
     ]
   },
   {
-    slug: 'william-thomas',
+    slug: 'william-thomas', theme: 'colliery', year: 1891, featured: false,
     kicker: 'Brazil Level, 1891',
     title: 'The fall that the family remembered wrongly',
     subtitle: 'William Thomas, 9 Upper Mount Pleasant \u2014 10 April 1891',
@@ -3304,10 +3329,49 @@ const STORIES = [
 
 const storyBySlug = s => STORIES.find(x => x.slug === s);
 
-function renderStoriesGrid(){
-  const g = document.getElementById('storiesGrid');
+const STORY_THEMES = [
+  { id: 'all',       label: 'All stories' },
+  { id: 'ministers', label: 'Ministers & chapel' },
+  { id: 'wars',      label: 'Wars & service' },
+  { id: 'colliery',  label: 'Colliery & quarry' },
+  { id: 'family',    label: 'Families & returns' }
+];
+let storyFilter = 'all';
+
+function storyPlace(s){
+  // Kicker looks like "Troedyrhiw, 1903" or "Belgium, 1918" or "Troedyrhiw, 1860 and 1861".
+  // For the compact index we want the place only (before the first comma), falling back to the whole kicker.
+  const k = (s.kicker || s.ref || '').trim();
+  if(!k) return '';
+  const i = k.indexOf(',');
+  return i > 0 ? k.slice(0, i).trim() : k;
+}
+function storyMatchesFilter(s){
+  return storyFilter === 'all' || s.theme === storyFilter;
+}
+function renderStoryChips(){
+  const bar = document.getElementById('storyChips');
+  if(!bar) return;
+  const counts = {all: STORIES.length};
+  STORIES.forEach(s => { counts[s.theme] = (counts[s.theme]||0) + 1; });
+  bar.innerHTML = STORY_THEMES.map(t => {
+    const n = counts[t.id] || 0;
+    if(t.id !== 'all' && n === 0) return '';
+    const pressed = storyFilter === t.id ? 'true' : 'false';
+    return `<button class="story-chip" role="tab" aria-pressed="${pressed}" data-theme="${t.id}" onclick="setStoryFilter('${t.id}')">${escHtml(t.label)}<span class="story-chip__count">${n}</span></button>`;
+  }).join('');
+}
+function setStoryFilter(t){
+  storyFilter = t;
+  renderStoryChips();
+  renderStoriesFeatured();
+  renderStoriesIndex();
+}
+function renderStoriesFeatured(){
+  const g = document.getElementById('storiesFeatured');
   if(!g) return;
-  g.innerHTML = STORIES.map(s => `
+  const list = STORIES.filter(s => s.featured && storyMatchesFilter(s));
+  g.innerHTML = list.map(s => `
     <button class="story-card" onclick="openStory('${s.slug}')" aria-label="Read: ${escAttr(s.title)}">
       <img class="story-card__img" src="${s.card.img}" alt="${escAttr(s.card.alt)}" loading="lazy">
       <div class="story-card__body">
@@ -3316,6 +3380,35 @@ function renderStoriesGrid(){
         <p class="story-card__sub">${escHtml(s.subtitle)}</p>
       </div>
     </button>`).join('');
+}
+function renderStoriesIndex(){
+  const g = document.getElementById('storiesGrid');
+  const h = document.getElementById('storiesIndexHeading');
+  const c = document.getElementById('storiesIndexCount');
+  if(!g) return;
+  const list = STORIES
+    .filter(storyMatchesFilter)
+    .slice()
+    .sort((a,b) => (a.year||9999) - (b.year||9999));
+  if(h){
+    const theme = STORY_THEMES.find(t => t.id === storyFilter);
+    h.textContent = storyFilter === 'all' ? 'All stories, in order' : theme.label;
+  }
+  if(c) c.textContent = list.length + (list.length === 1 ? ' story' : ' stories');
+  if(!list.length){
+    g.innerHTML = `<div class="stories-empty">No stories in this section yet.</div>`;
+    return;
+  }
+  g.innerHTML = list.map(s => `
+    <button class="story-row" onclick="openStory('${s.slug}')" aria-label="Read: ${escAttr(s.title)}">
+      <span class="story-row__year">${escHtml(String(s.year||''))}</span>
+      <span class="story-row__title">${escHtml(s.title)}<span class="story-row__place">${escHtml(storyPlace(s))}</span></span>
+    </button>`).join('');
+}
+function renderStoriesGrid(){
+  renderStoryChips();
+  renderStoriesFeatured();
+  renderStoriesIndex();
 }
 
 function renderStoryBlock(b){
