@@ -504,23 +504,27 @@
   .burials-content.idle .burials-start{display:block;}
   .burials-content.idle .burials-list-view,
   .burials-content.idle .burials-grid-view{display:none;}
-  /* With nothing searched for yet, the filters, view toggle and results count
-     have nothing to act on, so the bar is reduced to the search box alone. */
-  .burials-toolbar.idle .filter-group,
-  .burials-toolbar.idle .view-toggle,
-  .burials-toolbar.idle .results-count{display:none;}
-  .burials-toolbar.idle .search-input-wrap{flex:1;max-width:520px;}
-  .burials-start__card{max-width:560px;margin-inline:auto;text-align:center;padding:var(--space-8) var(--space-6);
+  /* Before a search has been made the whole toolbar is redundant: the card
+     below carries the one search box, so the bar would only duplicate it. */
+  .burials-toolbar.idle{display:none;}
+  .burials-start__card{max-width:560px;margin-inline:auto;text-align:center;padding:38px 32px 32px;
     border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);}
-  .burials-start__card>svg{color:var(--color-text-faint);margin-bottom:var(--space-4);}
-  .burials-start__title{font-size:var(--text-xl);margin-bottom:var(--space-3);color:var(--color-text);}
+  .burials-start__title{font-size:1.6rem;line-height:1.25;margin:0 0 10px;color:var(--color-text);}
+  .burials-start__field{position:relative;display:flex;align-items:center;margin-bottom:28px;}
+  .burials-start__field>svg{position:absolute;left:16px;color:var(--color-text-faint);pointer-events:none;}
+  .burials-start__input{width:100%;font:inherit;font-size:1rem;padding:14px 16px 14px 46px;
+    border:1px solid var(--color-border);border-radius:var(--radius-md,10px);background:var(--color-bg);
+    color:var(--color-text);transition:border-color .15s ease,box-shadow .15s ease;}
+  .burials-start__input::placeholder{color:var(--color-text-faint);}
+  .burials-start__input:focus{outline:none;border-color:var(--color-primary);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);}
   .burials-start__text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;
-    margin-bottom:var(--space-6);max-width:46ch;margin-inline:auto;}
+    margin:0 auto 22px;max-width:46ch;}
   .burials-start__text strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
   .burials-start__text em{font-style:normal;font-family:var(--font-mono,monospace);font-size:0.94em;color:var(--color-text);}
-  .burials-start__rows-label{display:block;font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;
-    color:var(--color-text-faint);margin-bottom:var(--space-3);}
-  .burials-start__chips{display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;margin-bottom:var(--space-6);}
+  .burials-start__rows-label{display:block;font-size:0.75rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--color-text-faint);margin-bottom:12px;}
+  .burials-start__chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px;}
   .burials-start__chip{font:inherit;font-size:var(--text-sm);padding:6px 14px;border-radius:999px;cursor:pointer;
     border:1px solid var(--color-border);background:var(--color-surface-2);color:var(--color-text);
     transition:background .15s ease,border-color .15s ease;}
@@ -2166,23 +2170,32 @@
       <div class="container--wide">
         <div class="burials-start" id="burialsStart">
           <div class="burials-start__card">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.4" aria-hidden="true">
-              <circle cx="11" cy="11" r="7"/>
-              <path d="m20 20-4-4"/>
-            </svg>
-            <h2 class="burials-start__title">Search the burial register</h2>
+            <h2 class="burials-start__title">Who are you looking for?</h2>
             <p class="burials-start__text">
               <strong id="burialsStartCount">0</strong> people recorded so far from the standing
-              stones at Saron. Search by surname, forename, a year, a plot number such as
+              stones at Saron. Search a surname, a forename, a year, a plot number such as
               <em>G-11</em>, or any wording from an inscription.
             </p>
+
+            <div class="burials-start__field">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.6" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="m20 20-4-4"/>
+              </svg>
+              <input id="burialsStartSearch" class="burials-start__input" type="search"
+                     placeholder="Try Jones, 1885, or G-11"
+                     aria-label="Search the burial register"
+                     oninput="startSearch(this.value)" />
+            </div>
+
             <div class="burials-start__rows">
-              <span class="burials-start__rows-label">Or browse a row</span>
+              <span class="burials-start__rows-label">Or browse a row of graves</span>
               <div class="burials-start__chips" id="burialsStartChips"></div>
             </div>
+
             <button type="button" class="burials-start__all" onclick="showAllBurials()">
-              Show the full register
+              Show all <span id="burialsStartCountAll">0</span> records
             </button>
           </div>
         </div>
@@ -15414,8 +15427,23 @@ function sortTable(col){
 // or asks to see everything.
 let burialsRevealed = false;
 
+// Typing in the card hands straight over to the real search box in the
+// toolbar, so the visitor keeps typing without noticing the change.
+function startSearch(v){
+  const real = document.getElementById("burialSearch");
+  if(!real) return;
+  real.value = v;
+  filterBurials();
+  if(v){
+    real.focus();
+    const n = real.value.length;
+    try { real.setSelectionRange(n, n); } catch(e){}
+  }
+}
+
 function resetBurials(){
   burialsRevealed = false;
+  const b=document.getElementById("burialsStartSearch"); if(b) b.value="";
   const s=document.getElementById("burialSearch"); if(s) s.value="";
   const r=document.getElementById("rowFilter");    if(r) r.value="";
   const e=document.getElementById("eraFilter");    if(e) e.value="";
@@ -15433,6 +15461,8 @@ function buildBurialsStart(){
   const named = BURIALS.length;
   const el = document.getElementById("burialsStartCount");
   if(el) el.textContent = named.toLocaleString("en-GB");
+  const all = document.getElementById("burialsStartCountAll");
+  if(all) all.textContent = named.toLocaleString("en-GB");
   const chips = document.getElementById("burialsStartChips");
   if(!chips) return;
   const rows = [...new Set(BURIALS.filter(b=>plotVerified(b) && b.row).map(b=>b.row))].sort();
