@@ -446,7 +446,7 @@
   }
 
   /* BURIALS CSS */
-  .burials-hero{background:var(--color-surface);border-bottom:1px solid var(--color-divider);padding-block:var(--space-16) var(--space-12);padding-top:calc(72px + var(--space-16));}
+  .burials-hero{background:var(--color-surface);border-bottom:1px solid var(--color-divider);padding-block:var(--space-10) var(--space-8);padding-top:calc(72px + var(--space-8));}
   .burials-hero h1{font-size:var(--text-2xl);}
   .burials-hero p{font-size:var(--text-base);color:var(--color-text-muted);margin-top:var(--space-3);max-width:60ch;}
   .burials-stats{display:flex;gap:var(--space-8);margin-top:var(--space-6);flex-wrap:wrap;}
@@ -500,7 +500,10 @@
   .plot-map-pending{margin:var(--space-6) 0 0;padding:var(--space-4) var(--space-5);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;max-width:70ch;}
   .modal__plot-pending{margin-top:var(--space-4);padding:var(--space-4);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;}
   /* Burials idle / start state */
-  .burials-start{display:none;padding:var(--space-10) 0 var(--space-6);}
+  .burials-start{display:none;padding:0 0 var(--space-6);}
+  /* Nothing but the card is on screen while idle, so the page does not need
+     its usual breathing room above it. */
+  .burials-content.idle{padding-block:var(--space-6) var(--space-12);}
   .burials-content.idle .burials-start{display:block;}
   .burials-content.idle .burials-list-view,
   .burials-content.idle .burials-grid-view{display:none;}
@@ -532,6 +535,13 @@
   .burials-start__all{font:inherit;font-size:var(--text-sm);background:none;border:none;cursor:pointer;padding:4px 2px;
     color:var(--color-text-muted);text-decoration:underline;text-underline-offset:3px;}
   .burials-start__all:hover{color:var(--color-primary);}
+  .burials-start__note{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--color-border);
+    font-size:var(--text-sm);line-height:1.6;color:var(--color-text-muted);}
+  .burials-start__link{font:inherit;color:var(--color-primary);font-weight:600;background:none;border:0;
+    padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+  .burials-start__link:hover{color:var(--color-primary-hover);}
+  [data-theme="dark"] .burials-start__note{color:#a9b096;}
+  [data-theme="dark"] .burials-start__link{color:#79b767;}
   .search-summary{margin:0 0 14px;font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5;}
   .search-summary strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
   .burials-divider td{background:var(--color-surface-offset,var(--color-surface));
@@ -2048,9 +2058,7 @@
         <p class="section-label">Burials Register</p>
         <h1>Burials Register</h1>
         <p>
-          A growing list of the burials we have been able to identify at Saron graveyard, Troedyrhiw.
-          Search by name or plot, filter by row and decade, and click a name to read a short biography
-          where available.
+          The burials we have been able to identify so far at Saron graveyard, Troedyrhiw.
         </p>
         <div class="burials-stats">
           <div class="burial-stat-pill">
@@ -2065,34 +2073,6 @@
         </div>
       </div>
     </section>
-
-    <div class="notice-wrap">
-      <div class="container--wide">
-        <aside class="notice" aria-labelledby="notice-heading">
-          <svg class="notice__icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 11v5"/>
-            <path d="M12 7.75h.01"/>
-          </svg>
-          <div class="notice__body">
-            <h2 class="notice__title" id="notice-heading">This register is a work in progress</h2>
-            <p class="notice__text">
-              It is built from separate surveys of the standing stones, made years apart, and they do
-              not always agree. Some inscriptions are worn beyond reading, some graves are unmarked,
-              and parts of the graveyard have yet to be cleared and recorded. Where we are unsure,
-              the record says so.
-            </p>
-            <p class="notice__text">
-              If you know better than we do about anyone recorded here, please
-              <button type="button" class="notice__link"
-                      onclick="showPage('home');setTimeout(()=&gt;document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);">tell
-                us</button> &mdash; corrections from families are how this gets better.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </div>
 
     <div class="burials-toolbar">
       <div class="container--wide">
@@ -2203,6 +2183,14 @@
             <button type="button" class="burials-start__all" onclick="showAllBurials()">
               Show all <span id="burialsStartCountAll">0</span> records
             </button>
+
+            <p class="burials-start__note">
+              This register is a work in progress. Some inscriptions are worn beyond reading and some
+              graves are unmarked, so where we are unsure the record says so. If you know better than
+              we do,
+              <button type="button" class="burials-start__link"
+                      onclick="showPage('home');setTimeout(()=&gt;document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200);">tell us</button>.
+            </p>
           </div>
         </div>
 
@@ -2261,8 +2249,7 @@
               Interactive Grave Plot Map
             </h2>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2)">
-              Tap a plot to see who lies there. Rows <span id="mappedRows">A, B and K</span> are mapped
-              so far; the rest are still being surveyed, and everyone recorded in them is searchable above.
+              Tap a plot to see who lies there.
             </p>
           </div>
           <div class="plot-legend">
@@ -15901,13 +15888,6 @@ function buildPlotMap(){
   Object.keys(burialsByPlot).forEach(p=>{const m=p.match(/^([A-K])-(\d+)/);if(m){const r=m[1],n=parseInt(m[2],10);if(n>(maxOccupied[r]||0))maxOccupied[r]=n;}});
   rows.forEach(r=>{PLOTS_PER_ROW[r]=Math.max(PLOTS_PER_ROW[r]||0, maxOccupied[r]||0);});
   const pending=BURIALS.filter(b=>!plotVerified(b)).length;
-
-  // Keep the sentence above the map in step with the rows actually mapped.
-  const mr=document.getElementById("mappedRows");
-  if(mr){
-    const v=VERIFIED_ROWS.slice();
-    mr.textContent = v.length>1 ? v.slice(0,-1).join(", ")+" and "+v[v.length-1] : v[0];
-  }
 
   const container=document.getElementById("plotMapContainer");
   let html="";
