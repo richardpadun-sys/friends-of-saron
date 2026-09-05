@@ -532,6 +532,12 @@
   .burials-start__all{font:inherit;font-size:var(--text-sm);background:none;border:none;cursor:pointer;padding:4px 2px;
     color:var(--color-text-muted);text-decoration:underline;text-underline-offset:3px;}
   .burials-start__all:hover{color:var(--color-primary);}
+  .search-summary{margin:0 0 14px;font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5;}
+  .search-summary strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
+  .burials-divider td{background:var(--color-surface-offset,var(--color-surface));
+    font-size:0.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-muted);
+    padding:10px 16px;border-top:1px solid var(--color-border);cursor:default;}
+  .burials-divider:hover td{background:var(--color-surface-offset,var(--color-surface));}
   .no-results{text-align:center;padding:var(--space-16);color:var(--color-text-muted);}
   .no-results svg{margin-inline:auto;margin-bottom:var(--space-4);color:var(--color-text-faint);}
 
@@ -2199,6 +2205,8 @@
             </button>
           </div>
         </div>
+
+        <p class="search-summary" id="searchSummary" hidden></p>
 
         <div class="burials-list-view active" id="listView">
           <div class="burials-table-wrap">
@@ -15410,6 +15418,7 @@ function updateBurialStats(){
 }
 
 function sortTable(col){
+  userSorted = true;
   if(sortCol===col){sortDir*=-1;}else{sortCol=col;sortDir=1;}
   const ths=document.querySelectorAll(".burials-table th");
   ths.forEach(th=>th.classList.remove("sorted"));
@@ -15426,6 +15435,27 @@ function sortTable(col){
 // wall of rows. The results appear once the visitor searches, picks a filter,
 // or asks to see everything.
 let burialsRevealed = false;
+let userSorted = false;
+
+// How closely a record answers what was typed.  Someone searching "jones"
+// wants the people called Jones first, not every stone whose inscription
+// happens to mention a Jones.  Lower number = closer match.
+const MATCH_NAME = 1, MATCH_DETAIL = 2, MATCH_MENTION = 3;
+function matchRank(b, q){
+  const sur = (b.surname||"").toLowerCase();
+  const fore = (b.forenames||"").toLowerCase();
+  if(sur === q || fore === q) return 0;              // exact name
+  if(sur.startsWith(q) || fore.startsWith(q)) return 1;  // name begins with
+  if(sur.includes(q) || fore.includes(q)) return 2;      // name contains
+  if(plotVerified(b) && (b.plot||"").toLowerCase().includes(q)) return 3; // plot code
+  if(String(b.died||"") === q || String(b.born||"") === q) return 4;      // a year
+  if((b.occupation||"").toLowerCase().includes(q)) return 5;
+  return 6;                                          // only on the inscription
+}
+function matchGroup(b, q){
+  const r = matchRank(b, q);
+  return r <= 2 ? MATCH_NAME : (r <= 5 ? MATCH_DETAIL : MATCH_MENTION);
+}
 
 // Typing in the card hands straight over to the real search box in the
 // toolbar, so the visitor keeps typing without noticing the change.
@@ -15441,8 +15471,30 @@ function startSearch(v){
   }
 }
 
+// Says in plain words what the results are, so a search for a surname does
+// not silently mix people of that name with stones that merely mention it.
+function renderSearchSummary(q){
+  const el = document.getElementById("searchSummary");
+  if(!el) return;
+  if(!q || !filteredBurials.length){ el.hidden = true; return; }
+  const named    = filteredBurials.filter(b=>matchGroup(b,q)===MATCH_NAME).length;
+  const mentions = filteredBurials.filter(b=>matchGroup(b,q)===MATCH_MENTION).length;
+  const raw = (document.getElementById("burialSearch").value || "").trim();
+  const term = (raw || q).replace(/[<>&]/g,"");
+  const parts = [];
+  if(named)    parts.push("<strong>"+named+"</strong> "+(named===1?"person":"people")+" named \u201c"+term+"\u201d");
+  if(mentions) parts.push("<strong>"+mentions+"</strong> further "+(mentions===1?"grave whose inscription mentions":"graves whose inscriptions mention")+" it");
+  if(!parts.length){
+    el.innerHTML = "<strong>"+filteredBurials.length+"</strong> matching "+(filteredBurials.length===1?"record":"records")+".";
+  } else {
+    el.innerHTML = parts.join(", and ") + ".";
+  }
+  el.hidden = false;
+}
+
 function resetBurials(){
   burialsRevealed = false;
+  userSorted = false;
   const b=document.getElementById("burialsStartSearch"); if(b) b.value="";
   const s=document.getElementById("burialSearch"); if(s) s.value="";
   const r=document.getElementById("rowFilter");    if(r) r.value="";
@@ -15497,6 +15549,7 @@ function filterBurials(){
     if(countEl) countEl.textContent = "";
     document.getElementById("pagination").innerHTML = "";
     document.getElementById("noResults").style.display = "none";
+    const sum = document.getElementById("searchSummary"); if(sum) sum.hidden = true;
     return;
   }
 
@@ -15523,18 +15576,30 @@ function filterBurials(){
     return true;
   });
 
-  filteredBurials.sort((a,b)=>{
-    let av=a[sortCol], bv=b[sortCol];
-    if(typeof av==="string") av=av.toLowerCase();
-    if(typeof bv==="string") bv=bv.toLowerCase();
-    if(av<bv) return -1*sortDir;
-    if(av>bv) return 1*sortDir;
-    return 0;
-  });
+  // While searching, order by how well each record answers the query, unless
+  // the visitor has clicked a column heading and asked for something else.
+  if(q && !userSorted){
+    filteredBurials.forEach(b=>{ b._rank = matchRank(b, q); });
+    filteredBurials.sort((a,b)=>
+      a._rank - b._rank ||
+      (a.surname||"\uffff").toLowerCase().localeCompare((b.surname||"\uffff").toLowerCase()) ||
+      (a.forenames||"").toLowerCase().localeCompare((b.forenames||"").toLowerCase())
+    );
+  } else {
+    filteredBurials.sort((a,b)=>{
+      let av=a[sortCol], bv=b[sortCol];
+      if(typeof av==="string") av=av.toLowerCase();
+      if(typeof bv==="string") bv=bv.toLowerCase();
+      if(av<bv) return -1*sortDir;
+      if(av>bv) return 1*sortDir;
+      return 0;
+    });
+  }
 
   currentPage=1;
   document.getElementById("resultsCount").textContent =
     filteredBurials.length + " result" + (filteredBurials.length===1?"":"s");
+  renderSearchSummary(q);
 
   renderTable();
   if(currentView==="grid") renderGrid();
@@ -15553,7 +15618,26 @@ function renderTable(){
   }
 
   document.getElementById("noResults").style.display="none";
-  tbody.innerHTML = slice.map(b=>`
+
+  // When the results are ranked by relevance, mark the point where people of
+  // that name give way to graves that only mention the name on the stone.
+  const rq = (document.getElementById("burialSearch").value || "").toLowerCase().trim();
+  const ranked = rq && !userSorted;
+  let lastGroup = start > 0 && ranked ? matchGroup(filteredBurials[start-1], rq) : null;
+  const GROUP_LABEL = {};
+  GROUP_LABEL[MATCH_DETAIL]  = "Matched on a plot number, year or occupation";
+  GROUP_LABEL[MATCH_MENTION] = "Named on someone else\u2019s headstone";
+
+  tbody.innerHTML = slice.map(b=>{
+    let divider = "";
+    if(ranked){
+      const g = matchGroup(b, rq);
+      if(g !== lastGroup && GROUP_LABEL[g]){
+        divider = '<tr class="burials-divider"><td colspan="6">'+GROUP_LABEL[g]+'</td></tr>';
+      }
+      lastGroup = g;
+    }
+    return divider + `
     <tr onclick="onRowClick(event, ${b.id})" role="button" tabindex="0"
         onkeydown="if(event.key==='Enter')onRowClick(event, ${b.id})">
       <td class="row-summary" data-label="Summary">
@@ -15584,7 +15668,8 @@ function renderTable(){
             : '<span style="color:var(--color-text-faint)">—</span>'
         }
       </td>
-    </tr>`).join("");
+    </tr>`;
+  }).join("");
 
   renderPagination();
   buildAlphaJump();
