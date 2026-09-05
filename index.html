@@ -499,6 +499,29 @@
   .plot-badge--pending{background:transparent;border:1px dashed var(--color-border);color:var(--color-text-muted);font-weight:600;font-family:inherit;letter-spacing:.01em;}
   .plot-map-pending{margin:var(--space-6) 0 0;padding:var(--space-4) var(--space-5);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;max-width:70ch;}
   .modal__plot-pending{margin-top:var(--space-4);padding:var(--space-4);border-left:3px solid var(--color-border);background:var(--color-surface-offset);color:var(--color-text);font-size:var(--text-sm);line-height:1.6;}
+  /* Burials idle / start state */
+  .burials-start{display:none;padding:var(--space-10) 0 var(--space-6);}
+  .burials-content.idle .burials-start{display:block;}
+  .burials-content.idle .burials-list-view,
+  .burials-content.idle .burials-grid-view{display:none;}
+  .burials-start__card{max-width:560px;margin-inline:auto;text-align:center;padding:var(--space-8) var(--space-6);
+    border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);}
+  .burials-start__card>svg{color:var(--color-text-faint);margin-bottom:var(--space-4);}
+  .burials-start__title{font-size:var(--text-xl);margin-bottom:var(--space-3);color:var(--color-text);}
+  .burials-start__text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;
+    margin-bottom:var(--space-6);max-width:46ch;margin-inline:auto;}
+  .burials-start__text strong{color:var(--color-text);font-variant-numeric:tabular-nums;}
+  .burials-start__text em{font-style:normal;font-family:var(--font-mono,monospace);font-size:0.94em;color:var(--color-text);}
+  .burials-start__rows-label{display:block;font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--color-text-faint);margin-bottom:var(--space-3);}
+  .burials-start__chips{display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;margin-bottom:var(--space-6);}
+  .burials-start__chip{font:inherit;font-size:var(--text-sm);padding:6px 14px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--color-border);background:var(--color-surface-2);color:var(--color-text);
+    transition:background .15s ease,border-color .15s ease;}
+  .burials-start__chip:hover{background:var(--color-primary);border-color:var(--color-primary);color:#fff;}
+  .burials-start__all{font:inherit;font-size:var(--text-sm);background:none;border:none;cursor:pointer;padding:4px 2px;
+    color:var(--color-text-muted);text-decoration:underline;text-underline-offset:3px;}
+  .burials-start__all:hover{color:var(--color-primary);}
   .no-results{text-align:center;padding:var(--space-16);color:var(--color-text-muted);}
   .no-results svg{margin-inline:auto;margin-bottom:var(--space-4);color:var(--color-text-faint);}
 
@@ -2075,6 +2098,8 @@
             <option value="A">Row A</option>
             <option value="B">Row B</option>
             <option value="C">Row C</option>
+            <option value="G">Row G</option>
+            <option value="H">Row H</option>
             <option value="I">Row I</option>
             <option value="K">Row K</option>
             <option value="__pending">Row not yet confirmed</option>
@@ -2133,6 +2158,29 @@
 
     <div class="burials-content">
       <div class="container--wide">
+        <div class="burials-start" id="burialsStart">
+          <div class="burials-start__card">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.4" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-4-4"/>
+            </svg>
+            <h2 class="burials-start__title">Search the burial register</h2>
+            <p class="burials-start__text">
+              <strong id="burialsStartCount">0</strong> people recorded so far from the standing
+              stones at Saron. Search by surname, forename, a year, a plot number such as
+              <em>G-11</em>, or any wording from an inscription.
+            </p>
+            <div class="burials-start__rows">
+              <span class="burials-start__rows-label">Or browse a row</span>
+              <div class="burials-start__chips" id="burialsStartChips"></div>
+            </div>
+            <button type="button" class="burials-start__all" onclick="showAllBurials()">
+              Show the full register
+            </button>
+          </div>
+        </div>
+
         <div class="burials-list-view active" id="listView">
           <div class="burials-table-wrap">
             <table class="burials-table" id="burialsTable" aria-label="Burials register">
@@ -15324,6 +15372,7 @@ const PAGE_SIZE=20;
 document.addEventListener("DOMContentLoaded", () => {
   updateBurialStats();
   filteredBurials=[...BURIALS];
+  buildBurialsStart();
   filterBurials();
   buildPlotMap();
 });
@@ -15351,10 +15400,55 @@ function sortTable(col){
   filterBurials();
 }
 
+// The register is large, so the page opens on a search prompt rather than a
+// wall of rows. The results appear once the visitor searches, picks a filter,
+// or asks to see everything.
+let burialsRevealed = false;
+
+function showAllBurials(){
+  burialsRevealed = true;
+  filterBurials();
+  document.querySelector(".burials-content").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function buildBurialsStart(){
+  const named = BURIALS.length;
+  const el = document.getElementById("burialsStartCount");
+  if(el) el.textContent = named.toLocaleString("en-GB");
+  const chips = document.getElementById("burialsStartChips");
+  if(!chips) return;
+  const rows = [...new Set(BURIALS.filter(b=>plotVerified(b) && b.row).map(b=>b.row))].sort();
+  chips.innerHTML = rows.map(r=>
+    `<button type="button" class="burials-start__chip" onclick="browseRow('${r}')">Row ${r}</button>`
+  ).join("");
+}
+
+function browseRow(r){
+  document.getElementById("burialSearch").value = "";
+  document.getElementById("eraFilter").value = "";
+  document.getElementById("rowFilter").value = r;
+  filterBurials();
+  document.querySelector(".burials-content").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 function filterBurials(){
   const q=(document.getElementById("burialSearch").value || "").toLowerCase().trim();
   const row=document.getElementById("rowFilter").value;
   const era=document.getElementById("eraFilter").value;
+
+  // Idle = nothing asked for yet. Keep the results hidden and show the prompt.
+  const idle = !q && !row && !era && !burialsRevealed;
+  const content = document.querySelector(".burials-content");
+  if(content) content.classList.toggle("idle", idle);
+  const alpha = document.querySelector(".burials-alpha");
+  if(alpha) alpha.style.display = idle ? "none" : "";
+  const countEl = document.getElementById("resultsCount");
+  if(idle){
+    if(countEl) countEl.textContent = "";
+    document.getElementById("pagination").innerHTML = "";
+    document.getElementById("noResults").style.display = "none";
+    return;
+  }
 
   filteredBurials = BURIALS.filter(b=>{
     if(q && !(
@@ -15634,7 +15728,7 @@ function closeModal(e){
    as not yet confirmed.
 
    To bring a row onto the map once it has been checked, add its letter here. */
-const VERIFIED_ROWS=["A","B","C","I","K"];
+const VERIFIED_ROWS=["A","B","C","G","H","I","K"];
 function rowVerified(r){return !!r && VERIFIED_ROWS.indexOf(r)!==-1;}
 function plotVerified(b){return rowVerified(b&&b.row)&&!!b.plot;}
 const UNCONFIRMED_LABEL="Not yet confirmed";
