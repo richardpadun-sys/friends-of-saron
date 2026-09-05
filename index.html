@@ -15444,17 +15444,21 @@ const MATCH_NAME = 1, MATCH_DETAIL = 2, MATCH_MENTION = 3;
 function matchRank(b, q){
   const sur = (b.surname||"").toLowerCase();
   const fore = (b.forenames||"").toLowerCase();
-  if(sur === q || fore === q) return 0;              // exact name
-  if(sur.startsWith(q) || fore.startsWith(q)) return 1;  // name begins with
-  if(sur.includes(q) || fore.includes(q)) return 2;      // name contains
-  if(plotVerified(b) && (b.plot||"").toLowerCase().includes(q)) return 3; // plot code
-  if(String(b.died||"") === q || String(b.born||"") === q) return 4;      // a year
-  if((b.occupation||"").toLowerCase().includes(q)) return 5;
-  return 6;                                          // only on the inscription
+  // A search for a surname should find the family before it finds someone
+  // who merely carries the name as a forename.
+  if(sur === q) return 0;
+  if(sur.startsWith(q)) return 1;
+  if(fore === q || fore.split(/\s+/).indexOf(q) !== -1) return 2;
+  if(fore.startsWith(q)) return 3;
+  if(sur.includes(q) || fore.includes(q)) return 4;
+  if(plotVerified(b) && (b.plot||"").toLowerCase().includes(q)) return 5; // plot code
+  if(String(b.died||"") === q || String(b.born||"") === q) return 6;      // a year
+  if((b.occupation||"").toLowerCase().includes(q)) return 7;
+  return 8;                                          // only on the inscription
 }
 function matchGroup(b, q){
   const r = matchRank(b, q);
-  return r <= 2 ? MATCH_NAME : (r <= 5 ? MATCH_DETAIL : MATCH_MENTION);
+  return r <= 4 ? MATCH_NAME : (r <= 7 ? MATCH_DETAIL : MATCH_MENTION);
 }
 
 // Typing in the card hands straight over to the real search box in the
@@ -15476,19 +15480,34 @@ function startSearch(v){
 function renderSearchSummary(q){
   const el = document.getElementById("searchSummary");
   if(!el) return;
-  if(!q || !filteredBurials.length){ el.hidden = true; return; }
+  if(!q || !filteredBurials.length){ el.hidden = true; el.innerHTML = ""; return; }
   const named    = filteredBurials.filter(b=>matchGroup(b,q)===MATCH_NAME).length;
+  const detail   = filteredBurials.filter(b=>matchGroup(b,q)===MATCH_DETAIL).length;
   const mentions = filteredBurials.filter(b=>matchGroup(b,q)===MATCH_MENTION).length;
   const raw = (document.getElementById("burialSearch").value || "").trim();
   const term = (raw || q).replace(/[<>&]/g,"");
+  const n = x => "<strong>" + x + "</strong>";
+  const isYear = /^\d{4}$/.test(q);
+  const isPlot = /^[a-k][\s-]?\d{1,2}$/i.test(q);
+
   const parts = [];
-  if(named)    parts.push("<strong>"+named+"</strong> "+(named===1?"person":"people")+" named \u201c"+term+"\u201d");
-  if(mentions) parts.push("<strong>"+mentions+"</strong> further "+(mentions===1?"grave whose inscription mentions":"graves whose inscriptions mention")+" it");
-  if(!parts.length){
-    el.innerHTML = "<strong>"+filteredBurials.length+"</strong> matching "+(filteredBurials.length===1?"record":"records")+".";
-  } else {
-    el.innerHTML = parts.join(", and ") + ".";
+  if(named) parts.push(n(named)+" "+(named===1?"person":"people")+" whose name matches \u201c"+term+"\u201d");
+  if(detail){
+    if(isYear)      parts.push(n(detail)+" "+(detail===1?"burial":"burials")+" recorded in "+term);
+    else if(isPlot) parts.push(n(detail)+" "+(detail===1?"grave":"graves")+" in plot "+term.toUpperCase());
+    else            parts.push(n(detail)+" "+(detail===1?"record":"records")+" matching on another detail");
   }
+  if(mentions) parts.push(n(mentions)+" "+(mentions===1?"grave whose inscription mentions":"graves whose inscriptions mention")+" it");
+
+  let text;
+  if(!parts.length){
+    text = n(filteredBurials.length)+" matching "+(filteredBurials.length===1?"record":"records");
+  } else if(parts.length===1){
+    text = parts[0];
+  } else {
+    text = parts.slice(0,-1).join(", ") + ", and " + parts[parts.length-1];
+  }
+  el.innerHTML = text + ".";
   el.hidden = false;
 }
 
