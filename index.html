@@ -2261,21 +2261,19 @@
               Interactive Grave Plot Map
             </h2>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2)">
-              Rows A, B and K have been walked and checked against the stones, so they are mapped here.
-              Hover or tap a plot to see details; click to open the burial record. The other rows are
-              still being surveyed and are not mapped yet &mdash; everyone recorded in them is still in
-              the register above and searchable by name.
+              Tap a plot to see who lies there. Rows <span id="mappedRows">A, B and K</span> are mapped
+              so far; the rest are still being surveyed, and everyone recorded in them is searchable above.
             </p>
           </div>
           <div class="plot-legend">
             <div class="legend-item">
-              <div class="legend-dot legend-dot--recorded"></div> Recorded
+              <div class="legend-dot legend-dot--recorded"></div> Full record
             </div>
             <div class="legend-item">
-              <div class="legend-dot legend-dot--partial"></div> Partial record
+              <div class="legend-dot legend-dot--partial"></div> Names only
             </div>
             <div class="legend-item">
-              <div class="legend-dot legend-dot--empty"></div> Unrecorded / empty
+              <div class="legend-dot legend-dot--empty"></div> No record
             </div>
           </div>
         </div>
@@ -15606,6 +15604,12 @@ function filterBurials(){
     );
   } else {
     filteredBurials.sort((a,b)=>{
+      // Stones with no legible name belong at the end of an A-Z, not the front.
+      if(sortCol==="surname"){
+        const nameless = s => !s || !/^[A-Za-z]/.test(s);
+        const ab=nameless(a.surname), bb=nameless(b.surname);
+        if(ab!==bb) return ab ? 1 : -1;
+      }
       let av=a[sortCol], bv=b[sortCol];
       if(typeof av==="string") av=av.toLowerCase();
       if(typeof bv==="string") bv=bv.toLowerCase();
@@ -15897,6 +15901,14 @@ function buildPlotMap(){
   Object.keys(burialsByPlot).forEach(p=>{const m=p.match(/^([A-K])-(\d+)/);if(m){const r=m[1],n=parseInt(m[2],10);if(n>(maxOccupied[r]||0))maxOccupied[r]=n;}});
   rows.forEach(r=>{PLOTS_PER_ROW[r]=Math.max(PLOTS_PER_ROW[r]||0, maxOccupied[r]||0);});
   const pending=BURIALS.filter(b=>!plotVerified(b)).length;
+
+  // Keep the sentence above the map in step with the rows actually mapped.
+  const mr=document.getElementById("mappedRows");
+  if(mr){
+    const v=VERIFIED_ROWS.slice();
+    mr.textContent = v.length>1 ? v.slice(0,-1).join(", ")+" and "+v[v.length-1] : v[0];
+  }
+
   const container=document.getElementById("plotMapContainer");
   let html="";
   rows.forEach(row=>{
@@ -15931,11 +15943,9 @@ function buildPlotMap(){
   if(pendEl){
     pendEl.hidden = pending===0;
     pendEl.innerHTML = pending===0 ? "" :
-      `<strong>${pending} more people are recorded at Saron than are shown on this map.</strong> We know them from the
-       chapel&rsquo;s 2012 burial index, but that index letters the rows starting at the back fence and working toward
-       the gate &mdash; the opposite of the way the graveyard is lettered today. Until each row has been walked and
-       checked against the stones we cannot say which grave is which, so we leave the plot blank rather than send you
-       to the wrong one. Every one of them is in the register above and can be found by name.`;
+      `<strong>${pending} more people are recorded at Saron than are shown on this map.</strong> Their rows were
+       lettered from the back fence toward the gate, the opposite of the way the graveyard is lettered today, so we
+       cannot yet say which grave is which. We leave the plot blank rather than send you to the wrong one.`;
   }
 }
 function plotClick(plotId,id){
