@@ -583,6 +583,47 @@
 
 
   /* ---- Stories behind the stones ---- */
+
+  /* ---- Gallery ---- */
+  .photogal-hero{padding:var(--space-16) 0 var(--space-10);border-bottom:1px solid var(--color-divider);}
+  .photogal-hero h1{font-size:var(--text-2xl);margin:0 0 var(--space-4);}
+  .photogal-hero__lede{font-size:var(--text-lg);color:var(--color-text-muted);max-width:58ch;margin:0;}
+  .photogal-nav{display:flex;flex-wrap:wrap;gap:var(--space-2);padding-block:var(--space-6);border-bottom:1px solid var(--color-divider);margin-bottom:var(--space-8);}
+  .photogal-nav a{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);text-decoration:none;padding:var(--space-2) var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-full);white-space:nowrap;}
+  .photogal-nav a:hover{color:var(--color-primary);border-color:var(--color-primary);}
+  .photogal-section{padding-block:var(--space-8);scroll-margin-top:90px;}
+  .photogal-section__head{display:flex;align-items:baseline;gap:var(--space-3);margin-bottom:var(--space-5);}
+  .photogal-section__head h2{font-size:var(--text-xl);margin:0;}
+  .photogal-section__head .n{font-size:var(--text-sm);color:var(--color-text-faint);}
+  .photogal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--space-5);}
+  .photogal-item{display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;cursor:zoom-in;padding:0;text-align:left;font-family:inherit;color:inherit;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive);}
+  .photogal-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .photogal-item:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px;}
+  .photogal-item img{aspect-ratio:4/3;width:100%;object-fit:cover;background:var(--color-surface-offset);display:block;}
+  .photogal-item figcaption{padding:var(--space-4);font-size:var(--text-sm);color:var(--color-text);line-height:1.45;}
+  .photogal-nav:empty{display:none;}
+  .photogal-empty{padding:var(--space-4) 0 var(--space-10);color:var(--color-text-muted);font-size:var(--text-base);max-width:60ch;}
+  .photogal-empty p{margin:0 0 var(--space-4);line-height:1.6;}
+  .photogal-empty p:last-child{margin-bottom:0;}
+  .photogal-empty strong{color:var(--color-text);font-weight:600;}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:1200;background:rgba(15,20,15,.92);display:none;align-items:center;justify-content:center;padding:var(--space-6);}
+  .lightbox.open{display:flex;}
+  .lightbox__fig{margin:0;max-width:min(1100px,94vw);max-height:92vh;display:flex;flex-direction:column;gap:var(--space-4);}
+  .lightbox__fig img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:var(--radius-md);background:#000;}
+  .lightbox__cap{color:#f2f0ea;font-size:var(--text-base);text-align:center;line-height:1.5;}
+  .lightbox__cap span{display:block;color:#a9b3a6;font-size:var(--text-sm);margin-top:var(--space-1);}
+  .lightbox__close{position:absolute;top:var(--space-5);right:var(--space-5);background:rgba(255,255,255,.12);border:0;color:#fff;width:44px;height:44px;border-radius:var(--radius-full);font-size:1.4rem;line-height:1;cursor:pointer;}
+  .lightbox__close:hover{background:rgba(255,255,255,.22);}
+  .lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:0;color:#fff;width:48px;height:48px;border-radius:var(--radius-full);font-size:1.6rem;line-height:1;cursor:pointer;}
+  .lightbox__nav:hover{background:rgba(255,255,255,.22);}
+  .lightbox__nav--prev{left:var(--space-4);}
+  .lightbox__nav--next{right:var(--space-4);}
+  @media(max-width:640px){
+    .photogal-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-3);}
+    .photogal-item figcaption{padding:var(--space-3);font-size:var(--text-xs);}
+    .lightbox__nav{width:40px;height:40px;}
+  }
   .stories-hero{padding:var(--space-16) 0 var(--space-10);border-bottom:1px solid var(--color-divider);}
   .stories-hero h1{font-size:var(--text-2xl);margin:0 0 var(--space-4);}
   .stories-hero__lede{font-size:var(--text-lg);color:var(--color-text-muted);max-width:58ch;margin:0;}
@@ -1311,6 +1352,7 @@
       <a href="#" class="nav__link active" data-page="home" onclick="showPage('home');return false;">Home</a>
       <a href="#" class="nav__link" data-page="burials" onclick="showPage('burials');return false;">Burials</a>
       <a href="#" class="nav__link" data-page="stories" onclick="showPage('stories');return false;">Stories</a>
+      <a href="#" class="nav__link" data-page="gallery" onclick="showPage('gallery');return false;">Gallery</a>
       <a href="#" class="nav__link" data-page="adopt" onclick="showPage('adopt');return false;">Adopt a Grave</a>
       <a href="#" class="nav__link" data-page="owain" onclick="showPage('owain');return false;">Ask Owain</a>
       <div class="nav__group" id="navMore">
@@ -1345,6 +1387,7 @@
     <a href="#" onclick="showPage('home');closeMobile();return false;" role="menuitem">Home</a>
     <a href="#" onclick="showPage('burials');closeMobile();return false;" role="menuitem">Burials Register</a>
     <a href="#" onclick="showPage('stories');closeMobile();return false;" role="menuitem">Stories behind the stones</a>
+    <a href="#" onclick="showPage('gallery');closeMobile();return false;" role="menuitem">Gallery</a>
     <a href="#" onclick="showPage('adopt');closeMobile();return false;" role="menuitem">Adopt a Grave</a>
     <a href="#" onclick="showPage('owain');closeMobile();return false;" role="menuitem">Ask Owain</a>
     <a href="https://friendsofsaron.wordpress.com" target="_blank" rel="noopener noreferrer" role="menuitem">Project Blog &amp; Archive</a>
@@ -2477,6 +2520,28 @@
 
 
   <!-- ============================ ADOPT A GRAVE ============================ -->
+  <div class="page" id="page-gallery">
+
+    <section class="photogal-hero">
+      <div class="container--wide">
+        <h1>Gallery</h1>
+        <p class="photogal-hero__lede">
+          Saron was more than a graveyard. It was a chapel, a choir, a Sunday
+          school and a hundred years of village life. These are the photographs,
+          maps and portraits that put the names in the register back into the
+          place they came from.
+        </p>
+      </div>
+    </section>
+
+    <div class="container--wide">
+      <nav class="photogal-nav" id="galleryNav" aria-label="Jump to a gallery section"></nav>
+      <div id="galleryBody"></div>
+      <div style="height:var(--space-16)"></div>
+    </div>
+
+  </div>
+
   <div class="page" id="page-adopt">
 
     <section class="adopt-hero">
@@ -2715,6 +2780,16 @@
 </footer>
 
 <!-- BIO MODAL -->
+<div class="lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+  <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox__nav lightbox__nav--prev" onclick="stepLightbox(-1)" aria-label="Previous photograph">&#8249;</button>
+  <button class="lightbox__nav lightbox__nav--next" onclick="stepLightbox(1)" aria-label="Next photograph">&#8250;</button>
+  <figure class="lightbox__fig">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox__cap" id="lightboxCap"></figcaption>
+  </figure>
+</div>
+
 <div class="modal-overlay" id="bioModal" role="dialog" aria-modal="true"
      aria-labelledby="modalName" onclick="closeModal(event)">
   <div class="modal" id="modalInner">
@@ -3557,6 +3632,7 @@ function openStory(slug, skipHash){
 function routeFromHash(){
   const hash = (location.hash || '').replace(/^#/,'');
   if(hash === 'stories'){ showPage('stories'); return true; }
+  if(hash === 'gallery'){ showPage('gallery'); return true; }
   if(hash === 'adopt'){ showPage('adopt'); return true; }
   const m = hash.match(/^story\/([a-z0-9-]+)$/i);
   if(m && storyBySlug(m[1])){ openStory(m[1], true); return true; }
@@ -3566,11 +3642,108 @@ window.addEventListener('hashchange', routeFromHash);
 window.addEventListener('DOMContentLoaded', routeFromHash);
 if(document.readyState !== 'loading') routeFromHash();
 
+/* ===================== GALLERY =====================
+   GALLERY_SECTIONS is rewritten each morning by the drive check.
+   Each section is one folder in the Gallery folder on the drive; each
+   image's caption is its file name. Do not hand-edit — changes here are
+   overwritten on the next sync. Change the drive instead.
+==================================================== */
+const GALLERY_SECTIONS = [];
+
+let lightboxList = [];
+let lightboxIdx = 0;
+
+function renderGallery(){
+  const nav  = document.getElementById('galleryNav');
+  const body = document.getElementById('galleryBody');
+  if(!nav || !body) return;
+
+  const live = GALLERY_SECTIONS.filter(s => s.images && s.images.length);
+
+  if(!live.length){
+    nav.innerHTML = '';
+    nav.style.borderBottom = 'none';
+    body.innerHTML =
+      '<div class="photogal-empty"><p><strong>The gallery is being gathered.</strong></p>' +
+      '<p>Photographs of the ministers, the chapel inside and out, the old maps of ' +
+      'the village, and the choirs, outings and celebrations that filled Saron ' +
+      'for a century are being collected now. They will appear here as they come in.</p>' +
+      '<p>If you have a photograph connected to Saron, Owain can pass it on to the ' +
+      'volunteers looking after the collection.</p></div>';
+    return;
+  }
+
+  nav.innerHTML = live.map(s =>
+    '<a href="#gal-'+s.slug+'" onclick="document.getElementById(\'gal-'+s.slug+'\')' +
+    '.scrollIntoView({behavior:\'smooth\'});return false;">'+escHtml(s.title)+'</a>'
+  ).join('');
+
+  // Flat list drives the lightbox's next/previous
+  lightboxList = [];
+  live.forEach(s => s.images.forEach(im =>
+    lightboxList.push({src:'images/gallery/'+im.file, cap:im.caption, section:s.title})));
+
+  let idx = 0;
+  body.innerHTML = live.map(s => {
+    const n = s.images.length;
+    const items = s.images.map(im => {
+      const i = idx++;
+      return '<figure class="photogal-item" role="button" tabindex="0" ' +
+        'onclick="openLightbox('+i+')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox('+i+');}">' +
+        '<img src="images/gallery/'+escHtml(im.file)+'" alt="'+escHtml(im.caption)+'" loading="lazy">' +
+        '<figcaption>'+escHtml(im.caption)+'</figcaption></figure>';
+    }).join('');
+    return '<section class="photogal-section" id="gal-'+s.slug+'">' +
+      '<div class="photogal-section__head"><h2>'+escHtml(s.title)+'</h2>' +
+      '<span class="n">'+n+' image'+(n===1?'':'s')+'</span></div>' +
+      '<div class="photogal-grid">'+items+'</div></section>';
+  }).join('');
+}
+
+function openLightbox(i){
+  if(!lightboxList.length) return;
+  lightboxIdx = i;
+  paintLightbox();
+  document.getElementById('galleryLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function paintLightbox(){
+  const it = lightboxList[lightboxIdx];
+  if(!it) return;
+  const img = document.getElementById('lightboxImg');
+  img.src = it.src;
+  img.alt = it.cap;
+  document.getElementById('lightboxCap').innerHTML =
+    escHtml(it.cap) + '<span>' + escHtml(it.section) +
+    '  ·  ' + (lightboxIdx+1) + ' of ' + lightboxList.length + '</span>';
+}
+function stepLightbox(d){
+  if(!lightboxList.length) return;
+  lightboxIdx = (lightboxIdx + d + lightboxList.length) % lightboxList.length;
+  paintLightbox();
+}
+function closeLightbox(){
+  document.getElementById('galleryLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('galleryLightbox');
+  if(!lb || !lb.classList.contains('open')) return;
+  if(e.key === 'Escape')      closeLightbox();
+  if(e.key === 'ArrowLeft')   stepLightbox(-1);
+  if(e.key === 'ArrowRight')  stepLightbox(1);
+});
+(function(){
+  const lb = document.getElementById('galleryLightbox');
+  if(lb) lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+})();
+
 function showPage(page){
   if(page === 'stories' && location.hash.indexOf('#story/') === 0){ history.replaceState(null,'','#stories'); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   if(page === 'stories' && typeof renderStoriesGrid === 'function') renderStoriesGrid();
+  if(page === 'gallery' && typeof renderGallery === 'function') renderGallery();
   const navFor = (page === 'story') ? 'stories' : page;
   document.querySelectorAll('.nav__link[data-page]').forEach(a=>{
     a.classList.toggle('active',a.dataset.page===navFor);
