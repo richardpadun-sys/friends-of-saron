@@ -1335,7 +1335,129 @@
   [data-theme="dark"] .adopt-modal__msg--bad{background:oklch(0.28 0.06 25);color:#f0c8c8;}
   [data-theme="dark"] .adopt-modal{background:oklch(0.12 0.02 130 / 0.7);}
   [data-theme="dark"] .adopt-card--taken{background:var(--color-surface-offset);}
-  </style>
+    /* ── Burials: clean search, top three results ───────────────────── */
+  .burials-toolbar,.burials-alpha,#listView,#gridView,#searchSummary{display:none!important;}
+  .burials-content,.burials-content.idle{padding-block:var(--space-8) var(--space-10);}
+  .burials-content .burials-start{display:block;padding:0;}
+  .burials-start__field{margin-bottom:0;}
+  .burials-results{text-align:left;}
+  .burials-results.has-results{margin-top:14px;}
+  .burials-start__rows{margin-top:28px;}
+  .burials-results__list{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .burials-results__item{width:100%;display:grid;grid-template-columns:1fr auto;grid-template-areas:"name go" "meta go" "plot go";
+    column-gap:12px;align-items:center;text-align:left;font:inherit;cursor:pointer;padding:13px 16px 13px 18px;
+    background:var(--color-bg);border:1px solid var(--color-border);border-left:3px solid var(--color-primary);border-radius:var(--radius-md);
+    color:var(--color-text);transition:border-color .18s ease,background .18s ease,transform .18s ease;}
+  .burials-results__item:hover,.burials-results__item:focus-visible{background:var(--color-primary-light);border-color:var(--color-primary);outline:none;}
+  .burials-results__item:active{transform:translateY(1px);}
+  .burials-results__name{grid-area:name;font-family:var(--font-display);font-size:1.08rem;font-weight:600;line-height:1.3;}
+  .burials-results__meta{grid-area:meta;font-size:var(--text-sm);color:var(--color-text-muted);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .burials-results__plot{grid-area:plot;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-primary);font-weight:600;margin-top:6px;}
+  .burials-results__plot.is-tbc{color:var(--color-text-faint);}
+  .burials-results__go{grid-area:go;font-size:1.6rem;line-height:1;color:var(--color-text-faint);}
+  .burials-results__item:hover .burials-results__go{color:var(--color-primary);}
+  .burials-results__more,.burials-results__none{font-size:var(--text-sm);color:var(--color-text-muted);margin:10px 2px 0;line-height:1.55;}
+  .burials-start__chip.is-on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;}
+
+  /* ── Plan of the graveyard ──────────────────────────────────────── */
+  .gmap-section{--map-paper:#f3eedf;--map-ground:#e3e6cf;--map-named:#b9d3a6;--map-named-edge:#5d8a4a;--map-ink:#2a2418;
+    --map-tab:#3d4a2c;--map-sel:#8a4b1c;--map-approx:#8c7a55;background:var(--color-surface);}
+  .gmap-head{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-6);flex-wrap:wrap;margin-bottom:var(--space-5);}
+  .gmap-title{font-size:var(--text-xl);margin-bottom:0;}
+  .gmap-intro{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2);max-width:62ch;line-height:1.6;}
+  .gmap-key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:var(--text-xs);color:var(--color-text-muted);}
+  .gmap-key li{display:flex;align-items:center;gap:7px;}
+  .gmap-key__mark{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    font:700 10px/1 var(--font-body);color:var(--map-ink);flex-shrink:0;}
+  .gmap-key__mark--named{background:var(--map-named);box-shadow:inset 0 0 0 1px var(--map-named-edge);}
+  .gmap-key__mark--plain{background:var(--map-ground);}
+  .gmap-key__mark--x{background:var(--map-ground);font-size:9px;}
+  .gmap-key__mark--approx{border-radius:4px;width:26px;height:14px;border:1.5px dashed var(--map-approx);background:transparent;}
+  .gmap{position:relative;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;
+    background:var(--map-paper);box-shadow:inset 0 0 60px rgba(120,95,50,.10),0 1px 2px rgba(0,0,0,.04);}
+  .gmap::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;border-radius:inherit;
+    box-shadow:inset 0 0 0 6px var(--map-paper),inset 0 0 0 7px rgba(120,95,50,.22);}
+  .gmap__scroll{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;}
+  .gmap__inner{position:relative;width:100%;transition:width .25s ease;}
+  .gmap__svg{display:block;width:100%;height:auto;}
+  .gmap__ground{fill:var(--map-ground);}
+  .gmap__ink{pointer-events:none;}
+  .gmap__named circle{fill:var(--map-named);stroke:var(--map-named-edge);stroke-width:1;}
+  .gmap__approx rect{fill:rgba(140,122,85,.07);stroke:var(--map-approx);stroke-width:1.4;stroke-dasharray:5 4;}
+  .gmap__approx text{font:italic 600 14px var(--font-display);fill:var(--map-approx);text-anchor:middle;}
+  .gmap__tab rect{fill:var(--map-tab);cursor:pointer;transition:fill .15s;}
+  .gmap__tab text{font:700 17px var(--font-display);fill:#f3eedf;text-anchor:middle;pointer-events:none;}
+  .gmap__tab:hover rect,.gmap__tab.is-on rect{fill:var(--map-sel);}
+  .gmap__more circle{fill:var(--map-named);stroke:var(--map-named-edge);stroke-width:1;stroke-dasharray:2 2;}
+  .gmap__more text{font:700 9.5px var(--font-body);fill:var(--map-ink);text-anchor:middle;pointer-events:none;}
+  .gmap__hit{fill:transparent;cursor:pointer;outline:none;}
+  .gmap__hit:hover,.gmap__hit:focus-visible{fill:rgba(138,75,28,.10);stroke:var(--map-sel);stroke-width:1.6;}
+  .gmap__rowmarks circle{fill:none;stroke:var(--map-sel);stroke-width:1.3;opacity:.75;}
+  .gmap__ring{fill:none;stroke:var(--map-sel);stroke-width:2.6;}
+  .gmap__pulse{fill:rgba(138,75,28,.18);transform-box:fill-box;transform-origin:center;animation:gmapPulse 1.8s ease-out infinite;}
+  @keyframes gmapPulse{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.gmap__pulse{animation:none}.gmap__inner{transition:none}}
+  .gmap__tools{position:absolute;bottom:18px;left:18px;z-index:3;display:flex;gap:4px;}
+  .gmap__tool{font:600 15px/1 var(--font-body);min-width:32px;height:32px;padding:0 9px;border-radius:6px;cursor:pointer;
+    background:rgba(255,253,246,.92);color:var(--map-ink);border:1px solid rgba(120,95,50,.35);}
+  .gmap__tool--text{font-size:12px;}
+  .gmap__tool:hover{background:#fff;border-color:var(--map-sel);color:var(--map-sel);}
+  .gmap__hint{display:none;}
+  .gmap__pop{position:absolute;z-index:4;background:#fffdf6;color:#2a2418;border:1px solid rgba(120,95,50,.35);border-radius:10px;
+    box-shadow:0 10px 30px rgba(60,40,10,.18);padding:14px 16px 12px;font-size:var(--text-sm);}
+  .gmap__pop::after{content:"";position:absolute;left:calc(var(--tip,50%) - 7px);bottom:-7px;width:12px;height:12px;background:inherit;
+    border-right:1px solid rgba(120,95,50,.35);border-bottom:1px solid rgba(120,95,50,.35);transform:rotate(45deg);}
+  .gmap__pop.is-below::after{bottom:auto;top:-7px;transform:rotate(225deg);}
+  .gmap__pop-x{position:absolute;top:4px;right:6px;border:0;background:none;font-size:20px;line-height:1;cursor:pointer;color:#7a6a50;padding:4px;}
+  .gmap__pop-k{font:600 .7rem/1.3 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:#8a4b1c;margin:0 22px 6px 0;}
+  .gmap__pop-k span{text-transform:none;letter-spacing:0;font-weight:400;color:#7a6a50;}
+  .gmap__pop-t{margin:0;line-height:1.5;color:#4a4232;}
+  .gmap__pop-t a{color:#2d6a20;font-weight:600;}
+  .gmap__pop-list{list-style:none;margin:0;padding:0;max-height:220px;overflow:auto;}
+  .gmap__pop-list li+li{border-top:1px solid rgba(120,95,50,.18);}
+  .gmap__pop-list button{width:100%;text-align:left;font:inherit;background:none;border:0;cursor:pointer;padding:7px 0;display:block;color:inherit;}
+  .gmap__pop-name{display:block;font-family:var(--font-display);font-weight:600;font-size:1rem;color:#1e2318;}
+  .gmap__pop-meta{display:block;font-size:.8rem;color:#6b6048;}
+  .gmap__pop-list button:hover .gmap__pop-name{color:#2d6a20;text-decoration:underline;text-underline-offset:3px;}
+  .gmap-row{margin-top:var(--space-5);padding:20px 22px;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-bg);}
+  .gmap-row__head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+  .gmap-row__head h3{font-size:var(--text-lg);margin:0;}
+  .gmap-row__head p{margin:0;font-size:var(--text-sm);color:var(--color-text-muted);flex:1;}
+  .gmap-row__x{font:inherit;font-size:var(--text-sm);background:none;border:0;color:var(--color-primary);cursor:pointer;font-weight:600;}
+  .gmap-row__list{list-style:none;margin:0;padding:0;columns:3 240px;column-gap:28px;}
+  .gmap-row__list li{break-inside:avoid;}
+  .gmap-row__list button{display:grid;grid-template-columns:48px 1fr;grid-template-areas:"plot name" "plot yrs";width:100%;text-align:left;
+    font:inherit;background:none;border:0;border-bottom:1px solid var(--color-divider);padding:7px 0;cursor:pointer;color:var(--color-text);}
+  .gmap-row__plot{grid-area:plot;font-size:.75rem;font-weight:600;color:var(--color-primary);padding-top:3px;font-variant-numeric:tabular-nums;}
+  .gmap-row__name{grid-area:name;font-family:var(--font-display);font-weight:600;}
+  .gmap-row__yrs{grid-area:yrs;font-size:.8rem;color:var(--color-text-muted);}
+  .gmap-row__list button:hover .gmap-row__name{color:var(--color-primary);}
+  .gmap-note{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-5);max-width:75ch;line-height:1.6;}
+  .gmap-note a{color:var(--color-primary);font-weight:600;}
+  .modal__onplan{display:inline-flex;align-items:center;gap:8px;margin:12px 0 4px;font:inherit;font-size:var(--text-sm);font-weight:600;
+    padding:9px 14px;border-radius:999px;border:1px solid var(--color-primary);background:var(--color-primary-light);color:var(--color-primary);cursor:pointer;}
+  .modal__onplan:hover{background:var(--color-primary);color:#fff;}
+  .modal__onplan[hidden]{display:none;}
+  [data-theme="dark"] .gmap-section{--map-paper:#23241b;--map-ground:#2c3122;--map-named:#3f5e31;--map-named-edge:#7fae67;--map-ink:#e6dfcc;
+    --map-tab:#55663d;--map-sel:#e09a5a;--map-approx:#b9a77d;}
+  [data-theme="dark"] .gmap__ink{filter:invert(1) sepia(.35) brightness(.92);}
+  [data-theme="dark"] .gmap::before{box-shadow:inset 0 0 0 6px var(--map-paper),inset 0 0 0 7px rgba(230,220,190,.15);}
+  [data-theme="dark"] .gmap__tool{background:rgba(35,36,27,.92);color:#e6dfcc;border-color:rgba(230,220,190,.25);}
+  [data-theme="dark"] .gmap-key__mark{color:#e6dfcc;}
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme]) .gmap-section{--map-paper:#23241b;--map-ground:#2c3122;--map-named:#3f5e31;--map-named-edge:#7fae67;--map-ink:#e6dfcc;--map-tab:#55663d;--map-sel:#e09a5a;--map-approx:#b9a77d;}
+    :root:not([data-theme]) .gmap__ink{filter:invert(1) sepia(.35) brightness(.92);}
+  }
+  @media (max-width:767px){
+    .gmap{border-radius:var(--radius-md);margin-inline:calc(var(--space-2) * -1);}
+    .gmap__hint{display:block;margin:0;padding:8px 12px 10px;font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;
+      border-top:1px solid rgba(120,95,50,.2);}
+    .gmap__tools{position:static;padding:10px 10px 4px;}
+    .gmap-key{gap:6px 14px;}
+    .gmap-row{padding:16px;}
+    .burials-results__item{padding:12px 14px;}
+  }
+</style>
 </head>
 <body>
 
@@ -2004,7 +2126,7 @@
               How can I find out if my ancestor is buried at Saron?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </button>
-            <div class="faq-answer"><p>Use our Burials Register page — search by surname, first name, year of death or plot number. You can also browse row by row using the interactive plot map. If your ancestor isn't yet listed, contact us and we'll check our offline records.</p></div>
+            <div class="faq-answer"><p>Use our Burials Register page — search by surname, first name, year of death or plot number. You can also find any row, and every grave in it, on the plan of the graveyard further down the same page. If your ancestor isn't yet listed, contact us and we'll check our offline records.</p></div>
           </div>
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">
@@ -2032,7 +2154,7 @@
               How are plots numbered and lettered?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </button>
-            <div class="faq-answer"><p>The graveyard is divided into rows A through K, and each row contains numbered plots, so plot B-14 means Row B, plot 14. You can explore the rows we have confirmed on the interactive plot map on the Burials Register page.</p><p>Not every burial we know of has a plot against it yet. Rows A, B, C and K have now been walked and checked against the stones; the rest are still being surveyed, and until a row is checked we show its burials without a plot rather than risk pointing you at the wrong grave.</p></div>
+            <div class="faq-answer"><p>The graveyard is divided into rows A through K, and each row contains numbered plots, so plot B-14 means Row B, plot 14. You can find each row, and the graves in it, on the plan of the graveyard on the Burials Register page.</p><p>Not every burial we know of has a plot against it yet. Rows A, B, C and K have now been walked and checked against the stones; the rest are still being surveyed, and until a row is checked we show its burials without a plot rather than risk pointing you at the wrong grave.</p></div>
           </div>
         </div>
       </div>
@@ -2218,14 +2340,12 @@
                      oninput="startSearch(this.value)" />
             </div>
 
+            <div class="burials-results" id="burialsStartResults" aria-live="polite"></div>
+
             <div class="burials-start__rows">
-              <span class="burials-start__rows-label">Or browse a row of graves</span>
+              <span class="burials-start__rows-label">Or find a row on the plan</span>
               <div class="burials-start__chips" id="burialsStartChips"></div>
             </div>
-
-            <button type="button" class="burials-start__all" onclick="showAllBurials()">
-              Show all <span id="burialsStartCountAll">0</span> records
-            </button>
 
             <p class="burials-start__note">
               This register is a work in progress. Some inscriptions are worn beyond reading and some
@@ -2283,51 +2403,54 @@
       </div>
     </div>
 
-    <div class="plot-section">
+    <section class="plot-section gmap-section" id="gmapSection" aria-labelledby="gmapTitle">
       <div class="container--wide">
-        <div class="plot-grid-header">
+        <div class="gmap-head">
           <div>
-            <p class="section-label">Plot Map</p>
-            <h2 class="section-title" style="font-size:var(--text-xl);margin-bottom:0">
-              Interactive Grave Plot Map
-            </h2>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2)">
-              Tap a plot to see who lies there.
+            <p class="section-label">The graveyard</p>
+            <h2 class="section-title gmap-title" id="gmapTitle">Plan of Saron Graveyard</h2>
+            <p class="gmap-intro">
+              Drawn from the measured plan of the graveyard, updated May 2026. Every grave sits where it
+              lies on the ground. Graves marked in green have a name recorded against them &mdash; tap one
+              to see who lies there.
             </p>
           </div>
-          <div class="plot-legend">
-            <div class="legend-item">
-              <div class="legend-dot legend-dot--recorded"></div> Full record
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot legend-dot--partial"></div> Names only
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot legend-dot--empty"></div> No record
-            </div>
-          </div>
+          <ul class="gmap-key" aria-label="Key to the plan">
+            <li><span class="gmap-key__mark gmap-key__mark--named">7</span>Name recorded</li>
+            <li><span class="gmap-key__mark gmap-key__mark--plain">7</span>No name recorded yet</li>
+            <li><span class="gmap-key__mark gmap-key__mark--x">X</span>Unmarked grave</li>
+            <li><span class="gmap-key__mark gmap-key__mark--approx"></span>Number of graves estimated</li>
+          </ul>
         </div>
-        <div class="plot-row-wrap" id="plotMapContainer"></div>
-        <p class="plot-map-pending" id="plotMapPending" hidden></p>
 
-        <figure class="burial-plan-figure">
-          <figcaption class="burial-plan-caption">
-            <p class="section-label">Site Plan</p>
-            <h3 style="font-size:var(--text-lg);margin:var(--space-1) 0 var(--space-2)">Realistic burial plan — updated May 2026</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin:0">
-              The grid above is a simplified guide. Plots at Saron are not a standard size and are set
-              out differently in each row, so this measured plan shows how the graves actually sit
-              within the graveyard. An <strong>X</strong> marks an unmarked plot, and “+ approx” notes
-              show where the number of graves in a gap is an educated estimate. The survey is ongoing,
-              so this plan will be updated as more graves are identified.
-            </p>
-          </figcaption>
-          <img src="images/burial-plan-2026.jpg"
-               alt="Measured burial plan of Saron Graveyard, Troedyrhiw, updated May 2026, showing rows A to K with numbered plots, unmarked plots marked X, and landmarks including the Rev Morgan memorial, Rees Tomb 27 and the boiler room"
-               class="burial-plan-img" loading="lazy">
-        </figure>
+        <div class="gmap" id="gmap">
+          <div class="gmap__tools" role="group" aria-label="Zoom the plan">
+            <button type="button" class="gmap__tool" onclick="gmapZoom(1)" aria-label="Zoom in">+</button>
+            <button type="button" class="gmap__tool" onclick="gmapZoom(-1)" aria-label="Zoom out">&minus;</button>
+            <button type="button" class="gmap__tool gmap__tool--text" onclick="gmapZoom(0)">Whole plan</button>
+          </div>
+          <div class="gmap__scroll" id="gmapScroll">
+            <div class="gmap__inner" id="gmapInner">
+              <svg class="gmap__svg" id="gmapSvg" viewBox="0 236 1400 552" role="img"
+                   aria-label="Plan of Saron Graveyard, Troedyrhiw, showing rows A to K with each numbered grave"></svg>
+              <div class="gmap__pop" id="gmapPop" hidden></div>
+            </div>
+          </div>
+          <p class="gmap__hint">Drag sideways to see the whole graveyard.</p>
+        </div>
+
+        <div class="gmap-row" id="gmapRow" hidden></div>
+
+        <p class="gmap-note">
+          Plots at Saron are not a standard size and are set out differently in each row, so the numbers
+          are spaced as they are on the ground rather than in a neat grid. An <strong>X</strong> marks an
+          unmarked grave, and the dashed boxes show stretches where the number of graves is an educated
+          estimate. The survey is ongoing and the plan will be updated as more graves are identified.
+          <a href="images/burial-plan-2026.jpg" target="_blank" rel="noopener">See the original measured plan</a>.
+        </p>
+        <p class="plot-map-pending" id="plotMapPending" hidden></p>
       </div>
-    </div>
+    </section>
   </div><!-- end page-burials -->
 
   <!-- ============================ OWAIN ============================ -->
@@ -2823,6 +2946,10 @@
         <span id="modalHeadstoneFile">headstone-[plot].jpg</span>
       </p>
       <div class="modal__meta-grid" id="modalMetaGrid"></div>
+      <button type="button" class="modal__onplan" id="modalOnPlan" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span>See this grave on the plan</span>
+      </button>
       <p class="modal__plot-pending" id="modalPlotPending" hidden></p>
       <div id="modalBioSection"></div>
       <button type="button" class="modal__back" onclick="closeBioModal()">
@@ -17275,11 +17402,37 @@ function startSearch(v){
   if(!real) return;
   real.value = v;
   filterBurials();
-  if(v){
-    real.focus();
-    const n = real.value.length;
-    try { real.setSelectionRange(n, n); } catch(e){}
+  renderStartResults(v);
+}
+
+// The three people who best answer what was typed, as cards to click.
+function renderStartResults(v){
+  const box = document.getElementById("burialsStartResults");
+  if(!box) return;
+  const q = (v||"").trim();
+  if(!q){ box.innerHTML = ""; box.classList.remove("has-results"); return; }
+  const list = filteredBurials;
+  box.classList.add("has-results");
+  if(!list.length){
+    box.innerHTML = '<p class="burials-results__none">No one matching \u201c'+escHtml(q)+'\u201d has been recorded yet. '
+      +'Try another spelling, a forename, or a year.</p>';
+    return;
   }
+  const top = list.slice(0,3);
+  box.innerHTML = '<ul class="burials-results__list">'+top.map(b=>{
+      const plot = plotVerified(b) ? '<span class="burials-results__plot">Row '+b.row+' &middot; Plot '+parseInt(String(b.plot).slice(2),10)+'</span>'
+                                   : '<span class="burials-results__plot is-tbc">Plot not yet confirmed</span>';
+      return '<li><button type="button" class="burials-results__item" onclick="pickResult('+b.id+')">'
+        +'<span class="burials-results__name">'+displayNameNatural(b)+'</span>'
+        +'<span class="burials-results__meta">'+burialYears(b)+(b.age?' &middot; aged '+b.age:'')+'</span>'
+        +plot+'<span class="burials-results__go" aria-hidden="true">\u203a</span></button></li>';
+    }).join("")+'</ul>'
+    + (list.length>3 ? '<p class="burials-results__more">Showing the closest 3 of '+list.length+' matches. Add a forename or a year to narrow it down.</p>' : '');
+}
+function pickResult(id){
+  const b = BURIALS.find(x=>x.id===id); if(!b) return;
+  showOnPlan(b);
+  openBio(id);
 }
 
 // Says in plain words what the results are, so a search for a surname does
@@ -17323,6 +17476,9 @@ function resetBurials(){
   userSorted = false;
   const b=document.getElementById("burialsStartSearch"); if(b) b.value="";
   const s=document.getElementById("burialSearch"); if(s) s.value="";
+  if(typeof renderStartResults === 'function') renderStartResults("");
+  if(typeof clearRow === 'function' && document.getElementById("gmapRow")) clearRow();
+  if(typeof gmapClosePop === 'function' && document.getElementById("gmapPop")) gmapClosePop();
   const r=document.getElementById("rowFilter");    if(r) r.value="";
   const e=document.getElementById("eraFilter");    if(e) e.value="";
   currentPage = 1;
@@ -17345,17 +17501,10 @@ function buildBurialsStart(){
   if(!chips) return;
   const rows = [...new Set(BURIALS.filter(b=>plotVerified(b) && b.row).map(b=>b.row))].sort();
   chips.innerHTML = rows.map(r=>
-    `<button type="button" class="burials-start__chip" onclick="browseRow('${r}')">Row ${r}</button>`
+    `<button type="button" class="burials-start__chip" data-row="${r}" onclick="browseRow('${r}')">Row ${r}</button>`
   ).join("");
 }
 
-function browseRow(r){
-  document.getElementById("burialSearch").value = "";
-  document.getElementById("eraFilter").value = "";
-  document.getElementById("rowFilter").value = r;
-  filterBurials();
-  document.querySelector(".burials-content").scrollIntoView({behavior:"smooth",block:"start"});
-}
 
 function filterBurials(){
   const q=(document.getElementById("burialSearch").value || "").toLowerCase().trim();
@@ -17406,8 +17555,10 @@ function filterBurials(){
   // the visitor has clicked a column heading and asked for something else.
   if(q && !userSorted){
     filteredBurials.forEach(b=>{ b._rank = matchRank(b, q); });
+    const illegible = x => /\?|initials only|^\s*$/i.test(x.forenames||"") ? 1 : 0;
     filteredBurials.sort((a,b)=>
       a._rank - b._rank ||
+      illegible(a) - illegible(b) ||
       (a.surname||"\uffff").toLowerCase().localeCompare((b.surname||"\uffff").toLowerCase()) ||
       (a.forenames||"").toLowerCase().localeCompare((b.forenames||"").toLowerCase())
     );
@@ -17647,6 +17798,11 @@ function openBio(id){
     <div class="modal__meta-item"><div class="modal__meta-label">Plot</div><div class="modal__meta-value">${plotVerified(b)?('<span class="plot-badge">'+b.plot+'</span>'):('<span class="plot-badge plot-badge--pending">'+UNCONFIRMED_LABEL+'</span>')}</div></div>
     <div class="modal__meta-item"><div class="modal__meta-label">Row</div><div class="modal__meta-value">${plotVerified(b)?("Row "+b.row):UNCONFIRMED_LABEL}</div></div>
   `;
+  const onPlan=document.getElementById("modalOnPlan");
+  if(onPlan){
+    onPlan.hidden=!plotVerified(b);
+    onPlan.onclick=function(){ closeBioModal(); setTimeout(function(){ showOnPlan(b); },60); };
+  }
   const pendEl=document.getElementById("modalPlotPending");
   if(pendEl){
     pendEl.hidden=plotVerified(b);
@@ -17700,64 +17856,247 @@ function rowVerified(r){return !!r && VERIFIED_ROWS.indexOf(r)!==-1;}
 function plotVerified(b){return rowVerified(b&&b.row)&&!!b.plot;}
 const UNCONFIRMED_LABEL="Not yet confirmed";
 
-function buildPlotMap(){
-  const rows=VERIFIED_ROWS.slice();
-  const PLOTS_PER_ROW={A:69,B:52,C:40,D:36,E:34,F:33,G:32,H:46,I:52,J:22,K:22};
-  const burialsByPlot={};
-  BURIALS.forEach(b=>{if(plotVerified(b))burialsByPlot[b.plot]=(burialsByPlot[b.plot]||[]).concat(b);});
-  // Ensure every occupied plot is rendered even if it sits beyond the estimated row count.
-  const maxOccupied={};
-  Object.keys(burialsByPlot).forEach(p=>{const m=p.match(/^([A-K])-(\d+)/);if(m){const r=m[1],n=parseInt(m[2],10);if(n>(maxOccupied[r]||0))maxOccupied[r]=n;}});
-  rows.forEach(r=>{PLOTS_PER_ROW[r]=Math.max(PLOTS_PER_ROW[r]||0, maxOccupied[r]||0);});
-  const pending=BURIALS.filter(b=>!plotVerified(b)).length;
+/* ── Plan of the graveyard ─────────────────────────────────────────────
+   Each grave is placed where its number sits on the measured plan
+   (images/burial-plan-2026.jpg, 1400 × 1006 px). The coordinates below are
+   in that same pixel space, read off the plan row by row. */
+const PLOT_POS = {"A":{"1":[26,294],"2":[42,294],"3":[62,294],"4":[82,294],"5":[102,294],"6":[122,294],"7":[142,294],"8":[162,293],"9":[182,292],"10":[205,293],"11":[252,292],"12":[279,292],"13":[302,292],"14":[326,292],"15":[374,292],"16":[398,292],"17":[422,292],"18":[456,290],"19":[476,290],"20":[499,290],"21":[518,290],"22":[539,290],"23":[562,290],"24":[586,290],"25":[640,290],"26":[660,290],"27":[681,290],"28":[701,290],"29":[764,290],"30":[799,290],"31":[822,290],"32":[846,290],"33":[894,290],"34":[918,290],"35":[938,290],"36":[961,290],"37":[981,290],"38":[1002,290],"39":[1025,290],"40":[1048,290],"41":[1082,289],"42":[1134,289],"43":[1154,288],"44":[1188,288],"45":[1208,288],"46":[1242,288],"47":[1262,288],"48":[1306,288],"49":[1324,288],"50":[1340,305]},"B":{"1":[28,340],"2":[44,340],"3":[62,340],"4":[81,339],"5":[101,340],"6":[123,338],"7":[136,338],"8":[155,339],"9":[174,340],"10":[192,340],"11":[212,340],"12":[232,340],"13":[586,332],"14":[606,332],"15":[626,333],"16":[647,332],"17":[715,332],"18":[736,332],"19":[756,332],"20":[776,332],"21":[816,332],"22":[836,332],"23":[856,332],"24":[877,332],"25":[896,332],"26":[917,332],"27":[948,330],"28":[978,332],"29":[998,330],"30":[1018,330],"31":[1038,330],"32":[1058,330],"33":[1079,330],"34":[1099,330],"35":[1119,330]},"C":{"1":[588,372],"2":[608,372],"3":[628,372],"4":[644,372],"5":[664,372],"6":[684,372],"7":[704,372],"8":[723,372],"9":[743,372],"10":[764,372],"11":[804,372],"12":[859,371],"13":[882,370],"14":[903,370],"15":[923,370],"16":[944,370],"17":[964,370],"18":[980,370],"19":[1000,370],"20":[1020,370],"21":[1040,370],"22":[1061,370],"23":[1088,370],"24":[1108,370],"25":[1128,370],"26":[1145,370],"27":[1162,370],"28":[1179,370],"29":[1196,370],"30":[1216,370],"31":[1232,370],"32":[1253,369],"33":[1273,369],"34":[1304,368],"35":[1321,368]},"D":{"1":[626,420],"2":[652,420],"3":[676,420],"4":[696,420],"5":[719,420],"6":[738,420],"7":[758,420],"8":[778,419],"9":[798,419],"10":[826,418],"11":[846,418],"12":[866,418],"13":[889,418],"14":[913,418],"15":[936,418],"16":[956,418],"17":[984,418],"18":[1007,418],"19":[1027,418],"20":[1047,418],"21":[1070,418],"22":[1091,418],"23":[1128,418],"24":[1152,418]},"E":{"1":[617,451],"2":[662,461],"3":[686,460],"4":[709,460],"5":[756,460],"6":[779,460],"7":[798,460],"8":[822,460],"9":[842,460],"10":[862,460],"11":[886,460],"12":[902,460],"13":[922,460],"14":[943,460],"15":[960,460],"16":[978,460],"17":[996,460],"18":[1016,460],"19":[1036,459],"20":[1070,458],"21":[1090,458],"22":[1110,458],"23":[1131,458],"24":[1151,458]},"F":{"1":[588,516],"2":[618,516],"3":[637,516],"4":[750,512],"5":[772,511],"6":[794,511],"7":[812,511],"8":[830,511],"9":[848,511],"10":[867,511],"11":[888,511],"12":[909,511],"13":[930,510],"14":[950,510],"15":[970,510],"16":[1004,510],"17":[1025,510],"18":[1045,510],"19":[1064,510],"20":[1084,510],"21":[1104,510],"22":[1124,510],"23":[1160,509],"24":[1178,508],"25":[1212,508],"26":[1232,508],"27":[1252,508],"28":[1269,508],"29":[1286,508]},"G":{"1":[598,552],"2":[620,552],"3":[641,552],"4":[658,552],"5":[673,551],"6":[687,551],"7":[702,551],"8":[870,550],"9":[910,549],"10":[928,549],"11":[951,549],"12":[970,549],"13":[990,548],"14":[1008,548],"15":[1026,548],"16":[1044,548],"17":[1062,548],"18":[1080,548],"19":[1098,548],"20":[1116,548],"21":[1134,548],"22":[1153,548],"23":[1171,548],"24":[1189,548],"25":[1208,548],"26":[1226,548],"27":[1256,547],"28":[1274,547],"29":[1292,547]},"H":{"1":[298,596],"2":[317,595],"3":[428,594],"4":[445,594],"5":[482,594],"6":[502,594],"7":[542,594],"8":[608,592],"9":[628,593],"10":[649,592],"11":[672,592],"12":[696,592],"13":[722,592],"14":[746,592],"15":[865,590],"16":[900,590],"17":[923,590],"18":[947,590],"19":[1022,588],"20":[1043,588],"21":[1065,588],"22":[1088,588],"23":[1106,588],"24":[1138,588],"25":[1157,588],"26":[1195,588],"27":[1230,588],"28":[1250,588],"29":[1268,588],"30":[1288,588]},"I":{"1":[297,642],"2":[316,642],"3":[354,642],"4":[428,642],"5":[483,642],"6":[498,642],"7":[514,642],"8":[528,642],"9":[560,642],"10":[580,642],"11":[598,642],"12":[626,642],"13":[648,642],"14":[672,642],"15":[694,642],"16":[718,642],"17":[740,642],"18":[764,640],"19":[784,640],"20":[805,640],"21":[825,640],"22":[846,640],"23":[864,640],"24":[911,647],"25":[934,644],"26":[948,644],"27":[967,644],"28":[998,644],"29":[1016,644],"30":[1044,644],"31":[1062,644],"32":[1082,644],"33":[1131,644],"34":[1152,644],"35":[1170,644],"36":[1192,644],"37":[1214,644],"38":[1259,636],"39":[1278,643]},"J":{"1":[916,696],"2":[933,690],"3":[947,690],"4":[960,690],"5":[978,690],"6":[994,690],"7":[1031,691],"8":[1048,691],"9":[1062,691],"10":[1080,692],"11":[1100,691],"12":[1121,692],"13":[1209,690],"14":[1272,690]},"K":{"1":[938,756],"2":[972,754],"3":[989,752],"4":[1005,752],"5":[1035,748],"6":[1050,748],"7":[1064,746],"8":[1079,746],"9":[1092,744],"10":[1108,742],"11":[1124,742],"12":[1170,738],"13":[1188,738],"14":[1205,736],"15":[1222,736],"16":[1240,734],"17":[1254,734],"18":[1268,734]}};
+// Stretches the plan marks as an estimate ("+ 13 approx." and so on).
+const PLAN_APPROX = {
+  B:{from:36,count:13,x:1133,y:316,w:201,h:27},
+  D:{from:25,count:10,x:1171,y:401,w:145,h:28},
+  E:{from:25,count:9, x:1173,y:440,w:131,h:28}
+};
+const PLAN_TABS = [["A",0,277,"l"],["A",1357,277],["B",0,320,"l"],["B",1351,313],["C",1341,355],["D",1330,398],
+  ["E",1322,439],["F",1316,483],["G",1310,527],["H",1304,571],["H",257,580],["I",1299,622],["I",261,624],["J",1290,670],["K",1284,714]];
+const PLAN_GROUND = "4,266 1369,268 1284,753 930,773 885,773 885,650 760,650 760,662 637,662 637,668 195,668 4,352";
+function planWallX(y){ return 1369 - (y-268)*85/485; }
 
-  const container=document.getElementById("plotMapContainer");
-  let html="";
-  rows.forEach(row=>{
-    const count=PLOTS_PER_ROW[row];
-    html+=`<div class="plot-row"><div class="plot-row-label">${row}</div>`;
-    for(let i=1;i<=count;i++){
-      const plotId=row+"-"+(i<10?"0"+i:i);
-      const entries=burialsByPlot[plotId]||[];
-      let cls="plot-cell--empty";
-      let title="Plot "+plotId+" — Unrecorded";
-      if(entries.length>0){
-        const anyBio=entries.some(e=>!!e.bio);
-        cls=anyBio?"plot-cell--recorded":"plot-cell--partial";
-        title="Plot "+plotId+"\n"+entries.map(e=>displayName(e)+(e.died?" (d."+e.died+")":"")).join("\n");
-      }
-      const firstId=entries.length>0?entries[0].id:null;
-      html+=`
-        <div class="plot-cell ${cls}"
-             tabindex="0"
-             role="button"
-             data-plot="${plotId}"
-             onclick="plotClick('${plotId}',${firstId||"null"})"
-             onkeydown="if(event.key==='Enter')plotClick('${plotId}',${firstId||"null"})"
-             aria-label="${title.split("\n")[0]}">
-          ${i}
-        </div>`;
-    }
-    html+="</div>";
+let gmapState = {zoom:1, sel:null, row:null, spots:{}};
+
+function plotKey(row,n){ return row+"-"+(n<10?"0"+n:n); }
+function burialsByPlotBase(){
+  const m={};
+  BURIALS.forEach(b=>{
+    if(!plotVerified(b)) return;
+    const mm=String(b.plot).match(/^([A-K])-(\d+)/); if(!mm) return;
+    const k=plotKey(mm[1],parseInt(mm[2],10));
+    (m[k]=m[k]||[]).push(b);
   });
-  container.innerHTML=html;
+  return m;
+}
+
+function buildPlotMap(){
+  const svg=document.getElementById("gmapSvg"); if(!svg) return;
+  const byPlot=burialsByPlotBase();
+  const spots={};   // key -> {row,n,x,y,approx,overflow:[keys]}
+  Object.keys(PLOT_POS).forEach(row=>{
+    const pos=PLOT_POS[row];
+    Object.keys(pos).forEach(n=>{ spots[plotKey(row,+n)]={row,n:+n,x:pos[n][0],y:pos[n][1]}; });
+    const max=Math.max(...Object.keys(pos).map(Number));
+    const ap=PLAN_APPROX[row];
+    if(ap){
+      for(let i=0;i<ap.count;i++){
+        const n=ap.from+i, k=plotKey(row,n);
+        spots[k]={row,n,x:ap.x+ap.w*(i+0.5)/ap.count,y:ap.y+ap.h/2,approx:true};
+      }
+    }
+    // Graves recorded beyond the end of what the plan draws so far.
+    const top=ap?ap.from+ap.count-1:max;
+    const beyond=Object.keys(byPlot).filter(k=>k[0]===row && parseInt(k.slice(2),10)>top)
+                  .sort((a,b)=>parseInt(a.slice(2),10)-parseInt(b.slice(2),10));
+    if(beyond.length){
+      const last=spots[plotKey(row,top)]||spots[plotKey(row,max)];
+      const x=Math.min(last.x+17, planWallX(last.y)-9);
+      spots[row+"-more"]={row,n:null,x,y:last.y,more:beyond};
+    }
+  });
+  gmapState.spots=spots; gmapState.byPlot=byPlot;
+
+  const NS="http://www.w3.org/2000/svg";
+  let s='';
+  s+='<polygon class="gmap__ground" points="'+PLAN_GROUND+'"/>';
+  // estimated stretches
+  Object.keys(PLAN_APPROX).forEach(r=>{
+    const a=PLAN_APPROX[r];
+    let filled=false; for(let i=0;i<a.count;i++) if(byPlot[plotKey(r,a.from+i)]) filled=true;
+    s+='<g class="gmap__approx"><rect x="'+(a.x+2)+'" y="'+(a.y+1)+'" width="'+(a.w-4)+'" height="'+(a.h-2)+'" rx="5"/>'
+      +(filled?'':'<text x="'+(a.x+a.w/2)+'" y="'+(a.y+a.h/2+4.5)+'">about '+a.count+' more graves</text>')+'</g>';
+  });
+  // marks under the ink for graves with a name recorded
+  s+='<g class="gmap__named">';
+  Object.keys(spots).forEach(k=>{
+    const p=spots[k]; const has=p.more ? true : !!byPlot[k];
+    if(!has) return;
+    if(p.more) return;
+    s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+(p.approx?6:9.5)+'"/>';
+  });
+  s+='</g>';
+  s+='<image class="gmap__ink" href="images/burial-plan-ink.png" x="0" y="225" width="1400" height="565"/>';
+  // row letters
+  s+='<g class="gmap__tabs">';
+  PLAN_TABS.forEach(t=>{
+    const x=t[3]==="l"?2:t[1], w=t[3]==="l"?18:20;
+    s+='<g class="gmap__tab" data-row="'+t[0]+'"><rect x="'+x+'" y="'+t[2]+'" width="'+w+'" height="30" rx="3"/>'
+      +'<text x="'+(x+w/2)+'" y="'+(t[2]+21)+'">'+t[0]+'</text></g>';
+  });
+  s+='</g>';
+  // overflow markers
+  Object.keys(spots).forEach(k=>{
+    const p=spots[k]; if(!p.more) return;
+    s+='<g class="gmap__more"><circle cx="'+p.x+'" cy="'+p.y+'" r="9.5"/><text x="'+p.x+'" y="'+(p.y+3.6)+'">+'+p.more.length+'</text></g>';
+  });
+  // selection ring + hit areas
+  s+='<g class="gmap__rowmarks" id="gmapRowMarks"></g>';
+  s+='<g class="gmap__sel" id="gmapSel" style="display:none"><circle class="gmap__pulse" r="13"/><circle class="gmap__ring" r="11.5"/></g>';
+  s+='<g class="gmap__hits">';
+  Object.keys(spots).forEach(k=>{
+    const p=spots[k];
+    const people=p.more ? [] : (byPlot[k]||[]);
+    const label=p.more ? ("Row "+p.row+": "+p.more.length+" more graves recorded beyond the end of the plan")
+      : ("Plot "+k+(people.length? " \u2014 "+people.map(displayNameNatural).join(", ") : " \u2014 no name recorded yet"));
+    s+='<circle class="gmap__hit'+(people.length||p.more?' is-named':'')+'" data-k="'+k+'" cx="'+p.x+'" cy="'+p.y+'" r="'+(p.approx?7:11)+'" tabindex="0" role="button" aria-label="'+label.replace(/"/g,'&quot;')+'"><title>'+label.replace(/</g,'&lt;')+'</title></circle>';
+  });
+  s+='</g>';
+  svg.innerHTML=s;
+
+  svg.querySelectorAll(".gmap__hit").forEach(c=>{
+    c.addEventListener("click",e=>{e.stopPropagation();gmapSelect(c.dataset.k,{scroll:false});});
+    c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();gmapSelect(c.dataset.k,{scroll:false});}});
+  });
+  svg.querySelectorAll(".gmap__tab").forEach(t=>t.addEventListener("click",()=>browseRow(t.dataset.row)));
+  document.getElementById("gmapScroll").addEventListener("click",e=>{ if(!e.target.closest(".gmap__pop")) gmapClosePop(); });
+  gmapApplyZoom(window.matchMedia("(max-width:767px)").matches?3:1);
+
+  const pending=BURIALS.filter(b=>!plotVerified(b)).length;
   const pendEl=document.getElementById("plotMapPending");
   if(pendEl){
     pendEl.hidden = pending===0;
     pendEl.innerHTML = pending===0 ? "" :
-      `<strong>${pending} more people are recorded at Saron than are shown on this map.</strong> Their rows were
+      `<strong>${pending} more people are recorded at Saron than are shown on this plan.</strong> Their rows were
        lettered from the back fence toward the gate, the opposite of the way the graveyard is lettered today, so we
-       cannot yet say which grave is which. We leave the plot blank rather than send you to the wrong one.`;
+       cannot yet say which grave is which. They can still be found by name in the search above.`;
   }
 }
-function plotClick(plotId,id){
-  if(id){openBio(id);}
-  else{
-    document.getElementById("rowFilter").value=plotId[0];
-    showPage("burials");
-    filterBurials();
-  }
+
+function gmapApplyZoom(z){
+  const inner=document.getElementById("gmapInner"), sc=document.getElementById("gmapScroll");
+  if(!inner) return;
+  const cx = sc.scrollWidth ? (sc.scrollLeft+sc.clientWidth/2)/sc.scrollWidth : .5;
+  gmapState.zoom=Math.max(1,Math.min(4,z));
+  inner.style.width=(gmapState.zoom*100)+"%";
+  sc.scrollLeft=cx*sc.scrollWidth-sc.clientWidth/2;
+  document.getElementById("gmap").classList.toggle("is-zoomed",gmapState.zoom>1);
+  if(gmapState.sel) gmapPlacePop();
 }
+function gmapZoom(d){
+  if(d===0){ gmapApplyZoom(1); return; }
+  gmapApplyZoom(gmapState.zoom*(d>0?1.5:1/1.5));
+}
+
+// Turn plan coordinates into a position inside the scrolling layer.
+function gmapPx(x,y){
+  const svg=document.getElementById("gmapSvg"), w=svg.clientWidth, h=svg.clientHeight;
+  return {x:x/1400*w, y:(y-236)/552*h, w, h};
+}
+function gmapCentre(x,y){
+  const sc=document.getElementById("gmapScroll"); const p=gmapPx(x,y);
+  sc.scrollTo({left:p.x-sc.clientWidth/2,behavior:"smooth"});
+}
+
+function gmapSelect(k,opts){
+  opts=opts||{};
+  const p=gmapState.spots[k]; if(!p) return false;
+  gmapState.sel=k;
+  const g=document.getElementById("gmapSel");
+  g.style.display=""; g.setAttribute("transform","translate("+p.x+" "+p.y+")");
+  const people = p.more ? p.more.flatMap(m=>gmapState.byPlot[m]||[]) : (gmapState.byPlot[k]||[]);
+  const pop=document.getElementById("gmapPop");
+  let html='<button type="button" class="gmap__pop-x" onclick="gmapClosePop()" aria-label="Close">\u00d7</button>';
+  if(p.more){
+    html+='<p class="gmap__pop-k">Row '+p.row+', beyond the end of the plan</p>'
+        +'<p class="gmap__pop-t">These graves have been recorded on the ground but are not drawn on the plan yet.</p>';
+  } else {
+    html+='<p class="gmap__pop-k">Row '+p.row+' &middot; Plot '+p.n+(p.approx?' <span>(position estimated)</span>':'')+'</p>';
+  }
+  if(people.length){
+    html+='<ul class="gmap__pop-list">'+people.map(b=>
+      '<li><button type="button" onclick="openBio('+b.id+')"><span class="gmap__pop-name">'+displayNameNatural(b)+'</span>'
+      +'<span class="gmap__pop-meta">'+burialYears(b)+(p.more?' &middot; '+b.plot:'')+'</span></button></li>').join("")+'</ul>';
+  } else {
+    html+='<p class="gmap__pop-t">No name has been recorded for this grave yet. If you know who lies here, '
+        +'<a href="#" onclick="showPage(\'home\');setTimeout(()=>document.getElementById(\'contact\').scrollIntoView({behavior:\'smooth\'}),200);return false;">tell us</a>.</p>';
+  }
+  pop.innerHTML=html; pop.hidden=false;
+  gmapPlacePop();
+  if(opts.scroll!==false){
+    document.getElementById("gmap").scrollIntoView({behavior:"smooth",block:"center"});
+  }
+  if(gmapState.zoom>1 || opts.centre) gmapCentre(p.x,p.y);
+  return true;
+}
+function gmapPlacePop(){
+  const p=gmapState.spots[gmapState.sel]; const pop=document.getElementById("gmapPop");
+  if(!p||pop.hidden) return;
+  const q=gmapPx(p.x,p.y);
+  const pw=Math.min(280, q.w-16);
+  pop.style.width=pw+"px";
+  let left=q.x-pw/2; left=Math.max(8,Math.min(left,q.w-pw-8));
+  pop.style.left=left+"px";
+  const below = q.y < q.h*0.45;
+  pop.classList.toggle("is-below",below);
+  if(below){ pop.style.top=(q.y+18)+"px"; pop.style.bottom=""; }
+  else { pop.style.top=""; pop.style.bottom=(q.h-q.y+18)+"px"; }
+  pop.style.setProperty("--tip",(q.x-left)+"px");
+}
+function gmapClosePop(){
+  const pop=document.getElementById("gmapPop"); if(pop) pop.hidden=true;
+  const g=document.getElementById("gmapSel"); if(g) g.style.display="none";
+  gmapState.sel=null;
+}
+window.addEventListener("resize",()=>{ if(gmapState.sel) gmapPlacePop(); });
+
+function burialYears(b){
+  return b.born ? (b.born+"\u2013"+(b.died||"?")) : (b.died ? ("died "+b.died) : "dates not recorded");
+}
+
+// Show a person's grave on the plan.
+function showOnPlan(b){
+  if(!b||!plotVerified(b)) return false;
+  const mm=String(b.plot).match(/^([A-K])-(\d+)/); if(!mm) return false;
+  let k=plotKey(mm[1],parseInt(mm[2],10));
+  if(!gmapState.spots[k]) k=mm[1]+"-more";
+  return gmapSelect(k,{centre:true});
+}
+
+/* Browse a row: light up its graves on the plan and list the names below it. */
+function browseRow(r){
+  gmapState.row=r;
+  gmapClosePop();
+  const marks=document.getElementById("gmapRowMarks");
+  const spots=Object.values(gmapState.spots).filter(p=>p.row===r);
+  marks.innerHTML=spots.map(p=>'<circle cx="'+p.x+'" cy="'+p.y+'" r="'+(p.approx?7:11)+'"/>').join("");
+  document.querySelectorAll(".gmap__tab").forEach(t=>t.classList.toggle("is-on",t.dataset.row===r));
+  document.querySelectorAll(".burials-start__chip").forEach(c=>c.classList.toggle("is-on",c.dataset.row===r));
+  const people=BURIALS.filter(b=>plotVerified(b)&&b.row===r)
+    .sort((a,b)=>parseInt(a.plot.slice(2),10)-parseInt(b.plot.slice(2),10)||String(a.plot).localeCompare(String(b.plot)));
+  const box=document.getElementById("gmapRow");
+  box.innerHTML='<div class="gmap-row__head"><h3>Row '+r+'</h3><p>'+people.length+' '+(people.length===1?'person':'people')
+    +' recorded in this row, in plot order.</p><button type="button" class="gmap-row__x" onclick="clearRow()">Clear</button></div>'
+    +'<ol class="gmap-row__list">'+people.map(b=>'<li><button type="button" onclick="openBio('+b.id+')">'
+    +'<span class="gmap-row__plot">'+b.plot+'</span><span class="gmap-row__name">'+displayNameNatural(b)+'</span>'
+    +'<span class="gmap-row__yrs">'+burialYears(b)+'</span></button></li>').join("")+'</ol>';
+  box.hidden=false;
+  const first=spots[0]; if(first && gmapState.zoom>1) gmapCentre(first.x,first.y);
+  document.getElementById("gmap").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function clearRow(){
+  gmapState.row=null;
+  const m=document.getElementById("gmapRowMarks"); if(m) m.innerHTML="";
+  document.querySelectorAll(".gmap__tab.is-on,.burials-start__chip.is-on").forEach(t=>t.classList.remove("is-on"));
+  const box=document.getElementById("gmapRow"); if(box){box.hidden=true;box.innerHTML="";}
+}
+function plotClick(plotId){ gmapSelect(plotId); }
 
 /* ======================= OWAIN ======================= */
 (function(){
